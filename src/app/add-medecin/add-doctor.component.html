@@ -1,0 +1,92 @@
+ <div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="form-container col-5 offset-1 border p-4">
+            <h1 class="title mt-4 mb-4">
+                Register a doctor
+            </h1>
+            <div class="root-form col-9 offset-1">
+                <div class="form-group mb-2 mt-5">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="firstName" formControlName="firstName" placeholder="" required>
+                    <span class="placeholder-form-style">Firstname
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="lastName" formControlName="lastName" placeholder="" required>
+                    <span class="placeholder-form-style">Lastname
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="specialty" formControlName="specialty" placeholder="" required>
+                    <span class="placeholder-form-style">Specialty
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="email" formControlName="email" placeholder="" required>
+                    <span class="placeholder-form-style">Email
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="number" class="form-style col-12 " id="contact" formControlName="contact" placeholder="" required>
+                    <span class="placeholder-form-style">Contact
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="address" formControlName="address" placeholder="" required>
+                    <span class="placeholder-form-style">Address
+                    </span>
+                </div>
+                <div class="form-group mb-2">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="date" class="form-style col-12 " id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
+                    <span class="placeholder-form-style">Date of birth
+                    </span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button type="submit" [disabled]="doctorForm.invalid"
+                            class="btn btn-primary col-sm-6 offset-sm-3">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            </form>
+            <div class="form-container-right col-5" >
+            </div>
+        </div>
+
+
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Ajout du visiteur effectué avec succès !</h5>
+                </div>
+                <div class="modal-body">
+                    
+                    <p>firstName: {{ newDoctorDetails?.firtName }}</p>
+                    <p>Specialty: {{ newDoctorDetails?.specialty }}</p>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLoser</button>
+                    <button type="button" class="btn btn-secondary" (click)="dismissModal()">show list</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

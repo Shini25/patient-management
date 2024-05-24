@@ -1,0 +1,45 @@
+.spinner-container {
+    position: fixed;
+    /* Position absolue par rapport à la fenêtre */
+    top: 0;
+    /* Position au sommet de la fenêtre */
+    left: 0;
+    /* Position à gauche de la fenêtre */
+    width: 100%;
+    /* Largeur de 100% de la fenêtre */
+    height: 100%;
+    /* Hauteur de 100% de la fenêtre */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fond semi-transparent */
+    display: flex;
+    /* Utilisation de flexbox pour centrer le spinner */
+    justify-content: center;
+    /* Centrer horizontalement */
+    align-items: center;
+    /* Centrer verticalement */
+    z-index: 9999;
+    /* Assure que le spinner est au-dessus de tous les autres contenus */
+}
+
+.spinner {
+    /* Ajoutez ici les styles pour votre animation de chargement */
+    border: 16px solid #f3f3f3;
+    /* Cercle vide */
+    border-top: 16px solid #3498db;
+    /* Cercle bleu */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 3s linear infinite;
+    /* Animation pour tourner */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

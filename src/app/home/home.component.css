@@ -1,0 +1,78 @@
+.root-content {
+    background-color: rgba(19, 19, 19, 0.92);
+    height: 90vh;
+}
+
+.search {
+    height: 15vh;
+    background-color: #f0f8ff;
+}
+
+.search input{
+    height: 40px;
+    padding-left: 60px;
+    border-radius: 30px;
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.search input:focus {
+        outline: none;
+}
+
+.search-icon img {
+    height: 23px;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    bottom: 33px;
+    left: 20px;
+    
+}
+
+.search-icon img:active {
+    transform: scale(1.2);
+    /* Ajustez la valeur de l'échelle selon vos besoins */
+    transition: transform 0.2s ease;
+    /* Ajoute une transition pour une animation fluide */
+}
+
+.search h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.Medecin-info {
+    border: 3px rgba(255, 255, 255, 0.309) solid;
+    color: #ffffff;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.015);margin-left: 5px;
+
+}
+
+
+.Medecin-info img{
+    height: 200px;
+}
+
+.medecins-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.Medecin-info {
+    display: inline-block;
+    margin-right: 20px;
+    /* Pour séparer les médecins */
+}
+
+em {
+    color: black;
+}
+
+.list-doctor-title {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+
+}

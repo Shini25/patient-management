@@ -1,0 +1,381 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.first {
+background-image: url('../assets/2149844637.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+height: 100vh;
+background-color: rgb(255, 255, 255);
+}
+
+.second {
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+}
+
+.third {
+    height: 120vh;
+    background-color: rgb(255, 255, 255);
+}
+
+.fourth {
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+}
+
+.last {
+    height: 50vh;
+    background-color: rgba(19, 18, 18, 0.989);
+}
+
+.logo {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.logo img {
+    height: 25px;
+    /* Ajustez la hauteur selon vos besoins */
+    margin-right: 10px;
+    /* Espacement entre l'image et le texte du logo */
+}
+
+.logo-title {
+    font-size: 20px;
+    /* Taille de police pour le texte du logo */
+    font-weight: bold;
+    /* Mettre en gras pour une meilleure lisibilité */
+    margin-left: 10px;
+    /* Espacement entre l'image et le texte du logo */
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.menu li a:hover {
+    color: #ffcc00;
+}
+
+.btn:hover {
+    color: #ffffff !important;
+}
+
+.log {
+    margin-left: 80px;
+    border-color: #ffffffac;
+}
+
+.log:hover {
+    color: #000000 !important;
+    background-color: #ffffff;
+}
+
+.content {
+    padding: 20px;
+}
+
+
+.nav {
+    padding-left: 30px;
+    background-color: rgba(35, 35, 35, 0.677);
+    height: 60px;
+
+}
+
+.title {
+    margin-top: 200px;
+    color: rgb(0, 0, 0);
+    word-spacing: 5px;
+    margin-left: 20px;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 40px;
+    margin-left: 40px;
+    
+}
+
+.lead {
+    font-size: 30px;
+}
+
+.circle {
+    border-radius:  50%;
+    height: 800px;
+    margin: 20px;
+    margin-left: 70px;
+    background-color: rgba(251, 251, 251, 0.403);
+    justify-content: center;
+}
+
+.second-circle {
+    border-radius: 10%;
+    height: 600px;
+    background-color: rgba(40, 39, 39, 0);
+    color: #ffffff;
+    justify-content: center;
+    margin-top: 80px;
+
+}
+
+.second-title {
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.about-us {
+    font-size: 30px;
+    color: #ffffffb8;
+}
+
+.about-us-title {
+    color: rgb(255, 255, 255);
+    margin-bottom: 40px;
+    margin-left: 290px;
+
+}
+
+.Learn-more {
+    margin-top: 10%;
+    margin-left: 320px;
+    border-radius: 50px;
+    border: 2px solid rgb(0, 42, 255);
+    background-color: transparent;
+    /* Rendre le fond transparent */
+    color: rgb(0, 42, 255);
+    /* Couleur du texte */
+    font-size: 18px;
+    /* Taille de la police */
+    font-weight: bold;
+    /* Gras */
+    text-transform: uppercase;
+    /* Mettre en majuscules */
+}
+
+.Learn-more:hover {
+    filter: blur(1px);
+    /* Ajouter un flou au survol */
+}
+
+
+.trait {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.906);
+}
+
+h2 {
+    color: #ffffffbd;
+}
+
+.info-find-us {
+        color: #ffffff;
+}
+
+
+.contact-info {
+    color: rgb(28, 147, 232);
+}
+
+.contact-info ul {
+    list-style: none;
+    /* Supprimer les puces de la liste */
+    padding: 0;
+    /* Supprimer les marges intérieures de la liste */
+}
+
+.contact-info ul li {
+    margin-bottom: 5px;
+    /* Ajouter un espace entre chaque service */
+}
+
+.contact-info ul li a {
+    text-decoration: none;
+    /* Supprimer le soulignement des liens */
+    color: inherit;
+    /* Utiliser la couleur par défaut du texte */
+}
+
+.contact-info ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer {
+    padding: 20px;
+}
+
+.icon-logo {
+    font-size: 30px;
+}
+
+.icon-logo img {
+    height: 50px;
+}
+
+.login-form {
+    margin-top: 100px;
+    border-radius: 20px;
+}
+
+.login-form-image {
+    height: 80vh;
+    background-color: rgb(7, 7, 7);
+    border-radius: 20px 0px 0px 20px;
+    border: #000000eb;
+    border-style: groove;
+    color: #ffffff;
+
+}
+
+.login-form-content {
+    height: 80vh;
+    background-image: url('../assets/2149341567.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.login-user-logo img{
+    height: 80px;
+    margin-left: 20px;
+}
+
+.title-form {
+    margin-left: 270px;
+}
+.login-id img {
+    height: 35px;
+    position: relative;
+    left: 0px;
+    top: 30px;
+    
+    
+}
+
+.username, .password {
+    
+    border: #ffffff00;
+    height: 40px;
+    border-bottom: #ffffff61 double;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: large;
+    padding-left: 60px;
+    color: #ffffff;
+    
+}
+/* Supprimer la bordure de focus */
+.username:focus, .password:focus{
+    outline: none;
+    padding-left: 60px;
+    font-size: 25px;
+}
+
+.placeholder-username, .placeholder-password{
+    position: relative;
+    top: -40px;
+    left: 150px;
+    color: #e4e4e4;
+    font-size: large;
+    transition: 0.5s;
+    pointer-events: none;
+    
+}
+
+.username:focus + .placeholder-username, .password:focus + .placeholder-password{
+    transition: 0.5s;
+    position: relative;
+    top: -80px;
+    left: 0px;
+    color: #000000a8;
+    
+}
+
+.username:not(:placeholder-shown)+.placeholder-username {
+    opacity: 0;
+    /* Rendre le placeholder transparent lorsque le champ contient du texte */
+}
+
+.password:not(:placeholder-shown)+.placeholder-password {
+    opacity: 0;
+    /* Rendre le placeholder transparent lorsque le champ contient du texte */
+}
+
+h3 {
+    margin-left: 10px !important;
+}
+
+.create-account {
+    color: green;
+}
+
+.auth-title {
+    margin-top: 250px;
+    padding-left: 10px;
+}
+
+.auth-title-first {
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.67);
+}
+
+/* Dans votre fichier CSS global ou spécifique */
+.aos-animate {
+    opacity: 1;
+    transition-property: opacity;
+}
+
+.back-top {
+    margin-top: 300px;
+    height: 100px;
+    margin-left: 170px;
+
+}
+
+
+.navbar-nav {
+    margin: auto;
+    list-style-type: none;
+}
+
+.navbar-nav li{
+    display: inline;
+}
+
+.navbar-nav li a {
+    color: #0000008b;
+    margin-right: 50px;
+    font-size: 30px;
+    font-weight: 800;
+    text-decoration: none;
+    
+    transition: color 0.3s;
+}

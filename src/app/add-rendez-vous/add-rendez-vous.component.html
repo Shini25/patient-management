@@ -1,0 +1,89 @@
+ <div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()" class="form-container col-5 offset-1 border p-4">
+            <h1 class="title mt-4 mb-4">
+                Register an appointment
+            </h1>
+            <div class="root-form col-9 offset-1">
+
+
+                <div class="form-group mb-2 mt-5">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <select formControlName="patient" class="form-style col-12">
+                        <ng-container *ngFor="let patient of patients">
+                            <option [ngValue]="patient.id">{{ patient.id ? patient.id : 'Not assigned' }}</option>
+                        </ng-container>
+                    </select>
+                    <span class="placeholder-form-style-first">Sélect a patient
+                    </span>
+                </div>
+
+                <div class="form-group mb-2 mt-5">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <select formControlName="doctor" class="form-style col-12">
+                        <ng-container *ngFor="let doctor of doctors">
+                            <option [ngValue]="doctor.id">{{ doctor.firstName ? doctor.firstName : 'Not assigned' }}</option>
+                        </ng-container>
+                    </select>
+                    <span class="placeholder-form-style-first">Sélect a doctor
+                    </span>
+                </div>
+
+                <div class="form-group mb-2 mt-5">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="text" class="form-style col-12 " id="reason" formControlName="reason" placeholder="" required>
+                    <span class="placeholder-form-style">Reason
+                    </span>
+                </div>
+
+                <div class="form-group mb-2 mt-5">
+                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                    </span>
+                    <input type="date" class="form-style col-12 " id="appointmentDate" formControlName="appointmentDate" placeholder="" required>
+                    <span class="placeholder-form-style">Date
+                    </span>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button type="submit" [disabled]="appointmentForm.invalid"
+                            class="btn btn-primary col-sm-6 offset-sm-3">Add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="form-container-right col-5" >
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Appointment successfully added !</h5>
+                </div>
+                <div class="modal-body">
+                     
+                    <p>Patient : {{ newAppointmentDetails?.patient.id }}</p>
+                    <p>Doctor : {{ newAppointmentDetails?.doctor.id }}</p>
+                    <p>Reason: {{ newAppointmentDetails?.reason }}</p>
+                    <p>Date: {{ newAppointmentDetails?.appointmentDate }}</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" (click)="dismissModal()">Show</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+ 
