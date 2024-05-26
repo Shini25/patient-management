@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faList } from '@fortawesome/free-solid-svg-icons';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faList, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as AOS from 'aos';
 
 @Component({
@@ -10,7 +7,7 @@ import * as AOS from 'aos';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'FrontVisitor';
   homeIcon = faHome;
@@ -18,8 +15,8 @@ export class AppComponent implements OnInit{
   listIcon = faList;
   infoIcon = faInfoCircle;
   darkModeEnabled = false;
-  isPatientMenuOpen = false;  // Added property to control the display of the menu
-  isDoctorMenuOpen = false;
+  isPatientMenuOpen = false;  
+  isDoctorMenuOpen = true;  // Initialize to true to open Doctor menu by default
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
 
@@ -62,5 +59,13 @@ export class AppComponent implements OnInit{
         this.isAppointmentMenuOpen = true;
       }
     }
+  }
+
+  isMenuSelected(menu: string): boolean {
+    if (menu === 'patient') return this.isPatientMenuOpen;
+    if (menu === 'doctor') return this.isDoctorMenuOpen;
+    if (menu === 'consultation') return this.isConsultationMenuOpen;
+    if (menu === 'appointment') return this.isAppointmentMenuOpen;
+    return false;
   }
 }

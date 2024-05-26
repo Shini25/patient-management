@@ -398,11 +398,11 @@ h3 {
 
 .btn-add img , .btn-list img{
     height: 30px;
+    
 }
 .btn-list:hover, .btn-add:hover{
     background-color: #00000016;
 }
-
 
 
 .options{
@@ -412,7 +412,7 @@ h3 {
     width: 180px;
     border-radius: 10px;
     border: 1px solid #00000005;
-    background-color: #ffffffe8;
+    background-color:  #f0f8ff;
    
 }
 
@@ -424,10 +424,22 @@ h3 {
 }
 
 .register-text, .list-text {
-    margin-left: 25px;
+    margin-left: 15px;
+    margin-top: 15px !important;
+    position: relative;
+    top: 3px;
 }
 
 .nav-link {
     color: #000000 !important;
 }
 
+.sort-down img{
+    height: 40px;
+    opacity: 0.2;
+}
+
+.nav-link.btn.selected {
+    border-bottom: 2px solid #000000;  /* Changez la couleur selon vos besoins */
+  }
+  

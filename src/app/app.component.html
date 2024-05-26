@@ -49,14 +49,13 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container justify-content-center"> 
             <ul class="navbar-nav">
-
+  
               <li class="nav-item col-6">
-                <button class="nav-link btn" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" data-aos="fade-left" data-aos-duration="600">Patients</button>
-                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'selected': isMenuSelected('patient')}" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" data-aos="zoom-in" data-aos-duration="1000">Patients <span class="sort-down"><img src="../assets/sort-down_7199356.png" alt=""></span></button>
+                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options"  data-aos="zoom-out" data-aos-duration="600">
                   <a routerLink="/add-patient" class="btn-link btn-add col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_11105761.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
-                    
                   <a routerLink="/list-patient" class="btn-link btn-list col-12" (click)="toggleMenu('patient')">
                     <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
@@ -64,39 +63,41 @@
               </li>
               
               <li class="nav-item col-6">
-                <button class="nav-link btn" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')" data-aos="fade-left" data-aos-duration="600">Doctor</button>
-                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'selected': isMenuSelected('doctor')}" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')" data-aos="zoom-in" data-aos-duration="600">Doctor <span class="sort-down"><img src="../assets/sort-down_7199356.png" alt=""></span></button>
+                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
                   <a routerLink="/add-doctor" class="btn-link btn-add col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_11105761.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-doctor" class="btn-link btn-list col-12" (click)="toggleMenu('doctor')">
                     <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
-
+  
               <li class="nav-item col-6">
-                <button class="nav-link btn" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" data-aos="fade-left" data-aos-duration="600">Consultation</button>
-                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'selected': isMenuSelected('consultation')}" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" data-aos="zoom-in" data-aos-duration="600">Consultation <span class="sort-down"><img src="../assets/sort-down_7199356.png" alt=""></span></button>
+                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
                   <a routerLink="/add-consultation" class="btn-link btn-add col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_11105761.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-consultation" class="btn-link btn-list col-12" (click)="toggleMenu('consultation')">
                     <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
+  
               <li class="nav-item col-6">
-                <button class="nav-link btn" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')" data-aos="fade-left" data-aos-duration="600">Appointment</button>
-                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'selected': isMenuSelected('appointment')}" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')" data-aos="zoom-in" data-aos-duration="600">Appointment <span class="sort-down"><img src="../assets/sort-down_7199356.png" alt=""></span></button>
+                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
                   <a routerLink="/add-appointment" class="btn-link btn-add col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_11105761.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-appointment" class="btn-link btn-list col-12" (click)="toggleMenu('appointment')">
                     <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
+  
             </ul>
           </div>
         </nav>
@@ -110,7 +111,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+      <div class="row">
     <div class="col-10 offset-1 login-form" >
       <div class="row">
         <div class="col-6 login-form-image" data-aos="slide-right" data-aos-duration="1000" >
