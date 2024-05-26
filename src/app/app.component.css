@@ -81,7 +81,7 @@ background-color: rgb(255, 255, 255);
 }
 
 .btn:hover {
-    color: #ffffff !important;
+    color: #878282 !important;
 }
 
 .log {
@@ -364,14 +364,20 @@ h3 {
 .navbar-nav {
     margin: auto;
     list-style-type: none;
+    width: 100%; display: flex; justify-content: center;
 }
 
 .navbar-nav li{
     display: inline;
 }
-
+.nav-item {
+    height: 50px;
+    font-size: 30px;
+    font-weight: 800;
+    
+}
 .navbar-nav li a {
-    color: #0000008b;
+    color: #000000;
     margin-right: 50px;
     font-size: 30px;
     font-weight: 800;
@@ -379,3 +385,49 @@ h3 {
     
     transition: color 0.3s;
 }
+
+
+.nav-item{
+    width: 25%;
+   
+}
+
+.btn-add, .btn-list {
+    margin-top: 10px;
+}
+
+.btn-add img , .btn-list img{
+    height: 30px;
+}
+.btn-list:hover, .btn-add:hover{
+    background-color: #00000016;
+}
+
+
+
+.options{
+    position: relative;
+    bottom: 50px;
+    height: 100px;
+    width: 180px;
+    border-radius: 10px;
+    border: 1px solid #00000005;
+    background-color: #ffffffe8;
+   
+}
+
+.options a {
+    color: rgba(10, 10, 10, 0.482) !important;
+    font-size: 20px !important;
+
+    
+}
+
+.register-text, .list-text {
+    margin-left: 25px;
+}
+
+.nav-link {
+    color: #000000 !important;
+}
+

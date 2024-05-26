@@ -1,5 +1,5 @@
 .root-content {
-    background-color: rgba(19, 19, 19, 0.92);
+    background-color: rgb(0, 0, 0);
     height: 90vh;
 }
 
@@ -43,20 +43,29 @@
 .patient-container {
   display: flex;
   flex-wrap: wrap;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-y: auto;
+  
 }
 
 .Patient-info {
-  flex: 0 0 25%; /* 4 patients par ligne */
-  box-sizing: border-box;
   padding: 15px;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.664);
+  border-radius: 10px;
+  margin: 15px;
+  width: 350px;
+  margin-bottom: 10px;
+  background-color: rgba(1, 9, 42, 0.93);
+
+
 }
 
 .Patient-info img{
-    height: 100px;
-    
+    height: 50px;
+    width: 50px;
 }
-
-
 
 
 em {
@@ -76,3 +85,5 @@ em {
     text-align: right;
     
 }
+
+

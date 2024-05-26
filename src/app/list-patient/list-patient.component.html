@@ -24,21 +24,23 @@
                 </div>
 
                 <!-- Patient list -->
-                <div class="col-12 mt-5" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="row flex-row flex-wrap">
+                <div class="col-12 mt-5" data-aos="fade-down" data-aos-duration="2000">
+                    <div class="row">
                         <div class="col-12 patient-container">
+
                             <div class="Patient-info" *ngFor="let patient of patients">
-                                <div class="d-flex flex-row justify-content-start align-items-center mt-3">
-                                    <div class="p-2">
+
+                                <div class="row mb-2">
+                                    <div class="col-4">
                                         <span><img src="../assets/doctor_4131330.png" alt=""></span>
                                     </div>
-                                    <div class="p-2 info-name">
+                                    <div class="info-name col-8">
                                         <h1>{{ patient.firstName }}</h1>
                                         <h1>{{ patient.lastName }}</h1>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-row flex-wrap">
-                                    <div class="p-2">
+                                <div class="row">
+                                    <div class="col-12">
                                         <ul>
                                             <li>Date of birth: {{ patient.dateOfBirth }}</li>
                                             <li>Gender: {{ patient.gender }}</li>
@@ -48,19 +50,17 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-outline-danger col-6" (click)="deletePatient(patient.id)">Delete</button>
+                                        <button class="btn btn-outline-primary col-6" (click)="editPatient(patient)">Update</button>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
-                    <!-- Pagination buttons -->
-                    <div class="row mt-3">
-                        <div class="col-6 text-left">
-                            <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
-                        </div>
-                        <div class="col-6 text-right">
-                            <button class="btn btn-secondary" (click)="nextPage()" [disabled]="(currentPage + 1) * pageSize >= patients.length">Next</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
