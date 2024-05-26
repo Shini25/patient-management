@@ -54,45 +54,45 @@
         <div class="container justify-content-center"> 
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#patient"  data-bs-toggle="collapse" data-bs-target="#patientCollapse">Patient</a>
-              <div class="collapse" id="patientCollapse">
-                <button class="btn btn-info" routerLink="/add-patient">
+              <button class="nav-link btn" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')">Patient</button>
+              <div *ngIf="isPatientMenuOpen" id="patientCollapse">
+                <button class="btn btn-info" routerLink="/add-patient" (click)="toggleMenu('patient')">
                   <span class="circle"><fa-icon class="fa-icon" [icon]="ajoutIcon"></fa-icon></span>
                 </button>
-                <button class="btn btn-info" routerLink="/list-patient">
+                <button class="btn btn-info" routerLink="/list-patient" (click)="toggleMenu('patient')">
                   <span class="circle"><img src="../assets/list_128074.png" alt="List Icon"></span>
                 </button>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#doctor" data-bs-toggle="collapse" data-bs-target="#doctorCollapse">Doctor</a>
-              <div class="collapse" id="doctorCollapse">
-                <button class="btn btn-info" routerLink="/add-doctor">
+              <button class="nav-link btn" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')">Doctor</button>
+              <div *ngIf="isDoctorMenuOpen" id="doctorCollapse">
+                <button class="btn btn-info" routerLink="/add-doctor" (click)="toggleMenu('doctor')">
                   <span class="circle"><fa-icon class="fa-icon" [icon]="ajoutIcon"></fa-icon></span>
                 </button>
-                <button class="btn btn-info" routerLink="/list-doctor">
+                <button class="btn btn-info" routerLink="/list-doctor" (click)="toggleMenu('doctor')">
                   <span class="circle"><img src="../assets/list_128074.png" alt="List Icon"></span>
                 </button>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#consultation"  data-bs-toggle="collapse" data-bs-target="#consultationCollapse">Consultation</a>
-              <div class="collapse" id="consultationCollapse">
-                <button class="btn btn-info" routerLink="/add-consultation">
+              <button class="nav-link btn" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')">Consultation</button>
+              <div *ngIf="isConsultationMenuOpen" id="consultationCollapse">
+                <button class="btn btn-info" routerLink="/add-consultation" (click)="toggleMenu('consultation')">
                   <span class="circle"><fa-icon class="fa-icon" [icon]="ajoutIcon"></fa-icon></span>
                 </button>
-                <button class="btn btn-info" routerLink="/list-consultation">
+                <button class="btn btn-info" routerLink="/list-consultation" (click)="toggleMenu('consultation')">
                   <span class="circle"><img src="../assets/list_128074.png" alt="List Icon"></span>
                 </button>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#appointment" data-bs-toggle="collapse" data-bs-target="#appointmentCollapse">Appointment</a>
-              <div class="collapse" id="appointmentCollapse">
-                <button class="btn btn-info" routerLink="/add-appointment">
+              <button class="nav-link btn" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')">Appointment</button>
+              <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse">
+                <button class="btn btn-info" routerLink="/add-appointment" (click)="toggleMenu('appointment')">
                   <span class="circle"><fa-icon class="fa-icon" [icon]="ajoutIcon"></fa-icon></span>
                 </button>
-                <button class="btn btn-info" routerLink="/list-appointment">
+                <button class="btn btn-info" routerLink="/list-appointment" (click)="toggleMenu('appointment')">
                   <span class="circle"><img src="../assets/list_128074.png" alt="List Icon"></span>
                 </button>
               </div>

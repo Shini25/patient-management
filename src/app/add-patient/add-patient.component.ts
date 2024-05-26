@@ -23,7 +23,7 @@ export class AddPatientComponent {
   patientForm = new FormGroup({
     firstName:  new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl(new Date(), [Validators.required]),
+    dateOfBirth: new FormControl('', [Validators.required]), // Removed default date formatting
     gender: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
@@ -72,7 +72,7 @@ export class AddPatientComponent {
         const newPatient = {
           firstName: firstNameValue,
           lastName: lastNameValue,
-          dateOfBirth: dateOfBirthValue,
+          dateOfBirth: new Date(dateOfBirthValue), // Convert string to Date
           gender: genderValue,
           address: addressValue,
           phoneNumber: phoneNumberValue,
@@ -88,3 +88,4 @@ export class AddPatientComponent {
     }
   }
 }
+

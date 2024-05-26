@@ -12,29 +12,55 @@ import * as AOS from 'aos';
 })
 export class AppComponent implements OnInit{
 
-
-  ngOnInit() {
-    AOS.init();
-  }
-
   title = 'FrontVisitor';
   homeIcon = faHome;
   ajoutIcon = faPlus;
   listIcon = faList;
   infoIcon = faInfoCircle;
-
   darkModeEnabled = false;
+  isPatientMenuOpen = false;  // Added property to control the display of the menu
+  isDoctorMenuOpen = false;
+  isConsultationMenuOpen = false;
+  isAppointmentMenuOpen = false;
 
-onThemeChanged(darkMode: boolean): void {
-  this.darkModeEnabled = darkMode;
-
-  if (darkMode) {
-    document.body.classList.add('dark-theme');
-  } else {
-    document.body.classList.remove('dark-theme');
+  ngOnInit() {
+    AOS.init();
   }
 
-  // Vous devrez peut-être également rafraîchir l'apparence des éléments de votre interface utilisateur ici
-}
+  onThemeChanged(darkMode: boolean): void {
+    this.darkModeEnabled = darkMode;
+    if (darkMode) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }
 
+  closeAllMenus(): void {
+    this.isPatientMenuOpen = false;
+    this.isDoctorMenuOpen = false;
+    this.isConsultationMenuOpen = false;
+    this.isAppointmentMenuOpen = false;
+  }
+
+  toggleMenu(menu: string): void {
+    // Ferme tous les menus si celui cliqué est déjà ouvert
+    if ((menu === 'patient' && this.isPatientMenuOpen) ||
+        (menu === 'doctor' && this.isDoctorMenuOpen) ||
+        (menu === 'consultation' && this.isConsultationMenuOpen) ||
+        (menu === 'appointment' && this.isAppointmentMenuOpen)) {
+      this.closeAllMenus();
+    } else {
+      this.closeAllMenus();
+      if (menu === 'patient') {
+        this.isPatientMenuOpen = true;
+      } else if (menu === 'doctor') {
+        this.isDoctorMenuOpen = true;
+      } else if (menu === 'consultation') {
+        this.isConsultationMenuOpen = true;
+      } else if (menu === 'appointment') {
+        this.isAppointmentMenuOpen = true;
+      }
+    }
+  }
 }
