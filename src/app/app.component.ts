@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faHome, faPlus, faList, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as AOS from 'aos';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,25 +16,29 @@ export class AppComponent implements OnInit {
   ajoutIcon = faPlus;
   listIcon = faList;
   infoIcon = faInfoCircle;
-  darkModeEnabled = false;
-  isPatientMenuOpen = false;  
-  isDoctorMenuOpen = true;  // Initialize to true to open Doctor menu by default
+  isPatientMenuOpen = false;
+  isDoctorMenuOpen = false;  
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
+  isPatientRoute = false;
+  isDoctorRoute = false;  // Update dynamically
+  isConsultationRoute = false;
+  isAppointmentRoute = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     AOS.init();
-  }
-
-  onThemeChanged(darkMode: boolean): void {
-    this.darkModeEnabled = darkMode;
-    if (darkMode) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
-  }
-
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isPatientRoute = this.router.url.includes('/add-patient') || this.router.url.includes('/list-patient');
+      this.isDoctorRoute = this.router.url.includes('/add-doctor') || this.router.url.includes('/list-doctor') || this.router.url.includes('/home');
+      this.isConsultationRoute = this.router.url.includes('/add-consultation') || this.router.url.includes('/list-consultation');
+      this.isAppointmentRoute = this.router.url.includes('/add-appointment') || this.router.url.includes('/list-appointment');
+    });
+ }
+  
   closeAllMenus(): void {
     this.isPatientMenuOpen = false;
     this.isDoctorMenuOpen = false;
@@ -41,7 +47,6 @@ export class AppComponent implements OnInit {
   }
 
   toggleMenu(menu: string): void {
-    // Ferme tous les menus si celui cliqué est déjà ouvert
     if ((menu === 'patient' && this.isPatientMenuOpen) ||
         (menu === 'doctor' && this.isDoctorMenuOpen) ||
         (menu === 'consultation' && this.isConsultationMenuOpen) ||
@@ -59,13 +64,5 @@ export class AppComponent implements OnInit {
         this.isAppointmentMenuOpen = true;
       }
     }
-  }
-
-  isMenuSelected(menu: string): boolean {
-    if (menu === 'patient') return this.isPatientMenuOpen;
-    if (menu === 'doctor') return this.isDoctorMenuOpen;
-    if (menu === 'consultation') return this.isConsultationMenuOpen;
-    if (menu === 'appointment') return this.isAppointmentMenuOpen;
-    return false;
   }
 }
