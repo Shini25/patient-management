@@ -61,8 +61,7 @@ import * as AOS from 'aos';
       preventDuplicates: true,
       closeButton: true
     }),
-    RouterModule.forRoot(routes) // Configure les routes principales
-    // Autres modules nécessaires à votre application
+    RouterModule.forRoot(routes)
   ],
   providers: [
     // Fournisseurs de services nécessaires à votre application, comme ToastrService

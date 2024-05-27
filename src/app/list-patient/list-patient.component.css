@@ -51,13 +51,13 @@
 
 .Patient-info {
   padding: 15px;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.664);
+  color: rgb(0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.369);
   border-radius: 10px;
   margin: 15px;
   width: 350px;
   margin-bottom: 10px;
-  background-color: rgba(1, 9, 42, 0.93);
+  background-color: #f0f8ff;
 
 
 }
@@ -76,7 +76,7 @@ em {
     color: #000000;
     font-weight: 400;
     font-size: 50px;
-    text-align: center;
+    text-align: left;
     margin-top: 50px;
 
 }

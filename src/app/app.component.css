@@ -59,6 +59,22 @@ background-color: rgb(255, 255, 255);
 
 }
 
+/* Retirer les bordures et autres styles par défaut des liens */
+.no-border {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .no-border:focus, .no-border:active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+.menu-option {
+    text-align: right;
+}  
+
 .menu {
     list-style-type: none;
     margin: 0;
@@ -81,19 +97,20 @@ background-color: rgb(255, 255, 255);
 }
 
 .btn:hover {
-    color: #878282 !important;
+    color: #2b2929 !important;
 }
 
 .log {
     margin-left: 80px;
     border-color: #ffffffac;
-}
-
-.log:hover {
-    color: #000000 !important;
     background-color: #ffffff;
-}
+    color: #000000 !important;
 
+
+}
+.log:hover {
+    opacity: 0.8;
+}
 .content {
     padding: 20px;
 }
@@ -120,6 +137,14 @@ h1 {
     
 }
 
+.btn-primary:hover {
+    color: white !important;
+
+}
+
+.btn:active:focus {
+    box-shadow: none !important;
+  }
 .lead {
     font-size: 30px;
 }
@@ -454,5 +479,11 @@ h3 {
 
 .active-route .sort-down img {
     opacity: 1 !important;
+    
+}
+
+
+.active-route:hover {
+    opacity: 0.4 !important;
     
 }

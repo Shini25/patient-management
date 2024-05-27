@@ -75,7 +75,7 @@ loading: boolean = false; // État de chargement initial
         // Gérer l'erreur ici, afficher un message à l'utilisateur, etc.
     }   
     
-        // Cacher l'animation de chargement une fois terminée (après 4 secondes)
+        // Cacher l'animation de chasrgement une fois terminée (après 4 secondes)
         setTimeout(() => {
             this.loading = false;
         }, 1000); // 4 secondes

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faHome, faPlus, faList, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as AOS from 'aos';
 import { Router, NavigationEnd } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -21,11 +22,12 @@ export class AppComponent implements OnInit {
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
   isPatientRoute = false;
-  isDoctorRoute = false;  // Update dynamically
+  isDoctorRoute = false;
   isConsultationRoute = false;
   isAppointmentRoute = false;
+  
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private viewportScroller: ViewportScroller) {}
 
   ngOnInit() {
     AOS.init();
@@ -37,8 +39,8 @@ export class AppComponent implements OnInit {
       this.isConsultationRoute = this.router.url.includes('/add-consultation') || this.router.url.includes('/list-consultation');
       this.isAppointmentRoute = this.router.url.includes('/add-appointment') || this.router.url.includes('/list-appointment');
     });
- }
-  
+  }
+
   closeAllMenus(): void {
     this.isPatientMenuOpen = false;
     this.isDoctorMenuOpen = false;
@@ -63,6 +65,14 @@ export class AppComponent implements OnInit {
       } else if (menu === 'appointment') {
         this.isAppointmentMenuOpen = true;
       }
+    }
+  }
+
+  // Ajoutez cette méthode pour gérer le défilement
+  scrollToElement(elementId: string): void {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }
