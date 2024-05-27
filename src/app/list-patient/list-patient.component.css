@@ -51,6 +51,15 @@
 
 .Patient-info {
   padding: 15px;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.664);
+  border-radius: 10px;
+  margin: 15px;
+  width: 350px;
+  margin-bottom: 10px;
+  background-color: rgba(1, 9, 42, 0.93);
+
+
 }
 
 .Patient-info img{

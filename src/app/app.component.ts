@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { faHome, faPlus, faList, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as AOS from 'aos';
 import { Router, NavigationEnd } from '@angular/router';
-<<<<<<< HEAD
-import { ViewportScroller } from '@angular/common';
-=======
->>>>>>> 1cde218 (ServiceFonct commit)
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -44,12 +40,11 @@ export class AppComponent implements OnInit {
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
   isPatientRoute = false;
-  isDoctorRoute = false;  // Update dynamically
+  isDoctorRoute = false;
   isConsultationRoute = false;
   isAppointmentRoute = false;
 
   constructor(private router: Router) {}
->>>>>>> 1cde218 (ServiceFonct commit)
 
   ngOnInit() {
     AOS.init();
@@ -61,13 +56,8 @@ export class AppComponent implements OnInit {
       this.isConsultationRoute = this.router.url.includes('/add-consultation') || this.router.url.includes('/list-consultation');
       this.isAppointmentRoute = this.router.url.includes('/add-appointment') || this.router.url.includes('/list-appointment');
     });
-<<<<<<< HEAD
-  }
-
-=======
  }
   
->>>>>>> 1cde218 (ServiceFonct commit)
   closeAllMenus(): void {
     this.isPatientMenuOpen = false;
     this.isDoctorMenuOpen = false;
@@ -94,24 +84,4 @@ export class AppComponent implements OnInit {
       }
     }
   }
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-  // Ajoutez cette méthode pour gérer le défilement
-  scrollToElement(elementId: string): void {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-=======
-  isMenuSelected(menu: string): boolean {
-    if (menu === 'patient') return this.isPatientMenuOpen;
-    if (menu === 'doctor') return this.isDoctorMenuOpen;
-    if (menu === 'consultation') return this.isConsultationMenuOpen;
-    if (menu === 'appointment') return this.isAppointmentMenuOpen;
-    return false;
->>>>>>> 6c741d0 (alohanyAtory commit)
-  }
-=======
->>>>>>> 1cde218 (ServiceFonct commit)
 }
