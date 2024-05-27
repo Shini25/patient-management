@@ -440,7 +440,10 @@ h3 {
     width: 190px;
     border-radius: 10px;
     border: 1px solid #00000005;
+<<<<<<< HEAD
     background-color: #ffffffe8;
+=======
+>>>>>>> 1cde218 (ServiceFonct commit)
    
 }
 
@@ -452,10 +455,41 @@ h3 {
 }
 
 .register-text, .list-text {
+<<<<<<< HEAD
     margin-left: 25px;
+=======
+    margin-left: 40px;
+    margin-top: 15px !important;
+    position: relative;
+    top: 3px;
+>>>>>>> 1cde218 (ServiceFonct commit)
 }
 
 .nav-link {
     color: #0000008c !important;
 }
+<<<<<<< HEAD
 
+=======
+.sort-down img{
+    height: 40px;
+    opacity: 0;
+}
+
+.nav-link.btn.selected {
+    border-bottom: 2px solid #000000;  /* Changez la couleur selon vos besoins */
+}
+
+.active-route {
+    border-bottom: 2px solid #010227; /* Couleur du trait */
+    position: relative;
+    bottom: 10px;
+    background-color: #c9c6c613;
+    color: rgb(0, 0, 0) !important;
+}
+
+.active-route .sort-down img {
+    opacity: 1 !important;
+    
+}
+>>>>>>> 1cde218 (ServiceFonct commit)
