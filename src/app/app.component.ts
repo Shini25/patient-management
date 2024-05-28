@@ -16,15 +16,9 @@ export class AppComponent implements OnInit {
   ajoutIcon = faPlus;
   listIcon = faList;
   infoIcon = faInfoCircle;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  isPatientMenuOpen = false;
-  isDoctorMenuOpen = false;  
-=======
-  darkModeEnabled = false;
+
   isPatientMenuOpen = false;  
   isDoctorMenuOpen = true;  // Initialize to true to open Doctor menu by default
->>>>>>> 6c741d0 (alohanyAtory commit)
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
   isPatientRoute = false;
@@ -32,17 +26,6 @@ export class AppComponent implements OnInit {
   isConsultationRoute = false;
   isAppointmentRoute = false;
   
-
-  constructor(private router: Router, private viewportScroller: ViewportScroller) {}
-=======
-  isPatientMenuOpen = false;
-  isDoctorMenuOpen = false;  
-  isConsultationMenuOpen = false;
-  isAppointmentMenuOpen = false;
-  isPatientRoute = false;
-  isDoctorRoute = false;
-  isConsultationRoute = false;
-  isAppointmentRoute = false;
 
   constructor(private router: Router) {}
 
@@ -82,6 +65,14 @@ export class AppComponent implements OnInit {
       } else if (menu === 'appointment') {
         this.isAppointmentMenuOpen = true;
       }
+    }
+  }
+  
+  // Ajoutez cette méthode pour gérer le défilement
+  scrollToElement(elementId: string): void {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }

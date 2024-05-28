@@ -440,11 +440,9 @@ h3 {
     width: 190px;
     border-radius: 10px;
     border: 1px solid #00000005;
-<<<<<<< HEAD
+
     background-color: #ffffffe8;
-=======
->>>>>>> 1cde218 (ServiceFonct commit)
-   
+
 }
 
 .options a {
@@ -455,22 +453,20 @@ h3 {
 }
 
 .register-text, .list-text {
-<<<<<<< HEAD
+
     margin-left: 25px;
-=======
+
     margin-left: 40px;
     margin-top: 15px !important;
     position: relative;
     top: 3px;
->>>>>>> 1cde218 (ServiceFonct commit)
 }
 
 .nav-link {
     color: #0000008c !important;
 }
-<<<<<<< HEAD
 
-=======
+
 .sort-down img{
     height: 40px;
     opacity: 0;
@@ -492,4 +488,3 @@ h3 {
     opacity: 1 !important;
     
 }
->>>>>>> 1cde218 (ServiceFonct commit)

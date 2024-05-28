@@ -13,16 +13,17 @@
             <span class="logo-title">Patient Gestion</span>
           </div>
         </div>
-        <div class="col-4 offset-6">
-          <ul class="menu mt-2">
-            <li><a href="#">Home</a></li>
-            <li><a href="#Service">Services</a></li>
-            <li><a href="#About-us">About Us</a></li>
-            <li><a href="#contact-info">Contact</a></li>
-            <li><a href="#login-form" class="btn log">Log In</a></li>
-            <li><a href="#" class="btn btn-primary">Sign Up</a></li>
+        <div class="col-5 offset-5">
+          <ul class="menu mt-2 menu-option">
+            <li><a class="btn no-border" (click)="scrollToElement('home')">Home</a></li>
+            <li><a class="btn no-border" (click)="scrollToElement('Service')">Services</a></li>
+            <li><a class="btn no-border" (click)="scrollToElement('About-us')">About Us</a></li>
+            <li><a class="btn no-border" (click)="scrollToElement('contact-info')">Contact</a></li>
+            <li><a class="btn log" (click)="scrollToElement('login-form')">Log In</a></li>
+            <li><a class="btn btn-primary no-border">Sign Up</a></li>
           </ul>
         </div>
+        
       </div>
     </div>
     <div class="row">
@@ -49,21 +50,15 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container justify-content-center"> 
             <ul class="navbar-nav">
-<<<<<<< HEAD
-
-              <li class="nav-item col-6">
-                <button class="nav-link btn" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" data-aos="fade-left" data-aos-duration="600">Patients</button>
-                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
-=======
               <li class="nav-item col-6">
                 <button class="nav-link btn" [ngClass]="{'active-route': isPatientRoute}" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" data-aos="zoom-in" data-aos-duration="1000">
                   Patients 
                 </button>
                 <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
+                  
                   <a routerLink="/add-patient" class="btn-link btn-add col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/add_11105761.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
-                    
                   <a routerLink="/list-patient" class="btn-link btn-list col-12" (click)="toggleMenu('patient')">
                     <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
@@ -71,60 +66,47 @@
               </li>
               
               <li class="nav-item col-6">
-<<<<<<< HEAD
-                <button class="nav-link btn" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')" data-aos="fade-left" data-aos-duration="600">Doctor</button>
-                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
-=======
                 <button class="nav-link btn" [ngClass]="{'active-route': isDoctorRoute}" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')" data-aos="zoom-in" data-aos-duration="600">
                   Doctor 
                 </button>
                 <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
->>>>>>> 1cde218 (ServiceFonct commit)
                   <a routerLink="/add-doctor" class="btn-link btn-add col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-doctor" class="btn-link btn-list col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
-
+  
               <li class="nav-item col-6">
-<<<<<<< HEAD
-                <button class="nav-link btn" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" data-aos="fade-left" data-aos-duration="600">Consultation</button>
-                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
-=======
                 <button class="nav-link btn" [ngClass]="{'active-route': isConsultationRoute}" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" data-aos="zoom-in" data-aos-duration="600">
                   Consultation 
                 </button>
                 <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
->>>>>>> 1cde218 (ServiceFonct commit)
                   <a routerLink="/add-consultation" class="btn-link btn-add col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-consultation" class="btn-link btn-list col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
+  
               <li class="nav-item col-6">
-<<<<<<< HEAD
-                <button class="nav-link btn" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')" data-aos="fade-left" data-aos-duration="600">Appointment</button>
-                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" data-aos="fade-up" data-aos-duration="600">
-=======
                 <button class="nav-link btn" [ngClass]="{'active-route': isAppointmentRoute}" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')" data-aos="zoom-in" data-aos-duration="600">
                   Appointment 
                 </button>
                 <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
->>>>>>> 1cde218 (ServiceFonct commit)
                   <a routerLink="/add-appointment" class="btn-link btn-add col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/zoom_8623852.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-appointment" class="btn-link btn-list col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/list_8623767.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
+  
             </ul>
           </div>
         </nav>
@@ -289,4 +271,3 @@
   </div>
 
 </body>
-

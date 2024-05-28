@@ -7,17 +7,18 @@
                         <div class="col-8">
                             <h2 class="list-patient-title">List of Patients</h2>
                         </div>
-                    </div>
-                    <form class="form-inline justify-content-end">
-                        <div class="row">
-                            <div class="col-4 offset-8 mt-1">
-                                <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
-                                <span class="search-icon" type="submit">
-                                    <img src="../assets/magnifying-glass_7987910.png" alt="">
-                                </span>
+                        <form class="form-inline justify-content-end col-4  mt-5" >
+                            <div class="row">
+                                <div class="col-12">
+                                    <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
+                                    <span class="search-icon" type="submit">
+                                        <img src="../assets/magnifying-glass_7987910.png" alt="">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+  
                 </div>
 
                 <!-- Patient list -->
@@ -29,28 +30,78 @@
 
                                 <div class="row mb-2">
                                     <div class="col-4">
-                                        <span><img src="../assets/doctor_4131330.png" alt=""></span>
-                                    </div>
+                                        <span>
+                                            <img *ngIf="patient.gender === 'MALE'" src="../assets/man_7118569.png" alt="Male">
+                                            <img *ngIf="patient.gender === 'FEMALE'" src="../assets/woman_7118642.png" alt="Female">
+                                        </span>                                    </div>
                                     <div class="info-name col-8">
-                                        <h1>{{ patient.firstName }}</h1>
-                                        <h1>{{ patient.lastName }}</h1>
+                                        <h1 class="firstName">{{ patient.firstName }}</h1>
+                                        <h1 class="lastName">{{ patient.lastName }}</h1>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
+
+                                    <div class="col-12 more-info"> 
                                         <ul>
-                                            <li>Date of birth: {{ patient.dateOfBirth }}</li>
-                                            <li>Gender: {{ patient.gender }}</li>
-                                            <li>Address: {{ patient.address }}</li>
-                                            <li>Email: {{ patient.email }}</li>
-                                            <li>Phone number: {{ patient.phoneNumber }}</li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="">Date of birth: </span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ patient.dateOfBirth }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="">Gender: </span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ patient.gender }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="">Address: </span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ patient.address }}
+                                                    </div>
+                                                </div> 
+                                                
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="">Email: </span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ patient.email }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="">Phone number: </span>
+                                                    </div>
+                                                    <div class="col-6  second-option">
+                                                        {{ patient.phoneNumber }}
+                                                    </div>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
+                
                                 <div class="row">
-                                    <div class="col-12">
-                                        <button class="btn btn-outline-danger col-6" (click)="deletePatient(patient.id)">Delete</button>
-                                        <button class="btn btn-outline-primary col-6" (click)="editPatient(patient)">Update</button>
+                                    <div class="col-8 option">
+
+                                        <img class="btn delete" (click)="deletePatient(patient.id)" src="../assets/delete_3221897.png" alt="update-icon">
+
+                                        <img class="btn update" (click)="editPatient(patient)" src="../assets/refresh_9685056.png" alt="update-icon">
                                     </div>
                                 </div>
                             </div>
