@@ -12,7 +12,7 @@ import { ListAppointmentComponent } from './list-rendez-vous/list-rendez-vous.co
 import { ListConsultationComponent } from './list-consultation/list-consultation.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home page' },
   { path: 'add-patient', component: AddPatientComponent, title: 'AddVisitorComponent' },
   { path: 'add-doctor', component: AddDoctorComponent, title: 'register a doctor' },

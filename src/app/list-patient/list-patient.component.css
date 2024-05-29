@@ -75,11 +75,12 @@
 }
 
 .Patient-info:hover .option{
-    transition: 1s;
+    transition: 0.4s;
     opacity: 1;
-    border: 1px #000000 solid;
+    border: 1px #0000001c solid;
     border-radius: 10px;
-    margin-left: 50px !important;
+    margin-left: 55px !important;
+    background-color: #0000001c;
 
 
     

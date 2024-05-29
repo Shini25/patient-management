@@ -3,8 +3,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 
-<body>
-  <div class="container-fluid first" id="first" data-aos="fade-up" data-aos-duration="1000">
+<body class="scroll-container">
+
+  <!-- Container: first -->
+  <div class="container-fluid first scroll-section" id="first">
     <div class="row">
       <div class="nav col-12">
         <div class="col-2">
@@ -27,7 +29,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-5 circle" data-aos="slide-right" data-aos-duration="1000">
+      <div class="col-5 circle" >
         <!-- title for the system -->
         <div class="col-12 title">
           <h1>Welcome to Patient Management,</h1>
@@ -44,65 +46,66 @@
     </div>
   </div> 
 
-  <div class="container-fluid third pt-5" id="Service">
+  <!-- Container: third -->
+  <div class="container-fluid third scroll-section pt-5" id="Service">
     <div class="row">
       <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container justify-content-center"> 
             <ul class="navbar-nav">
               <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isPatientRoute}" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" data-aos="zoom-in" data-aos-duration="1000">
+                <button class="nav-link btn" [ngClass]="{'active-route': isPatientRoute}" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" >
                   Patients 
                 </button>
-                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
+                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" >
                   
                   <a routerLink="/add-patient" class="btn-link btn-add col-12" (click)="toggleMenu('patient')">
                     <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-patient" class="btn-link btn-list col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span the="list-text">List</span>
                   </a>
                 </div>
               </li>
               
               <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isDoctorRoute}" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')" data-aos="zoom-in" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'active-route': isDoctorRoute}" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')">
                   Doctor 
                 </button>
-                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
+                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" >
                   <a routerLink="/add-doctor" class="btn-link btn-add col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span the="register-text">Register</span>
                   </a>
                   <a routerLink="/list-doctor" class="btn-link btn-list col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span the="list-text">List</span>
                   </a>
                 </div>
               </li>
   
               <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isConsultationRoute}" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" data-aos="zoom-in" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'active-route': isConsultationRoute}" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" >
                   Consultation 
                 </button>
-                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
+                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" >
                   <a routerLink="/add-consultation" class="btn-link btn-add col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span the="register-text">Register</span>
                   </a>
                   <a routerLink="/list-consultation" class="btn-link btn-list col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span the="list-text">List</span>
                   </a>
                 </div>
               </li>
   
               <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isAppointmentRoute}" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')" data-aos="zoom-in" data-aos-duration="600">
+                <button class="nav-link btn" [ngClass]="{'active-route': isAppointmentRoute}" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')">
                   Appointment 
                 </button>
-                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" data-aos="zoom-out" data-aos-duration="600">
+                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" >
                   <a routerLink="/add-appointment" class="btn-link btn-add col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" the="btn-add-icon"><span the="register-text">Register</span>
                   </a>
                   <a routerLink="/list-appointment" class="btn-link btn-list col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span the="list-text">List</span>
                   </a>
                 </div>
               </li>
@@ -120,10 +123,14 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Container: login-form -->
+<div class="container-fluid second scroll-section" id="login-form">
   <div class="row">
-    <div class="col-10 offset-1 login-form" id="login-form" >
+    <div class="col-10 offset-1 login-form"  >
       <div class="row">
-        <div class="col-6 login-form-image" data-aos="slide-right" data-aos-duration="1000" >
+        <div class="col-6 login-form-image">
           <div class="login-user-logo col-3 offset-5 mt-5 mb-5">
             <span><img src="../assets/contact_8727711.png" alt=""></span>
           </div>
@@ -173,7 +180,7 @@
             </div>
             </div>
         </div>
-        <div class="col-6 login-form-content" data-aos="slide-left" data-aos-duration="1000" >
+        <div class="col-6 login-form-content" >
           <div class="auth-title col-10 offset-1">
             <h1>Welcome to Our Platform</h1>
             <div class="col-9 offset-1">
@@ -189,11 +196,13 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="container-fluid fourth" id="About-us">
+  <!-- container-f: fourth -->
+  <div class="container-fluid fourth scroll-section" id="About-us">
     <div class="row">
   
-      <div class="col-8 offset-3" data-aos="slide-left" data-aos-duration="1000">
+      <div class="col-8 offset-3" >
         <!-- title for the system -->
         <div class="col-12 second-title">
           <h1 class="about-us-title">About Us</h1>
@@ -212,20 +221,23 @@
         </div>
       
       </div>
-      <div class="col-3 offset-1 back-top" data-aos="slide-right" data-aos-duration="1000" >
+      <div class="col-3 offset-1 back-top"  >
         <a (click)="scrollToElement('first')" class=""><button class="btn btn-outline-light">Back to Top</button></a>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid last">
+
+
+  <!-- container-f: last -->
+  <div class="container-fluid last scroll-section">
     <div class="row footer mb-5">
       <div class="col-3 offset-1  contact-info" id="contact-info">
         <h2>Find Us</h2>
         <ul>
         <li><a href="tel:0346154719">0346154719</a> / <a href="tel:0338013886">0338013886</a></li>
         <li><a href="mailto:isbacksuzuki@gmail.com">isbacksuzuki&#64;gmail.com</a></li>
-        <li><a href="https://www.linkedin.com/in/julio-cesar-léopard-567730306"  data-aos="zoom"  data-aos-duration="10000">Leopard Julio Cesar</a></li>
+        <li><a href="https://www.linkedin.com/in/julio-cesar-léopard-567730306" >Leopard Julio Cesar</a></li>
 
         </ul>
       </div>

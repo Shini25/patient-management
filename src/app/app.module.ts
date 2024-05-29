@@ -61,7 +61,7 @@ import * as AOS from 'aos';
       preventDuplicates: true,
       closeButton: true
     }),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled', scrollOffset: [0, 64] })
   ],
   providers: [
     // Fournisseurs de services nécessaires à votre application, comme ToastrService
