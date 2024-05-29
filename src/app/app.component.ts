@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { faHome, faPlus, faList, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import * as AOS from 'aos';
+import { Component, OnInit, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,10 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, AfterViewInit  {
 
-  title = 'FrontVisitor';
-  homeIcon = faHome;
-  ajoutIcon = faPlus;
-  listIcon = faList;
-  infoIcon = faInfoCircle;
+  @ViewChildren('scrollSection') scrollSections!: QueryList<ElementRef>;
+  @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
+  @ViewChildren('thirdSection') thirdSections!: QueryList<ElementRef>;
+  @ViewChildren('circle') circle!: QueryList<ElementRef>;
 
   isPatientMenuOpen = false;  
   isDoctorMenuOpen = false;  // Initialize to true to open Doctor menu by default
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
   isAppointmentRoute = false;
   
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService, private location: Location) {}
 
   ngOnInit() {
     this.router.events.pipe(
@@ -41,24 +40,94 @@ export class AppComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    AOS.init();
-    const aosElements = document.querySelectorAll('[data-aos]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            console.log(entry); // Pour voir l'état de chaque entrée
-            if (entry.intersectionRatio > 0) {
-                entry.target.classList.add('aos-animate');
-            } else {
-                entry.target.classList.remove('aos-animate');
-            }
-        });
-    }, {threshold: 0.1});  // Ajustez le seuil selon les besoins
 
-    aosElements.forEach(element => {
-        observer.observe(element);
+    //Manual scrollspy 
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5 // Adjust the threshold as needed
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Display a toast message when the section is visible
+
+          // Cast the entry target to HTMLElement to access style property
+          const targetElement = entry.target as HTMLElement;
+          targetElement.style.opacity = '1';
+
+          // Set opacity to 0 for all other sections
+          this.scrollSections.forEach(section => {
+            const sectionElement = section.nativeElement as HTMLElement;
+            if (sectionElement !== targetElement) {
+              sectionElement.style.opacity = '0';
+            }
+          });
+
+          // Highlight the corresponding navigation link
+          this.navLinks.forEach(link => {
+            const linkElement = link.nativeElement as HTMLElement;
+            if (linkElement.getAttribute('href') === `#${entry.target.id}`) {
+              linkElement.style.color = 'blue';
+            } else {
+              linkElement.style.color = '';
+            }
+          });
+
+          // Update the URL fragment without scrolling
+          this.location.replaceState(`#${entry.target.id}`);
+        }
+      });
+    }, options);
+
+    // Observe each scroll-section element after view init
+    this.scrollSections.forEach(section => {
+      observer.observe(section.nativeElement);
     });
+
+    // Trigger animation
+    const thirdObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('zoomIn');
+        } else {
+          entry.target.classList.remove('zoomIn');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    this.thirdSections.forEach(section => {
+      thirdObserver.observe(section.nativeElement);
+    });
+
+    const circles = document.querySelectorAll('.circle');
+    const animationState = new WeakMap();
+    
+    const firstCircleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!animationState.get(entry.target)) {
+            entry.target.classList.add('slideIn');
+            animationState.set(entry.target, true);
+          }
+        } else {
+          entry.target.classList.remove('slideIn');
+          animationState.set(entry.target, false);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    // Observing each circle element
+    circles.forEach(circle => {
+      firstCircleObserver.observe(circle);
+    });
+    
+    
+    
+
   }
-  
+
   closeAllMenus(): void {
     this.isPatientMenuOpen = false;
     this.isDoctorMenuOpen = false;
@@ -86,7 +155,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
     }
   }
   
-  // Ajoutez cette méthode pour gérer le défilement
+  // Add this method to handle scrolling
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);
     if (element) {

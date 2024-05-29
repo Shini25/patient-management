@@ -22,13 +22,28 @@ background-color: rgb(255, 255, 255);
     background-color: rgb(255, 255, 255);
 }
 
+@keyframes zoomIn {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  
+  .zoomIn {
+    animation: zoomIn 1.5s ease-out forwards;
+  }
+
+
 .fourth {
     height: 100vh;
     background-color: rgb(0, 0, 0);
 }
 
 .last {
-    height: 50vh;
+    height: 70vh;
     background-color: rgba(19, 18, 18, 0.989);
 }
 
@@ -44,7 +59,9 @@ background-color: rgb(255, 255, 255);
 
 .scroll-section {
     scroll-snap-align: start;
-    transition: opacity 2s ease-in-out; /* Smooth transition */
+    opacity: 0; /* Default to invisible */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
+
 }
 
 
@@ -166,13 +183,31 @@ h1 {
 }
 
 .circle {
-    border-radius:  50%;
+    border-radius: 50%;
     height: 800px;
     margin: 20px;
     margin-left: 70px;
     background-color: rgba(251, 251, 251, 0.403);
     justify-content: center;
+
 }
+.slideIn {
+    animation: slideIn 1.5s forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .animated {
+    /* No additional styles, this class is just to flag the element */
+  }
+  
 
 .second-circle {
     border-radius: 10%;
@@ -281,22 +316,26 @@ h2 {
 }
 
 .login-form {
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 20px;
+
+
 }
 
 .login-form-image {
-    height: 80vh;
+    height: 90vh;
     background-color: rgb(7, 7, 7);
     border-radius: 20px 0px 0px 20px;
     border: #000000eb;
     border-style: groove;
     color: #ffffff;
+    animation: slideIn 1s forwards;
+    transform: translateX(-100%);
 
 }
 
 .login-form-content {
-    height: 80vh;
+    height: 90vh;
     background-image: url('../assets/2149341567.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -388,7 +427,6 @@ h3 {
     color: rgba(0, 0, 0, 0.67);
 }
 
-/* Dans votre fichier CSS global ou spécifique */
 .aos-animate {
     opacity: 1;
     transition-property: opacity;
