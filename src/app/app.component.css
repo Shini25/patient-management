@@ -451,7 +451,7 @@ h3 {
 
 .options{
     position: relative;
-    bottom: 50px;
+    top: 0px;
     height: 100px;
     width: 190px;
     border-radius: 10px;
@@ -480,9 +480,15 @@ h3 {
 
 .nav-link {
     color: #0000008c !important;
+    transition: 0.5s;
+
 }
 
-
+.nav-link:hover {
+    color: #001eff8c !important;
+    transition: 0.5s;
+    transform: scale(1.1);
+}
 .sort-down img{
     height: 40px;
     opacity: 0;

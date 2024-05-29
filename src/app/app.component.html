@@ -7,7 +7,9 @@
 
   <!-- Container: first -->
   <div class="container-fluid first scroll-section" id="first">
+
     <div class="row">
+
       <div class="nav col-12">
         <div class="col-2">
           <div class="logo">
@@ -28,6 +30,7 @@
         
       </div>
     </div>
+
     <div class="row">
       <div class="col-5 circle" >
         <!-- title for the system -->
@@ -47,7 +50,7 @@
   </div> 
 
   <!-- Container: third -->
-  <div class="container-fluid third scroll-section pt-5" id="Service">
+  <div class="container-fluid third scroll-section pt-1" id="Service">
     <div class="row">
       <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -63,7 +66,7 @@
                     <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-patient" class="btn-link btn-list col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span the="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
@@ -74,10 +77,10 @@
                 </button>
                 <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" >
                   <a routerLink="/add-doctor" class="btn-link btn-add col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span the="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-doctor" class="btn-link btn-list col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span the="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
@@ -88,10 +91,10 @@
                 </button>
                 <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" >
                   <a routerLink="/add-consultation" class="btn-link btn-add col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span the="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-consultation" class="btn-link btn-list col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span the="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
@@ -102,10 +105,10 @@
                 </button>
                 <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" >
                   <a routerLink="/add-appointment" class="btn-link btn-add col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" the="btn-add-icon"><span the="register-text">Register</span>
+                    <img src="../assets/add_2099237.png" alt="Add Icon" the="btn-add-icon"><span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-appointment" class="btn-link btn-list col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span the="list-text">List</span>
+                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span class="list-text">List</span>
                   </a>
                 </div>
               </li>
