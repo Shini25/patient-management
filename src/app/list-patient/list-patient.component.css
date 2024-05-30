@@ -4,7 +4,7 @@
 }
 
 .search {
-    height: 15vh;
+    height: 10vh;
     background-color: #f0f8ff;
 }
 
@@ -43,7 +43,7 @@
 .patient-container {
   display: flex;
   flex-wrap: wrap;
-  max-height: 600px;
+  max-height: 700px;
   overflow-y: scroll;
   padding-left: 20px;
   
@@ -60,30 +60,42 @@
   border-bottom: 8px solid rgba(8, 57, 204, 0.857);
   border-radius: 5px 5px 15px 15px;
   margin: 15px;
-  width: 350px;
+  width: 335px;
   margin-bottom: 10px;
   background-color: #f0f8ff;
-  transition: 1s;
     
 
 }
 
 .Patient-info:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease-in-out; /* Pour un effet de transition fluide */
-    background-color: #dbedfd;
+    background-color: #d8e9f0f8;
 }
 
-.Patient-info:hover .option{
+.Patient-info-content {
+    transition: 1s;
+}
+
+.Patient-info-content:hover {
+    transform: scale(1.07);
     transition: 0.4s;
+}
+
+.blur {
+    filter: blur(0.3px);
+    transition: 0.4s;
+}
+
+
+
+.Patient-info .option:hover  {
     opacity: 1;
-    border: 1px #0000001c solid;
-    border-radius: 10px;
-    margin-left: 55px !important;
-    background-color: #0000001c;
+ 
+}
 
 
-    
+.Patient-info:hover .option {
+    opacity: 1;
+    transition: 0.4s;
 }
 
 .Patient-info span img{
@@ -101,7 +113,7 @@ em {
     font-weight: 400;
     font-size: 50px;
     text-align: left;
-    margin-top: 50px;
+    padding-top: 25px;
 
 }
 
@@ -134,13 +146,18 @@ ul li {
     text-align: left;
     right: 25px;
 }
-
 .option {
     opacity: 0;
+    transition: 0.4s;
+    filter: blur(0px) !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 .option  img{
-    height: 50px;
-    width: 70px;
+    height: 40px;
+    width: 60px;
+    filter: blur(0px) !important;
+
 }
 
 .delete {
@@ -162,3 +179,7 @@ li span {
     font-weight: bold;
 }
 
+.patientId {
+    text-align: right;
+    padding-right: 42px;
+}

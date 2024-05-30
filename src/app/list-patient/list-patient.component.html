@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 root-content">
             <div class="row">
-                <div class="col-12 search pt-3">
+                <div class="col-12 search p-1">
                     <div class="row">
                         <div class="col-8">
                             <h2 class="list-patient-title">List of Patients</h2>
@@ -22,13 +22,13 @@
                 </div>
 
                 <!-- Patient list -->
-                <div class="col-12 mt-5" data-aos="fade-down" data-aos-duration="2000">
+                <div class="col-12 mt-5" >
                     <div class="row">
                         <div class="col-12 patient-container">
 
-                            <div class="Patient-info" *ngFor="let patient of patients">
+                            <div class="Patient-info" *ngFor="let patient of patients" (mouseleave)="removeBlur()">
 
-                                <div class="row mb-2">
+                                <div class="row mb-2 Patient-info-content" [ngClass]="{'blur': blurredPatientId === patient.id}" (mouseenter)="addBlur(patient.id)">
                                     <div class="col-4">
                                         <span>
                                             <img *ngIf="patient.gender === 'MALE'" src="../assets/man_7118569.png" alt="Male">
@@ -38,7 +38,9 @@
                                         <h1 class="firstName">{{ patient.firstName }}</h1>
                                         <h1 class="lastName">{{ patient.lastName }}</h1>
                                     </div>
-
+                                    <div class="col-12 patientId ">
+                                        {{ patient.id }}
+                                    </div>  
                                     <div class="col-12 more-info"> 
                                         <ul>
                                             <li>
@@ -96,8 +98,8 @@
                                     </div>
                                 </div>
                 
-                                <div class="row">
-                                    <div class="col-8 option">
+                                <div class="row "   (mouseenter)="addBlur(patient.id)">
+                                    <div class="col-8 offset-2 option">
 
                                         <img class="btn delete" (click)="deletePatient(patient.id)" src="../assets/cancel_5290141.png" alt="update-icon">
 

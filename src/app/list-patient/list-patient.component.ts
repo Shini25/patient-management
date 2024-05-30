@@ -13,6 +13,20 @@ export class ListPatientComponent implements OnInit{
   patients: Patient[] = [];
   selectedPatient: Patient | null = null;
 
+
+  blurredPatientId: number | null = null;
+
+  addBlur(patientId: number | undefined) {
+    if (patientId !== undefined) {
+      this.blurredPatientId = patientId;
+    }
+  }
+
+
+  removeBlur() {
+    this.blurredPatientId = null;
+  }
+
 constructor(private patientService: PatientService, private toastr: ToastrService) {}
 
 

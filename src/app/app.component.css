@@ -40,6 +40,7 @@ background-color: rgb(255, 255, 255);
 .fourth {
     height: 100vh;
     background-color: rgb(0, 0, 0);
+    padding-top: 50px;
 }
 
 .last {
@@ -191,19 +192,33 @@ h1 {
     justify-content: center;
 
 }
-.slideIn {
-    animation: slideIn 2s forwards;
-  }
-  
-  @keyframes slideIn {
+
+.slideIn-right {
+    animation: slideIn-right 1.5s forwards;
+}
+
+@keyframes slideIn-right {
     from {
-      transform: translateX(-100%);
+        transform: translateX(-100%);
     }
     to {
-      transform: translateX(0);
+        transform: translateX(0);
     }
-  }
+}
   
+.slideIn-left {
+    animation: slideIn-left 1.5s forwards;
+}
+
+@keyframes slideIn-left {
+from {
+    transform: translateX(+100%);
+}
+to {
+    transform: translateX(0);
+}
+}
+
 
   
 
@@ -320,19 +335,16 @@ h2 {
 
 }
 
-.login-form-image {
+.loginFormContent {
     height: 90vh;
     background-color: rgb(7, 7, 7);
     border-radius: 20px 0px 0px 20px;
     border: #000000eb;
     border-style: groove;
     color: #ffffff;
-    animation: slideIn 1s forwards;
-    transform: translateX(-100%);
-
 }
 
-.login-form-content {
+.loginFormPic {
     height: 90vh;
     background-image: url('../assets/2149341567.jpg');
     background-repeat: no-repeat;
@@ -413,6 +425,11 @@ h3 {
     color: green;
 }
 
+
+
+.BackToTop {
+    margin-top: 100px;
+}
 .auth-title {
     margin-top: 250px;
     padding-left: 10px;
@@ -423,18 +440,6 @@ h3 {
     font-size: 20px;
     font-weight: 800;
     color: rgba(0, 0, 0, 0.67);
-}
-
-.aos-animate {
-    opacity: 1;
-    transition-property: opacity;
-}
-
-.back-top {
-    margin-top: 300px;
-    height: 100px;
-    margin-left: 170px;
-
 }
 
 

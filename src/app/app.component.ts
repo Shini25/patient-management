@@ -15,6 +15,11 @@ export class AppComponent implements OnInit, AfterViewInit  {
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
   @ViewChildren('thirdSection') thirdSections!: QueryList<ElementRef>;
   @ViewChildren('circle') circles!: QueryList<ElementRef>;
+  @ViewChildren('loginFormContent') loginFormContents!: QueryList<ElementRef>;
+  @ViewChildren('loginFormPic') loginFormPics!: QueryList<ElementRef>;
+  @ViewChildren('AboutUsContent') aboutUsContents!: QueryList<ElementRef>;
+  @ViewChildren('BackToTop') backToTop!: QueryList<ElementRef>;
+
 
   isPatientMenuOpen = false;  
   isDoctorMenuOpen = false;  // Initialize to true to open Doctor menu by default
@@ -47,9 +52,6 @@ export class AppComponent implements OnInit, AfterViewInit  {
       rootMargin: '0px',
       threshold: 0.5 // Adjust the threshold as needed
     };
-
-
-
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -89,7 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
       observer.observe(section.nativeElement);
     });
 
-    // Trigger animation
+    // Zoom In animation
     const thirdObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -104,30 +106,59 @@ export class AppComponent implements OnInit, AfterViewInit  {
       thirdObserver.observe(section.nativeElement);
     });
 
-    //circle-slide-right-animation
+    // Slide in right animation
     const observedElements = new Set(); // Set to store observed elements
 
-    const firstCircleObserver = new IntersectionObserver((entries, observer) => {
+    const slideInRightObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !observedElements.has(entry.target)) {
-          entry.target.classList.add('slideIn');
+          entry.target.classList.add('slideIn-right');
           observedElements.add(entry.target); // Add element to the set of observed elements
         } else if (!entry.isIntersecting && observedElements.has(entry.target)) {
-          // If the element exits the viewport and has the slideIn class,
-          // remove the class so that it can be reanimated when it re-enters
-          entry.target.classList.remove('slideIn');
+          entry.target.classList.remove('slideIn-right');
+          observedElements.delete(entry.target); // Remove element from the set of observed elements
+        }
+      });
+    });
+
+
+    // Slide in left animation
+    const slideInLeftObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !observedElements.has(entry.target)) {
+          entry.target.classList.add('slideIn-left');
+          observedElements.add(entry.target); // Add element to the set of observed elements
+        } else if (!entry.isIntersecting && observedElements.has(entry.target)) {
+          entry.target.classList.remove('slideIn-left');
           observedElements.delete(entry.target); // Remove element from the set of observed elements
         }
       });
     });
   
-    // Observing each circle element
+    // Observing each circle element for slide in right 
     this.circles.forEach(circle => {
-      firstCircleObserver.observe(circle.nativeElement);
+      slideInRightObserver.observe(circle.nativeElement);
     });
 
+    // Observing each loginFormContentn element for slide in right
+    this.loginFormContents.forEach(loginFormContent => {
+      slideInRightObserver.observe(loginFormContent.nativeElement);
+    });
 
-    //
+    // Observing each loginFormPic element for slide in right
+    this.loginFormPics.forEach(loginFormPic => {
+      slideInLeftObserver.observe(loginFormPic.nativeElement);
+    });
+
+    // Observing each aboutUsContent element for slide in right
+    this.aboutUsContents.forEach(aboutUsContent => {
+      slideInLeftObserver.observe(aboutUsContent.nativeElement);
+    });
+
+    // observing each backToTop element for slide in right
+    this.backToTop.forEach(backToTops => {
+      slideInRightObserver.observe(backToTops.nativeElement);
+    });
     
 
   }

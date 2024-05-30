@@ -133,7 +133,7 @@
   <div class="row">
     <div class="col-10 offset-1 login-form">
       <div class="row">
-        <div class="col-6 login-form-image">
+        <div class="col-6 loginFormContent"  #loginFormContent>
           <div class="login-user-logo col-3 offset-5 mt-5 mb-5">
             <span><img src="../assets/contact_8727711.png" alt=""></span>
           </div>
@@ -183,7 +183,7 @@
             </div>
             </div>
         </div>
-        <div class="col-6 login-form-content" >
+        <div class="col-6 loginFormPic" #loginFormPic>
           <div class="auth-title col-10 offset-1">
             <h1>Welcome to Our Platform</h1>
             <div class="col-9 offset-1">
@@ -205,7 +205,7 @@
   <div class="container-fluid fourth scroll-section" id="About-us" #scrollSection>
     <div class="row">
   
-      <div class="col-8 offset-3" >
+      <div class="col-8 offset-3 pt-5 mb-5 AboutUsContent" #AboutUsContent>
         <!-- title for the system -->
         <div class="col-12 second-title">
           <h1 class="about-us-title">About Us</h1>
@@ -224,7 +224,7 @@
         </div>
       
       </div>
-      <div class="col-3 offset-1 back-top"  >
+      <div class="col-3 offset-1 pt-5 BackToTop"  #BackToTop>
         <a (click)="scrollToElement('first')" class=""><button class="btn btn-outline-light">Back to Top</button></a>
       </div>
     </div>
