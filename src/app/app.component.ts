@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
   @ViewChildren('scrollSection') scrollSections!: QueryList<ElementRef>;
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
   @ViewChildren('thirdSection') thirdSections!: QueryList<ElementRef>;
-  @ViewChildren('circle') circle!: QueryList<ElementRef>;
+  @ViewChildren('circle') circles!: QueryList<ElementRef>;
 
   isPatientMenuOpen = false;  
   isDoctorMenuOpen = false;  // Initialize to true to open Doctor menu by default
@@ -47,6 +47,9 @@ export class AppComponent implements OnInit, AfterViewInit  {
       rootMargin: '0px',
       threshold: 0.5 // Adjust the threshold as needed
     };
+
+
+
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -101,29 +104,30 @@ export class AppComponent implements OnInit, AfterViewInit  {
       thirdObserver.observe(section.nativeElement);
     });
 
-    const circles = document.querySelectorAll('.circle');
-    const animationState = new WeakMap();
-    
-    const firstCircleObserver = new IntersectionObserver((entries) => {
+    //circle-slide-right-animation
+    const observedElements = new Set(); // Set to store observed elements
+
+    const firstCircleObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (!animationState.get(entry.target)) {
-            entry.target.classList.add('slideIn');
-            animationState.set(entry.target, true);
-          }
-        } else {
+        if (entry.isIntersecting && !observedElements.has(entry.target)) {
+          entry.target.classList.add('slideIn');
+          observedElements.add(entry.target); // Add element to the set of observed elements
+        } else if (!entry.isIntersecting && observedElements.has(entry.target)) {
+          // If the element exits the viewport and has the slideIn class,
+          // remove the class so that it can be reanimated when it re-enters
           entry.target.classList.remove('slideIn');
-          animationState.set(entry.target, false);
+          observedElements.delete(entry.target); // Remove element from the set of observed elements
         }
       });
-    }, { threshold: 0.5 });
-    
-    // Observing each circle element
-    circles.forEach(circle => {
-      firstCircleObserver.observe(circle);
     });
-    
-    
+  
+    // Observing each circle element
+    this.circles.forEach(circle => {
+      firstCircleObserver.observe(circle.nativeElement);
+    });
+
+
+    //
     
 
   }
