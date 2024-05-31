@@ -1,7 +1,10 @@
 <div class="container-fluid">
      <div class="row">
-        <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6 border p-4">
 
+        <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6">
+            <h1 class="title mt-4 mb-4">
+                Register a patient
+            </h1>
             <div class="root-form col-9 offset-1">
                 <div class="form-group mb-2 mt-5">
                     <span class="login-id"><img src="../assets/badge_5963350.png" alt=""></span>
@@ -53,9 +56,7 @@
         </form>
 
         <div class="form-container-right col-6" >
-            <h1 class="title mt-4 mb-4">
-                Register a patient
-            </h1>
+
         </div>
 
      </div>

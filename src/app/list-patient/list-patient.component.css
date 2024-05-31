@@ -1,6 +1,7 @@
 .root-content {
     background-color: rgb(0, 0, 0);
-    height: 90vh;
+    height: 100vh;
+    margin:auto
 }
 
 .search {
@@ -154,7 +155,7 @@ ul li {
     border-radius: 5px;
 }
 .option  img{
-    height: 40px;
+    height: 45px;
     width: 60px;
     filter: blur(0px) !important;
 

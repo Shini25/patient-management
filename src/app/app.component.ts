@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit  {
+export class AppComponent {
 
   @ViewChildren('scrollSection') scrollSections!: QueryList<ElementRef>;
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
@@ -20,15 +20,37 @@ export class AppComponent implements OnInit, AfterViewInit  {
   @ViewChildren('AboutUsContent') aboutUsContents!: QueryList<ElementRef>;
   @ViewChildren('BackToTop') backToTop!: QueryList<ElementRef>;
 
-
+  /*
   isPatientMenuOpen = false;  
   isDoctorMenuOpen = false;  // Initialize to true to open Doctor menu by default
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
+  */
   isPatientRoute = false;
   isDoctorRoute = false;
   isConsultationRoute = false;
   isAppointmentRoute = false;
+  
+  showPatientOptions = false;
+  showDoctorOptions = false;
+  showConsultationOptions = false;
+  showAppointmentOptions = false;
+
+  closePatientOptions() {
+    this.showPatientOptions = false;
+  }
+
+  closeDoctorOptions() {
+    this.showDoctorOptions = false;
+  }
+
+  closeConsultationOptions() {
+    this.showConsultationOptions = false;
+  }
+
+  closeAppointmentOptions() {
+    this.showAppointmentOptions = false;
+  }
   
 
   constructor(private router: Router, private toastr: ToastrService, private location: Location) {}
@@ -163,6 +185,7 @@ export class AppComponent implements OnInit, AfterViewInit  {
 
   }
 
+  /*
   closeAllMenus(): void {
     this.isPatientMenuOpen = false;
     this.isDoctorMenuOpen = false;
@@ -189,7 +212,9 @@ export class AppComponent implements OnInit, AfterViewInit  {
       }
     }
   }
-  
+  */
+
+
   // Add this method to handle scrolling
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);

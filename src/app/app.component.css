@@ -444,28 +444,18 @@ h3 {
 
 
 .navbar-nav {
-    margin: auto;
     list-style-type: none;
-    width: 100%; display: flex; justify-content: center;
 }
 
 .navbar-nav li{
     display: inline;
 }
 .nav-item {
-    height: 50px;
+    height: 200px;
     font-size: 30px;
     font-weight: 800;
+    margin-bottom: 20px;
     
-}
-.navbar-nav li a {
-    color: #000000;
-    margin-right: 50px;
-    font-size: 30px;
-    font-weight: 800;
-    text-decoration: none;
-    
-    transition: color 0.3s;
 }
 
 
@@ -475,14 +465,11 @@ h3 {
 }
 
  .btn-add, .btn-list {
-    margin-top: 10px;
-    padding-top: 2px;
-    border: 1px solid #0000002a;
-    border-radius: 10px;
+    font-size: 20px
 }
 
 .btn-add img , .btn-list img{
-    height: 30px;
+    height: 25px;
     
 }
 .btn-list:hover, .btn-add:hover{
@@ -493,35 +480,35 @@ h3 {
 .options{
     position: relative;
     top: 0px;
+    left: 20px;
     height: 100px;
     width: 190px;
-    border-radius: 10px;
-    border: 1px solid #00000005;
-
-    background-color: #ffffffe8;
-
-}
-
-.options a {
-    color: rgba(10, 10, 10, 0.482) !important;
-    font-size: 20px !important;
+    transition: 2s;
 
     
 }
+.options  a{
+    text-decoration: none;
+    height: 40px;
+    width: 150px;
+    font-weight: 100;
+    padding-top: 3px;
+    border: #00000024 solid 1px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: #000000c8;
+
+}
 
 .register-text, .list-text {
+    padding-left: 20px;
 
-    margin-left: 25px;
-
-    margin-left: 40px;
-    margin-top: 15px !important;
-    position: relative;
-    top: 3px;
 }
 
 .nav-link {
     color: #0000008c !important;
     transition: 0.5s;
+    font-size: 25px;
 
 }
 
@@ -530,6 +517,10 @@ h3 {
     transition: 0.5s;
     transform: scale(1.1);
 }
+
+.nav-link:hover .options {
+ transition: 1s;
+} 
 .sort-down img{
     height: 40px;
     opacity: 0;
@@ -539,15 +530,74 @@ h3 {
     border-bottom: 2px solid #000000;  /* Changez la couleur selon vos besoins */
 }
 
-.active-route {
-    border-bottom: 2px solid #010227; /* Couleur du trait */
-    position: relative;
-    bottom: 10px;
-    background-color: #c9c6c613;
-    color: rgb(0, 0, 0) !important;
+/*stepper*/
+.stepper-container {
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-.active-route .sort-down img {
-    opacity: 1 !important;
-    
+  .stepper {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    padding-left: 25px;
+  }
+
+  .step {
+    width: 15px;
+    height: 15px;
+    background-color: #d4d2d2;
+    border-radius: 50%;
+    margin: 20px;
+    position: relative;
+    left: 2px;
+    display: flex;
+    justify-content: center;
+    margin-left: -10px;
+  }
+
+
+  .step1 {
+    width: 38px;
+    height: 35px;
+    background-color: #ffffff00;
+    border-radius: 50%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0px;
+    bottom: 31px;
+    border: #f3f0f0e4 solid 2px;
+    box-shadow: 0px 4px 8px rgba(130, 17, 195, 0.5); /* Added shadow */
+  }
+.kit {
+  margin-left: 100px;
+  position: relative;
+  bottom: 10px;
+
 }
+
+
+
+  .line {
+    width: 2px;
+    height: 90px;
+    background-color: #e0e0e0;
+  }
+
+  .line::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 100%;
+    background: repeating-linear-gradient(
+      to bottom,
+      #000,
+      #000 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  }

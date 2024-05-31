@@ -49,84 +49,124 @@
     </div>
   </div> 
 
-  <!-- Container: third -->
-  <div class="container-fluid third scroll-section pt-1" id="Service" #scrollSection>
-    <div class="row thirdSection" #thirdSection >
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="container justify-content-center"> 
-            <ul class="navbar-nav">
-              <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isPatientRoute}" *ngIf="!isPatientMenuOpen" (click)="toggleMenu('patient')" >
-                  Patients 
-                </button>
-                <div *ngIf="isPatientMenuOpen" id="patientCollapse" class="row options" >
-                  
-                  <a routerLink="/add-patient" class="btn-link btn-add col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
-                  </a>
-                  <a routerLink="/list-patient" class="btn-link btn-list col-12" (click)="toggleMenu('patient')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
-                  </a>
-                </div>
-              </li>
-              
-              <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isDoctorRoute}" *ngIf="!isDoctorMenuOpen" (click)="toggleMenu('doctor')">
-                  Doctor 
-                </button>
-                <div *ngIf="isDoctorMenuOpen" id="doctorCollapse" class="row options" >
-                  <a routerLink="/add-doctor" class="btn-link btn-add col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
-                  </a>
-                  <a routerLink="/list-doctor" class="btn-link btn-list col-12" (click)="toggleMenu('doctor')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon"><span class="list-text">List</span>
-                  </a>
-                </div>
-              </li>
-  
-              <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isConsultationRoute}" *ngIf="!isConsultationMenuOpen" (click)="toggleMenu('consultation')" >
-                  Consultation 
-                </button>
-                <div *ngIf="isConsultationMenuOpen" id="consultationCollapse" class="row options" >
-                  <a routerLink="/add-consultation" class="btn-link btn-add col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon"><span class="register-text">Register</span>
-                  </a>
-                  <a routerLink="/list-consultation" class="btn-link btn-list col-12" (click)="toggleMenu('consultation')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span class="list-text">List</span>
-                  </a>
-                </div>
-              </li>
-  
-              <li class="nav-item col-6">
-                <button class="nav-link btn" [ngClass]="{'active-route': isAppointmentRoute}" *ngIf="!isAppointmentMenuOpen" (click)="toggleMenu('appointment')">
-                  Appointment 
-                </button>
-                <div *ngIf="isAppointmentMenuOpen" id="appointmentCollapse" class="row options" >
-                  <a routerLink="/add-appointment" class="btn-link btn-add col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/add_2099237.png" alt="Add Icon" the="btn-add-icon"><span class="register-text">Register</span>
-                  </a>
-                  <a routerLink="/list-appointment" class="btn-link btn-list col-12" (click)="toggleMenu('appointment')">
-                    <img src="../assets/list_2099192.png" alt="List Icon" the="btn-list-icon"><span class="list-text">List</span>
-                  </a>
-                </div>
-              </li>
-  
-            </ul>
+
+
+<!-- Container: third -->
+<div class="container-fluid third scroll-section " id="Service" #scrollSection>
+  <div class="row thirdSection" #thirdSection>
+
+    <div class="col-2">
+      <div class="stepper-container">
+        <div class="stepper">
+          <ul class="navbar-nav">
+          <div class="step row">
+            <div class="step1">
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showPatientOptions = false">
+                  <button class="nav-link btn" [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
+                    Patients
+                  </button>
+                  <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
+                    <a routerLink="/add-patient" class="btn-add" (click)="closePatientOptions()">
+                      <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="/list-patient" class="btn-list" (click)="closePatientOptions()">
+                      <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+                </li>
+        
+              </div>
+            </div>
+
           </div>
-        </nav>
+
+          <div class="line"></div>
+
+          <div class="step row">
+            <div class="step1">
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showDoctorOptions = false">
+                  <button class="nav-link btn" [ngClass]="{'active-route': isDoctorRoute}" (mouseenter)="showDoctorOptions = true">
+                    Doctor
+                  </button>
+                  <div id="doctorCollapse" class="options row" *ngIf="showDoctorOptions">
+                    <a routerLink="/add-doctor" class="btn-add" (click)="closeDoctorOptions()">
+                      <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="/list-doctor" class="btn-list" (click)="closeDoctorOptions()">
+                      <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="step row">
+            <div class="step1">
+              <div class="col-6 kit" >
+
+              <li class="nav-item" (mouseleave)="showConsultationOptions = false">
+                <button class="nav-link btn" [ngClass]="{'active-route': isConsultationRoute}" (mouseenter)="showConsultationOptions = true">
+                  Consultation
+                </button>
+                <div id="consultationCollapse" class="options row" *ngIf="showConsultationOptions">
+                  <a routerLink="/add-consultation" class="btn-add" (click)="closeConsultationOptions()">
+                    <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon">
+                    <span class="register-text">Register</span>
+                  </a>
+                  <a routerLink="/list-consultation" class="btn-list" (click)="closeConsultationOptions()">
+                    <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon">
+                    <span class="list-text">List</span>
+                  </a>
+                </div>
+              </li>
+              </div>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="step row">
+            <div class="step1">
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showAppointmentOptions = false">
+                  <button class="nav-link btn" [ngClass]="{'active-route': isAppointmentRoute}" (mouseenter)="showAppointmentOptions = true">
+                    Appointment
+                  </button>
+                  <div id="appointmentCollapse" class="options row" *ngIf="showAppointmentOptions">
+                    <a routerLink="/add-appointment" class="btn-add" (click)="closeAppointmentOptions()">
+                      <img src="../assets/add_2099237.png" alt="Add Icon" class="btn-add-icon">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="/list-appointment" class="btn-list" (click)="closeAppointmentOptions()">
+                      <img src="../assets/list_2099192.png" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 right-content">
-        <div class="main-content">
-          <router-outlet></router-outlet>
-        </div>
+
+    <div class="col-10 right-content">
+      <div class="main-content">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
-
+</div>
 
   <!-- Container: login-form -->
 <div class="container-fluid second scroll-section" id="login-form" #scrollSection>
