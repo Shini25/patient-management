@@ -601,3 +601,9 @@ h3 {
       transparent 4px
     );
   }
+
+  .right-content {
+    padding: 0;
+    margin: 0;
+    padding-right: 20px;
+  }

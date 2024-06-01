@@ -81,7 +81,7 @@ export class AddPatientComponent {
 
         this.patientService.savePatient(newPatient).subscribe((response: any) => {
           this.newPatientDetails = response;
-          $('#successModal').modal('show');
+
           this.toastr.success('Patient added successfully!');
         });
       }

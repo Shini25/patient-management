@@ -16,6 +16,18 @@ export class ListPatientComponent implements OnInit{
 
   blurredPatientId: number | null = null;
 
+
+  calculateAge(dateOfBirth: Date): number {
+    const birthDate = new Date(dateOfBirth);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
   addBlur(patientId: number | undefined) {
     if (patientId !== undefined) {
       this.blurredPatientId = patientId;
@@ -42,7 +54,9 @@ ngOnInit() {
   );
 }
 
-
+formatName(name: string): string {
+  return name.length > 12 ? name.slice(0, 9) + '...' : name;
+}
 
 
 editPatient(patient: Patient) {

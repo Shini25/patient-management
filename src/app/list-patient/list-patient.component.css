@@ -1,19 +1,32 @@
 .root-content {
-    background-color: rgb(0, 0, 0);
+    position: relative;
+    background-color: rgb(255, 255, 255);
     height: 100vh;
-    margin:auto
+    padding: 10px;
+    padding-top: 0%;
+}
+
+.root-content::before {
+    content: '';
+    position: absolute;
+    top: 150px;
+    bottom: 70px;
+    left: 0px;
+    width: 5px;
+    background-color: #0000194b;
+    border-radius: 50px;
 }
 
 .search {
     height: 10vh;
-    background-color: #f0f8ff;
-}
+    background-color: rgb(2, 0, 29);   
 
+}
 .search input{
     height: 40px;
     padding-left: 60px;
     border-radius: 30px;
-    border-color: rgba(255, 255, 255, 0);
+    border-color: rgba(198, 199, 201, 0.117);
 }
 
 .search input:focus {
@@ -41,10 +54,15 @@
     font-weight: bold;
 }
 
+.form-inline  {
+    position: relative;
+    right: 40px;
+    }
+
 .patient-container {
   display: flex;
   flex-wrap: wrap;
-  max-height: 700px;
+  max-height: 820px;
   overflow-y: scroll;
   padding-left: 20px;
   
@@ -58,18 +76,21 @@
 .Patient-info {
   padding: 15px;
   color: rgb(0, 0, 0);
-  border-bottom: 8px solid rgba(8, 57, 204, 0.857);
+  border-bottom: 8px solid rgb(251, 25, 232);
+  border-top: 1px solid  rgba(146, 146, 245, 0.274);
+  border-left: 1px solid rgba(146, 146, 245, 0.274);
+  border-right: 1px solid rgba(146, 146, 245, 0.274);
   border-radius: 5px 5px 15px 15px;
-  margin: 15px;
-  width: 335px;
+  margin: 5px;
+  width: 371px;
   margin-bottom: 10px;
-  background-color: #f0f8ff;
+  background-color: #f7f9fa;
     
 
 }
 
 .Patient-info:hover {
-    background-color: #d8e9f0f8;
+    background-color: #f9e3f2f8;
 }
 
 .Patient-info-content {
@@ -110,22 +131,42 @@ em {
 }
 
 .list-patient-title {
-    color: #000000;
+    color: #ffffff63;
     font-weight: 400;
     font-size: 50px;
     text-align: left;
     padding-top: 25px;
-
+    padding-left: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 ul li {
     list-style: none;
 }
 
+.header-info {
+    border: 1px solid rgba(0, 0, 0, 0.268);
+    border-radius: 10px;
+    padding-top: 10px;
+    box-shadow: 5px 5px  #1a03ae86;
+    background-color: #ffffff;
+}
+
 .info-name {
-    text-align: right;
-    margin-bottom: 20px;
-    padding-right: 40px;
+    text-align: left;
+    padding-left: 40px;
+}
+
+.info-pic {
+    padding: 5px;
+
+}
+
+.info-pic .age {
+    display: flex;
+    flex-direction: row;
+
+
 }
 
 .firstName{
@@ -137,7 +178,7 @@ ul li {
 
 .lastName{
     font-size: 20px;
-    font-weight: 450;
+    font-weight: normal;
     color: #000000e7;
 }
 
@@ -180,7 +221,8 @@ li span {
     font-weight: bold;
 }
 
-.patientId {
-    text-align: right;
-    padding-right: 42px;
+.idPatient {
+    text-align: left;
+    position: relative;
+    left: -25px
 }
