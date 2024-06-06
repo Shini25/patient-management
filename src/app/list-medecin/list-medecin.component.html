@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 root-content">
+            <div class="row">
+                <div class="col-12 search pt-3">
+                    
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class="list-doctor-title">
+                                list of doctor
+                            </h2>
+                        </div>
+                        <div class="col-4">
+                            <h1>
+                                Find a doctor by name
+                            </h1>
+                        </div>
+                    </div>
+
+                    <form class="form-inline justify-content-end">
+                        <div class="row">
+
+                            <div class="col-4 offset-8 mt-1">
+                            <input class="col-12" type="search" placeholder="Search for a doctor..." aria-label="Recherche">
+                            <span class="search-icon" type="submit"><img src="../assets/magnifying-glass_7987910.png" alt=""></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- doctor list -->
+                <div class="row" data-aos="fade-up" data-aos-duration="2000">
+                    <div class="col-12 mt-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="medecins-container">
+                                    <div class="Medecin-info" *ngFor="let doctor of doctors">
+                                        <div class="row mt-5">
+                                            <div class="col-6">
+                                                <span><img src="../assets/doctor_4131330.png" alt=""></span>
+                                            </div>
+                                            <div class="col-6">
+                                                <h1>{{ doctor.firstName }}</h1>
+                                                <h1>{{ doctor.lastName }}</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 mt-5">
+                                                <ul>
+                                                    <li>Specialty: {{ doctor.specialty }}</li>
+                                                    <li>Contact: {{ doctor.contact }}</li>
+                                                    <li>Date of birth: {{doctor.dateOfBirth }}</li>
+                                                    <li>Address: {{ doctor.address }}</li>
+                                                    <li>Emai: {{ doctor.email }}l</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
