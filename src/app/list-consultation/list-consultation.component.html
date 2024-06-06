@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 root-content">
+            <div class="row">
+                <div class="col-12 search pt-3">
+                    <div class="row">
+                        <div class="col-3 offset-8">
+                            <h1>
+                                Find a consultation by name
+                            </h1>
+                        </div>
+                    </div>
+                    <form class="form-inline justify-content-end">
+                        <div class="row">
+                            <div class="col-4 offset-8 mt-1">
+                            <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
+                            <span class="search-icon" type="submit"><img src="../assets/magnifying-glass_7987910.png" alt=""></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- consultation list -->
+
+                <div class="col-12 mt-5" data-aos="fade-up" data-aos-duration="2000">
+                    <div class="row">
+                        <h2 class="list-consultation-title">
+                            List of Consultations
+                        </h2>
+                        <div class="col-10 offset-1 consultation-container">
+                            <div class="Consultation-info mb-3" *ngFor="let consultation of consultations">
+
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <ul>
+                                            <li>Doctor name: {{ consultation.doctor.firstName }}</li>
+                                            <li>Patient name: {{ consultation.patient.firstName }}</li>
+                                            <li>Date of consultation: {{ consultation.consultationDate }}</li>
+                                            <li>Reason: {{ consultation.consultationReason }}</li>
+                                            <li>Diagnosis: {{ consultation.diagnosis }}</li>
+                                            <li>Prescribed treatment: {{ consultation.prescribedTreatment }}</li>
+                                            <li>Test results: {{ consultation.testResults }}</li>
+                                            <li>Observations: {{ consultation.observations }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

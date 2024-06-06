@@ -1,0 +1,58 @@
+ <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 root-content">
+            <div class="row">
+                <div class="col-12 search pt-3">
+                    <div class="row">
+                        <div class="col-3 offset-8">
+                            <h1>
+                                Find an appointment by name
+                            </h1>
+                        </div>
+                    </div>
+                    <form class="form-inline justify-content-end">
+                        <div class="row">
+                            <div class="col-4 offset-8 mt-1">
+                            <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
+                            <span class="search-icon" type="submit"><img src="../assets/magnifying-glass_7987910.png" alt=""></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- patient list -->
+
+                <div class="col-12 mt-5" >
+                    <div class="row">
+                        <h2 class="list-appointment-title">
+                            list of patient
+                        </h2>
+                        <div class="col-10 offset-1 patient-container">
+                            <div class="Patient-info mb-3" *ngFor="let appointment of appointments">
+                                <div class="row mt-3 ">
+                                    <div class="col-6">
+                                        <span><img src="../assets/doctor_4131330.png" alt=""></span>
+                                    </div>
+                                    <div class="col-6">
+                                        <h1>{{ appointment.doctor.firstName }}</h1>
+                                        <h1>{{ appointment.patient.lastName }}</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <ul>
+                                            <li>Doctor name : {{ appointment.doctor.firstName }}</li>
+                                            <li>Patient name: {{ appointment.patient.firstName }}</li>
+                                            <li>Date of appointment: {{ appointment.appointmentDate }}</li>
+                                            <li>reason: {{ appointment.reason }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
