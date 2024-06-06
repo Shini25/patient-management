@@ -58,9 +58,11 @@ export class AppComponent {
   constructor(private router: Router, private toastr: ToastrService, private location: Location) {}
 
   ngOnInit() {
+    // Subscribe to router events to detect when navigation ends and update route flags accordingly.
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
+      // Check the current URL to set flags indicating which route is active.
       this.isPatientRoute = this.router.url.includes('/add-patient') || this.router.url.includes('/list-patient');
       this.isDoctorRoute = this.router.url.includes('/add-doctor') || this.router.url.includes('/list-doctor') || this.router.url.includes('/home');
       this.isConsultationRoute = this.router.url.includes('/add-consultation') || this.router.url.includes('/list-consultation');
@@ -69,42 +71,41 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-
-    //Manual scrollspy 
+    // Define options for the IntersectionObserver which will monitor visibility of sections for scrollspy functionality.
     const options = {
-      root: null,
+      root: null, // Observe visibility within the viewport
       rootMargin: '0px',
-      threshold: 0.5 // Adjust the threshold as needed
+      threshold: 0.5 // Trigger when 50% of the target is visible
     };
 
+    // Create an IntersectionObserver to manage visibility of sections and corresponding navigation updates.
     const observer = new IntersectionObserver((entries) => {
+      // Process all intersection events.
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Display a toast message when the section is visible
-
-          // Cast the entry target to HTMLElement to access style property
+          // When a section becomes visible, update its style and related navigation link.
           const targetElement = entry.target as HTMLElement;
-          targetElement.style.opacity = '1';
+          targetElement.style.opacity = '1'; // Make the target fully visible.
 
-          // Set opacity to 0 for all other sections
+          // Dim all other sections.
           this.scrollSections.forEach(section => {
             const sectionElement = section.nativeElement as HTMLElement;
             if (sectionElement !== targetElement) {
-              sectionElement.style.opacity = '0';
+              sectionElement.style.opacity = '0'; // Dim sections that are not the target.
             }
           });
 
-          // Highlight the corresponding navigation link
+          // Update navigation links to highlight the one corresponding to the visible section.
           this.navLinks.forEach(link => {
             const linkElement = link.nativeElement as HTMLElement;
             if (linkElement.getAttribute('href') === `#${entry.target.id}`) {
-              linkElement.style.color = 'blue';
+              linkElement.style.color = 'blue'; // Highlight the active section link.
             } else {
-              linkElement.style.color = '';
+              linkElement.style.color = ''; // Reset color of non-active links.
             }
           });
 
-          // Update the URL fragment without scrolling
+          // Update the browser's URL fragment to reflect the visible section without causing a scroll.
           this.location.replaceState(`#${entry.target.id}`);
         }
       });
@@ -195,34 +196,7 @@ export class AppComponent {
     });
   }
 
-  /*
-  closeAllMenus(): void {
-    this.isPatientMenuOpen = false;
-    this.isDoctorMenuOpen = false;
-    this.isConsultationMenuOpen = false;
-    this.isAppointmentMenuOpen = false;
-  }
 
-  toggleMenu(menu: string): void {
-    if ((menu === 'patient' && this.isPatientMenuOpen) ||
-        (menu === 'doctor' && this.isDoctorMenuOpen) ||
-        (menu === 'consultation' && this.isConsultationMenuOpen) ||
-        (menu === 'appointment' && this.isAppointmentMenuOpen)) {
-      this.closeAllMenus();
-    } else {
-      this.closeAllMenus();
-      if (menu === 'patient') {
-        this.isPatientMenuOpen = true;
-      } else if (menu === 'doctor') {
-        this.isDoctorMenuOpen = true;
-      } else if (menu === 'consultation') {
-        this.isConsultationMenuOpen = true;
-      } else if (menu === 'appointment') {
-        this.isAppointmentMenuOpen = true;
-      }
-    }
-  }
-  */
 
 
   // Add this method to handle scrolling
