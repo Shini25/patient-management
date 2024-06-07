@@ -71,8 +71,11 @@ ngOnInit() {
   );
 }
 
-formatName(name: string): string {
-  return name.length > 12 ? name.slice(0, 9) + '...' : name;
+formatFirstName(name: string): string {
+  return name.length > 17 ? name.slice(0, 17) + '...' : name;
+}
+formatLastName(name: string): string {
+  return name.length > 25 ? name.slice(0, 25) + '...' : name;
 }
 
 

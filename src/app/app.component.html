@@ -70,11 +70,10 @@
       <div class="stepper-container">
         <div class="stepper">
           <ul class="navbar-nav">
-          <div class="step row">
-            <div class="step1">
+          <div class="step row" [ngClass]="{'active-step': isPatientRoute}"  >
               <div class="col-6 kit" >
                 <li class="nav-item" (mouseleave)="showPatientOptions = false">
-                  <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
+                  <button class="nav-link btn d-flex align-items-center " [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
                     Patients
                   </button>
                   <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
@@ -88,16 +87,13 @@
                     </a>
                   </div>
                 </li>
-        
               </div>
-            </div>
 
           </div>
 
           <div class="line"></div>
 
-          <div class="step row">
-            <div class="step1">
+          <div class="step row" [ngClass]="{'active-step': isDoctorRoute}">
               <div class="col-6 kit" >
                 <li class="nav-item" (mouseleave)="showDoctorOptions = false">
                   <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isDoctorRoute}" (mouseenter)="showDoctorOptions = true">
@@ -115,13 +111,11 @@
                   </div>
                 </li>
               </div>
-            </div>
           </div>
 
           <div class="line"></div>
 
-          <div class="step row">
-            <div class="step1">
+          <div class="step row" [ngClass]="{'active-step': isConsultationRoute}">
               <div class="col-6 kit" >
 
               <li class="nav-item" (mouseleave)="showConsultationOptions = false">
@@ -140,21 +134,20 @@
                 </div>
               </li>
               </div>
-            </div>
           </div>
 
           <div class="line"></div>
 
-          <div class="step row">
-            <div class="step1">
+          <div class="step row" [ngClass]="{'active-step': isAppointmentRoute}">
               <div class="col-6 kit" >
                 <li class="nav-item" (mouseleave)="showAppointmentOptions = false">
                   <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isAppointmentRoute}" (mouseenter)="showAppointmentOptions = true">
                     Appointment
                   </button>
+
                   <div id="appointmentCollapse" class="options row" *ngIf="showAppointmentOptions">
                     <a routerLink="/add-appointment" class="btn-add" (click)="closeAppointmentOptions()">
-                      <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon">
+                      <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon ">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="/list-appointment" class="btn-list" (click)="closeAppointmentOptions()">
@@ -162,9 +155,9 @@
                       <span class="list-text">List</span>
                     </a>
                   </div>
+
                 </li>
               </div>
-            </div>
           </div>
         </ul>
       </div>

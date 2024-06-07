@@ -32,7 +32,7 @@
                             <div class="Patient-info" *ngFor="let patient of patients" (mouseleave)="removeBlur()">
 
                                 <div class="row  Patient-info-content" [ngClass]="{'blur': blurredPatientId === patient.id}" (mouseenter)="addBlur(patient.id)">
-                                    <div class="col-12 mb-5 header-info">
+                                    <div class="col-10 offset-1 mb-5 header-info">
                                         <div class="row">
 
                                             <div class="col-2 info-pic">
@@ -68,8 +68,8 @@
                                             </div>
 
                                             <div class="info-name col-10">
-                                                <h1 class="firstName ">{{ formatName(patient.firstName) }}</h1>
-                                                <h1 class="lastName">{{ patient.lastName }}</h1>
+                                                <h1 class="firstName ">{{ formatFirstName(patient.firstName) }}</h1>
+                                                <h1 class="lastName">{{ formatLastName(patient.lastName) }}</h1>
                                             </div>
                                             <div class="col-12">
                                                 <div class="row">

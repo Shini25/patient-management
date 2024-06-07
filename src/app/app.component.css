@@ -504,25 +504,18 @@ h3 {
     display: inline;
 }
 .nav-item {
-    height: 200px;
     font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 20px;
+
     
 }
 
-
-.nav-item{
-    width: 25%;
-   
-}
 
  .btn-add, .btn-list {
     font-size: 20px
 }
 
 .btn-add img , .btn-list img{
-    height: 25px;
+    height: 20px;
     
 }
 .btn-list:hover, .btn-add:hover{
@@ -539,42 +532,47 @@ h3 {
 .options{
     position: relative;
     top: 0px;
-    left: 15px;
-    height: 100px;
-    width: 190px;
+    left: 10px;
+    height: 85px;
+    width: 135px;
     transition: 2s;
     z-index: 1;
+    border-radius: 10px;
+    border: #00000013 solid 1px;
+    padding: 5px;
+    
 
     
 }
 .options  a{
     text-decoration: none;
-    height: 40px;
-    width: 150px;
+    height: 35px;
+    width: 130px;
     font-weight: 100;
     padding-top: 3px;
-    border: #00000024 solid 1px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 4px;
+    margin-bottom: 5px;
     color: #000000c8;
 
 }
 
 .register-text, .list-text {
     padding-left: 20px;
+    font-size: 15px;
 
 }
 
+
 .nav-link {
-    color: #0000008c !important;
+    color: #0000008c ;
     transition: 0.5s;
-    font-size: 15px;
-    padding-top: 15px;
+    font-size: 20px;
+    
 
 }
 
 .nav-link:hover {
-    color: #001eff8c !important;
+    color: #001eff8c ;
     transition: 0.5s;
     transform: scale(1.1);
 }
@@ -582,10 +580,6 @@ h3 {
 .nav-link:hover .options {
  transition: 1s;
 } 
-.sort-down img{
-    height: 40px;
-    opacity: 0;
-}
 
 .nav-link.btn.selected {
     border-bottom: 2px solid #000000;  /* Changez la couleur selon vos besoins */
@@ -608,10 +602,11 @@ h3 {
   }
 
   .step {
-    width: 15px;
-    height: 15px;
-    background-color: #d4d2d2;
+    width: 20px;
+    height: 20px;
+    background-color: #dee1fef2;
     border-radius: 50%;
+    border: #0000001e solid 1px;
     margin: 20px;
     position: relative;
     left: 2px;
@@ -620,21 +615,27 @@ h3 {
     margin-left: -10px;
   }
 
-
-  .step1 {
-    width: 38px;
-    height: 35px;
-    background-color: #ffffff00;
+  .active-step {
+    width: 20px;
+    height: 20px;
+    background-color: #7e8af9eb;
     border-radius: 50%;
+    border: #0000001e solid 1px;
     margin: 20px;
+    position: relative;
+    left: 2px;
     display: flex;
     justify-content: center;
-    position: relative;
-    left: 0px;
-    bottom: 31px;
-    border: #f3f0f0e4 solid 2px;
-    box-shadow: 0px 4px 8px rgba(130, 17, 195, 0.5); /* Added shadow */
+    margin-left: -10px;
+    animation: colorShift infinite 1.4s;
   }
+
+  @keyframes colorShift {
+    0% { background-color: rgba(212, 212, 255, 0.751); }
+    100% { background-color: #3447f5eb; }
+  }
+
+
 .kit {
   margin-left: 100px;
   position: relative;
@@ -647,7 +648,7 @@ h3 {
   .line {
     width: 2px;
     height: 60px;
-    background-color: #e0e0e0;
+    background-color: #00000005;
   }
 
   .line::after {
@@ -657,8 +658,8 @@ h3 {
     height: 100%;
     background: repeating-linear-gradient(
       to bottom,
-      #000,
-      #000 2px,
+      #5f5f5f,
+      #4d4d4d 2px,
       transparent 2px,
       transparent 4px
     );
@@ -669,3 +670,25 @@ h3 {
     margin: 0;
     padding-right: 20px;
   }
+
+
+  .active-route {
+    color: #2a3fffce;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 1.5s;
+  }
+  
+  
+  .active-link {
+    text-decoration: underline;
+    color: red;
+  }
+
+  .nav-item button {
+    height: 10px;
+    margin-top: 11px;
+    
+
+  }
+

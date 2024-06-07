@@ -28,7 +28,7 @@ export class AppComponent {
   isConsultationMenuOpen = false;
   isAppointmentMenuOpen = false;
   */
-  isPatientRoute = false;
+  isPatientRoute = true;
   isDoctorRoute = false;
   isConsultationRoute = false;
   isAppointmentRoute = false;

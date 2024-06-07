@@ -9,7 +9,7 @@
 .root-content::after {
     content: '';
     position: absolute;
-    top: 80px;
+    top: 110px;
     bottom: 10px;
     width: 2px;
     background-color: #0000194b;
@@ -27,7 +27,7 @@
 .search {
     height: 10vh;
     background-color: rgb(16, 0, 6);   
-    box-shadow: 2px 4px 8px rgba(11, 0, 227, 0.856); /* Shadow applied only to the bottom */
+    box-shadow: 0px 4px 8px rgba(11, 0, 227, 0.856); /* Shadow applied only to the bottom */
 }
 .search input{
     height: 40px;
@@ -86,7 +86,7 @@
   border-right: 1px solid rgba(146, 146, 245, 0.274);
   border-radius: 5px 5px 15px 15px;
   margin: 8px;
-  width: 286px;
+  width: 276px;
   margin-bottom: 10px;
   background: white;
 
@@ -151,7 +151,7 @@ ul li {
     border: 1px solid rgba(0, 0, 0, 0.268);
     border-radius: 10px;
     padding-top: 10px;
-    box-shadow: 3px 3px  #0014f39c;
+    box-shadow: 0 3px 3px  #0014f39c;
     background-color: #ffffff;
 }
 
