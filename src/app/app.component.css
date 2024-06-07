@@ -233,17 +233,6 @@ h1 {
 
 }
 
-
-.active-route {
-    color: blue;
-    font-weight: bold;
-  }
-  
-  .active-link {
-    text-decoration: underline;
-    color: red;
-  }
-  
 .btn:active:focus {
     box-shadow: none !important;
   }

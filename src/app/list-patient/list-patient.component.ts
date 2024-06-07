@@ -72,13 +72,8 @@ ngOnInit() {
 }
 
 formatName(name: string): string {
-  return name.length > 18  ? name.slice(0, 18) + '...' : name;
+  return name.length > 12 ? name.slice(0, 9) + '...' : name;
 }
-
-formatLastName(name: string): string {
-  return name.length > 26 ? name.slice(0, 26) + '...' : name;
-}
-
 
 
 editPatient(patient: Patient) {

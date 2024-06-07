@@ -27,8 +27,6 @@ import { ListConsultationComponent } from './list-consultation/list-consultation
 import { SharedModule } from './shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import * as AOS from 'aos';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +70,5 @@ import * as AOS from 'aos';
 })
 export class AppModule {
     ngOnInit() {
-    AOS.init();
   }
  }
