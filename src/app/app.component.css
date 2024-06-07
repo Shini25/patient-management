@@ -22,7 +22,7 @@ body {
 
 
 /* Style pour les colonnes */
-.first-right-pic, .first-left-pic {
+.first-right-pic {
     flex: 1;
     display: flex;
     align-items: center; /* Centre verticalement le contenu de chaque colonne */
@@ -606,7 +606,7 @@ h3 {
     height: 20px;
     background-color: #dee1fef2;
     border-radius: 50%;
-    border: #0000001e solid 1px;
+    border: #00000004 solid 1px;
     margin: 20px;
     position: relative;
     left: 2px;
@@ -618,9 +618,9 @@ h3 {
   .active-step {
     width: 20px;
     height: 20px;
-    background-color: #7e8af9eb;
+    background-color:  #2a83ffce;
     border-radius: 50%;
-    border: #0000001e solid 1px;
+    border: #00000001 solid 1px;
     margin: 20px;
     position: relative;
     left: 2px;
@@ -632,7 +632,7 @@ h3 {
 
   @keyframes colorShift {
     0% { background-color: rgba(212, 212, 255, 0.751); }
-    100% { background-color: #3447f5eb; }
+    100% { background-color:  #2a83ffce; }
   }
 
 
@@ -673,7 +673,7 @@ h3 {
 
 
   .active-route {
-    color: #2a3fffce;
+    color: #2a83ffce;
     font-weight: bold;
     font-size: 24px;
     transition: 1.5s;

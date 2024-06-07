@@ -1,16 +1,41 @@
 .form-container {
-    background-color: rgb(0, 0, 0);
-    height: 100vh;
+    height: 98vh;
+    margin-top: 5px;
+    position: relative;
+    background-color: #f8f8f8;
+
+
 }
 
-.form-container-right {
-    background-image: url("/assets/2148709127.jpg");
+.info-container {
+    position: relative;
+    text-align: center;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute; /* Position the title absolutely */
+    top: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Ensure the title is above the blurred container */
+    filter: none !important; /* Ensure no blur is applied to the title */
+    margin-right: 0;
+
+}
+
+
+.form-container-right-root{
+    background-image: url("/assets/doctor-man-consulting-patient-while-filling-up-application-form-desk-hospital copy copy.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 98vh;
+    margin-top: 5px;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .login-id img {
-    height: 35px;
+    height: 28px;
     position: relative;
     left: 0px;
     top: 20px;
@@ -25,25 +50,27 @@
     
     border: #ffffff00;
     height: 35px;
-    border-bottom: #ffffff61 double;
+    border-bottom: #afafaf77 double;
     background-color: rgba(255, 255, 255, 0);
-    font-size: 25px;
-    padding-left: 150px;
-    color: #ffffff;
+    box-shadow: 0 4px 4px -6px rgb(0, 0, 0);
+    font-size: 20px;
+    padding-left: 110px;
+    color: #000000f1;
+    border-radius: 10px;
     
 }
 /* Supprimer la bordure de focus */
 .form-style:focus{
     outline: none;
-    padding-left: 150px;
-    font-size: 25px;
+    padding-left: 110px;
+    font-size: 20px;
 }
 
 .placeholder-form-style{
     position: relative;
     top: -40px;
-    left: 150px;
-    color: #e4e4e4;
+    left: 110px;
+    color: #000000c9;
     font-size: large;
     transition: 0.5s;
     pointer-events: none;
@@ -55,7 +82,7 @@
     position: relative;
     top: -80px;
     left: 0px;
-    color: #3bd2f0f2;
+    color: #35e1ff59;
     
 }
 
@@ -65,27 +92,33 @@
 
 #dateOfBirth {
     padding-left: 80px;
+    color: #323232e0;
+    font-size: 20px !important;
+
 }
 
-.root-form {
-    padding-left: 50px;
+.dateofbirth {
+    margin-top: -10px !important;
+    margin-bottom: 30px !important;
 }
 
 .title {
     text-align: center;
-    color: #e4e4e4;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 50px;
+    color: #080808a9;
+    font-size: 40px;
     font-weight: bold;
+    z-index: 1000 !important;
 }
+
+
 .gender-button {
-    margin: 10px; /* Changed to auto to center horizontally */
-    padding: 5px;
-    background-color: #000000;
+    margin-left: 20px;
+    background-color: #535353;
     color: #f2f2f2;
     border: 1px solid #d1d1d1;
     border-radius: 5px;
     cursor: pointer;
+    align-items: center;
 }
 .gender-button input[type="radio"] {
     margin-right: 10px;
@@ -93,7 +126,7 @@
 
 .gender-button:hover {
     background-color: #ffffff30;
-    color: white;
+    color: rgba(228, 228, 228, 0.959);
 }
 
 input[type="date"] {
@@ -109,12 +142,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding-left: 30px; /* Ajoute de l'espace à gauche pour le texte, ajustez selon vos besoins */
+    padding-right: 0%; /* Ajoute de l'espace à gauche pour le texte, ajustez selon vos besoins */
 }
 
 input[type="date"]::-webkit-datetime-edit {
     position: relative;
-    left: 10%; /* Ajustez cette valeur pour positionner le texte comme vous le souhaitez */
+    left: 10%; /* Ajustez cette    font-size: 5px !important;
+    valeur pour positionner le texte comme vous le souhaitez */
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -127,3 +161,26 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+
+.info-text {
+    background-color: #0000006a;
+    margin-top: 100px;
+    font-size: 20px;
+    overflow: hidden; /* Ensures the text is hidden until it's revealed */
+    border-right: .15em solid black; /* Creates the caret effect */
+    white-space: nowrap; /* Prevents the text from wrapping */
+    animation: typing 40s steps(60, end) infinite, blink-caret .75s step-end infinite;
+    width: 0; /* Start with width 0 */
+    display: inline-block; /* Ensures the text is inline */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}

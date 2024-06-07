@@ -1,42 +1,45 @@
 <div class="container-fluid">
      <div class="row">
 
-        <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6">
+        <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-5">
 
-            <div class="root-form col-9 offset-1">
-                <div class="form-group mb-2 mt-5">
+            <div class="root-form col-10 offset-1">
+                <h1 class="title mt-3 text-center">
+                    Register a patient
+                </h1>
+                <div class="form-group mb-1 mt-1">
                     <span class="login-id"><img src="../assets/badge_5963350.png" alt=""></span>
                     <input type="text" class="form-style col-12 " id="firstName" formControlName="firstName" placeholder="" required>
                     <span class="placeholder-form-style">Name</span>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group ">
                     <span class="login-id"><img src="../assets/badge_5963350.png" alt=""></span>
                     <input type="text" class="form-style col-12 " id="lastName" formControlName="lastName" placeholder="" required>
                     <span class="placeholder-form-style">Lastname</span>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group dateofbirth ">
                     <span class="login-id"><img src="../assets/halloween_8543316.png" alt=""></span>
                     <input type="date" class="form-style col-12 " id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-1">
                     <span class=""><img src="../assets/gender_12345.png" alt=""></span>
-                    <div class="gender-type col-8 offset-2">
-                        <label class="gender-button"><input type="radio" name="gender" value="MALE" formControlName="gender"> Male</label>
-                        <label class="gender-button"><input type="radio" name="gender" value="FEMALE" formControlName="gender"> Female</label>
-                        <label class="gender-button"><input type="radio" name="gender" value="OTHER" formControlName="gender"> Other</label>
+                    <div class="gender-type col-10 offset-1">
+                        <label class="gender-button col-3"><input type="radio" name="gender" value="MALE" formControlName="gender"> Male</label>
+                        <label class="gender-button col-3"><input type="radio" name="gender" value="FEMALE" formControlName="gender"> Female</label>
+                        <label class="gender-button col-3"><input type="radio" name="gender" value="OTHER" formControlName="gender"> Other</label>
                     </div>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-1 mt-4">
                     <span class="login-id"><img src="../assets/location_9865806.png" alt=""></span>
                     <input type="text" class="form-style col-12 " id="address" formControlName="address" placeholder="" required>
                     <span class="placeholder-form-style">Address</span>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-1">
                     <span class="login-id"><img src="../assets/phone-book_5963179.png" alt=""></span>
                     <input type="number" class="form-style col-12 " id="phoneNumber" formControlName="phoneNumber" placeholder="" required>
                     <span class="placeholder-form-style">Phone number</span>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-4">
                     <span class="login-id"><img src="../assets/mail_5963120.png" alt=""></span>
                     <input type="text" class="form-style col-12 " id="email" formControlName="email" placeholder="" required>
                     <span class="placeholder-form-style">Email</span>
@@ -53,11 +56,8 @@
             </div>
         </form>
 
-        <div class="form-container-right col-6" >
-            <h1 class="title mt-4 mb-4">
-                Register a patient
-            </h1>
-
+        <div class="form-container-right-root col-7" >
+            <!-- todo -->
         </div>
 
      </div>
