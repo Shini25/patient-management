@@ -1,12 +1,23 @@
-.form-container {
-    height: 98vh;
+.root-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 106, 255, 0.91); /* Added blue blur shadow */
     margin-top: 5px;
-    position: relative;
-    background-color: #f8f8f8;
-
+    height: 98vh;
+    background-color: #f9f9f9;
 
 }
 
+.root-typewriter {
+    padding-right: 0;
+    margin: 0%;
+}
+.form-container {
+    height: 98vh;
+    position: relative;
+    background-color: #f9f9f9;
+    border-radius: 10px 0 0 10px;
+    padding-top: 6px;
+}
 .info-container {
     position: relative;
     text-align: center;
@@ -20,18 +31,21 @@
     z-index: 2; /* Ensure the title is above the blurred container */
     filter: none !important; /* Ensure no blur is applied to the title */
     margin-right: 0;
+    margin-left: 0;
 
 }
 
 
 .form-container-right-root{
-    background-image: url("/assets/doctor-man-consulting-patient-while-filling-up-application-form-desk-hospital copy copy.jpg");
+    background-image: url("/assets/young-doctor-writing-notebook.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 98vh;
-    margin-top: 5px;
-    margin-left: 0;
-    padding-left: 0;
+    border-radius: 0 10px 10px 0;
+    padding: 0;
+    margin-left: 2px;
+    filter: blur(4px);
+
 }
 
 .login-id img {
@@ -44,19 +58,23 @@
 .login-id {
     position: relative;
     left: 10px;
+
+
 }
 
 .form-style {
     
     border: #ffffff00;
-    height: 35px;
-    border-bottom: #afafaf77 double;
+    height: 38px;
+    border-bottom: #7c7c7c77 double;
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 4px -6px rgb(0, 0, 0);
     font-size: 20px;
     padding-left: 110px;
     color: #000000f1;
     border-radius: 10px;
+    background-color: #2a83ff09;
+
     
 }
 /* Supprimer la bordure de focus */
@@ -64,26 +82,35 @@
     outline: none;
     padding-left: 110px;
     font-size: 20px;
+
 }
 
 .placeholder-form-style{
     position: relative;
     top: -40px;
     left: 110px;
-    color: #000000c9;
+    color: #00000062;
     font-size: large;
     transition: 0.5s;
     pointer-events: none;
+
+    
     
 }
+
+
 
 .form-style:focus  + .placeholder-form-style{
     transition: 0.5s;
     position: relative;
     top: -80px;
     left: 0px;
-    color: #35e1ff59;
+    color: #2a83ffce;
     
+}
+
+.form-group{
+    height: 85px;
 }
 
 .form-style:not(:placeholder-shown)+.placeholder-form-style {
@@ -92,14 +119,13 @@
 
 #dateOfBirth {
     padding-left: 80px;
-    color: #323232e0;
+    color: #32323277;
     font-size: 20px !important;
 
 }
 
 .dateofbirth {
-    margin-top: -10px !important;
-    margin-bottom: 30px !important;
+    margin-bottom: 20px !important;
 }
 
 .title {
@@ -184,3 +210,32 @@ input[type="number"]::-webkit-outer-spin-button {
     display: inline-block; /* Ensures the text is inline */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
+
+
+.typewriter {
+    font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 45%;
+    padding: 55px;
+    text-align: center;
+    z-index: 1000;
+    font-weight: bold;
+  }
+  
+  .cursor {
+    margin-left: 10px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    background-color: #000000;
+    animation: blink-caret 0.95s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }

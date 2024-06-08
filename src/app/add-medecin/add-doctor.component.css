@@ -1,19 +1,27 @@
+
 .form-container {
-    background-color: black;
-    height: 100vh;
+    height: 98vh;
+    margin-top: 5px;
+    position: relative;
+    background-color: #f8f8f8;
 }
 
-.form-container-right {
-    background-image: url("/assets/2148709127.jpg");
+.form-container-right-root {
+    background-image: url("/assets/medical-physician-doctor-man.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 98vh;
+    margin-top: 5px;
+    margin-left: 0;
+    padding-left: 0;
+
 }
 
 .login-id img {
-    height: 20px;
+    height: 28px;
     position: relative;
     left: 0px;
-    top: 30px;
+    top: 20px;
 }
 
 .login-id {
@@ -22,60 +30,55 @@
 }
 
 .form-style {
-    
     border: #ffffff00;
-    height: 40px;
-    border-bottom: #ffffff61 double;
+    height: 35px;
+    border-bottom: #afafaf77 double;
     background-color: rgba(255, 255, 255, 0);
-    font-size: large;
-    padding-left: 60px;
-    color: #ffffff;
-    
-}
-/* Supprimer la bordure de focus */
-.form-style:focus{
-    outline: none;
-    padding-left: 60px;
-    font-size: 25px;
+    box-shadow: 0 4px 4px -6px rgb(0, 0, 0);
+    font-size: 20px;
+    padding-left: 110px;
+    color: #000000f1;
+    border-radius: 10px;
 }
 
-.placeholder-form-style{
+.form-style:focus {
+    outline: none;
+    padding-left: 110px;
+    font-size: 20px;
+}
+
+.placeholder-form-style {
     position: relative;
     top: -40px;
-    left: 150px;
-    color: #e4e4e4;
+    left: 110px;
+    color: #000000c9;
     font-size: large;
     transition: 0.5s;
     pointer-events: none;
-    
 }
 
-.form-style:focus  + .placeholder-form-style{
+.form-style:focus + .placeholder-form-style {
     transition: 0.5s;
     position: relative;
     top: -80px;
     left: 0px;
-    color: #000000a8;
-    
+    color: #35e1ff59;
 }
 
-.form-style:not(:placeholder-shown)+.placeholder-form-style {
+.form-style:not(:placeholder-shown) + .placeholder-form-style {
     opacity: 0;
-    /* Rendre le placeholder transparent lorsque le champ contient du texte */
 }
 
 #dateOfBirth {
-    padding-left: 150px;
-}
-
-.root-form {
-    padding-left: 50px;
+    padding-left: 80px;
+    color: #323232e0;
+    font-size: 20px !important;
 }
 
 .title {
     text-align: center;
-    color: #e4e4e4;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 50px;
+    color: #080808a9;
+    font-size: 40px;
     font-weight: bold;
+    z-index: 1000 !important;
 }
