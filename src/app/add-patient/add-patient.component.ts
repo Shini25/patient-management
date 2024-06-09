@@ -92,7 +92,9 @@ export class AddPatientComponent implements OnInit {
 
   phrases: string[] = [
     "Welcome to patient registration!",
-    "All patients must come here before ",
+    "All patients",
+    "must come here",
+    " before ",
     "visiting the doctor's office."
     
   ];
@@ -100,7 +102,7 @@ export class AddPatientComponent implements OnInit {
   currentPhraseIndex: number = 0;
   currentCharIndex: number = 0;
   isDeleting: boolean = false;
-  typingSpeed: number = 150;
+  typingSpeed: number = 100;
   deletingSpeed: number = 50;
   pauseBeforeDelete: number = 2000;
   pauseBetweenPhrases: number = 1000;

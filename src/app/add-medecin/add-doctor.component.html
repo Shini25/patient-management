@@ -1,78 +1,67 @@
 <div class="container-fluid">
     <div class="row">
-        <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="form-container col-5">
-            <div class="root-form col-10 offset-1">
-                <h1 class="title mt-3 text-center">
-                    Register a doctor
-                </h1>
-                <div class="form-group mb-1 mt-1">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="firstName" formControlName="firstName" placeholder="" required>
-                    <span class="placeholder-form-style">Firstname</span>
-                </div>
-                <div class="form-group">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="lastName" formControlName="lastName" placeholder="" required>
-                    <span class="placeholder-form-style">Lastname</span>
-                </div>
-                <div class="form-group mb-1 mt-4">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="specialty" formControlName="specialty" placeholder="" required>
-                    <span class="placeholder-form-style">Specialty</span>
-                </div>
-                <div class="form-group mb-1">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="email" formControlName="email" placeholder="" required>
-                    <span class="placeholder-form-style">Email</span>
-                </div>
-                <div class="form-group mb-1">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="number" class="form-style col-12" id="contact" formControlName="contact" placeholder="" required>
-                    <span class="placeholder-form-style">Contact</span>
-                </div>
-                <div class="form-group mb-1 mt-4">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="address" formControlName="address" placeholder="" required>
-                    <span class="placeholder-form-style">Address</span>
-                </div>
-                <div class="form-group mb-1 mt-4">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="date" class="form-style col-12" id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
-                    <span class="placeholder-form-style">Date of Birth</span>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <button type="submit" [disabled]="doctorForm.invalid" class="btn btn-primary w-100">Add</button>
+        <div class="col-10 offset-1 root-container">
+            <div class="row">
+                <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="form-container col-6">
+                    <h1 class="title mt-3 text-center">
+                        Register a doctor
+                    </h1>
+                    <div class="form-group mb-1 mt-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
+                        <input type="text" class="form-style col-12" id="firstName" formControlName="firstName" placeholder="" required>
+                        <span class="placeholder-form-style">Firstname</span>
                     </div>
-                    <div class="col-sm-6">
-                        <button type="button" (click)="doctorForm.reset()" class="btn btn-secondary w-100">Clear All</button>
+                    <div class="form-group col-10 offset-1">
+                        <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
+                        <input type="text" class="form-style col-12" id="lastName" formControlName="lastName" placeholder="" required>
+                        <span class="placeholder-form-style">Lastname</span>
                     </div>
+                    <div class="form-group mb-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/pudding.png" alt=""></span>
+                        <input type="date" class="form-style col-12" id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
+                        <span class="placeholder-form-style">Date of Birth</span>
+                    </div>
+                    <div class="form-group mb-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/bookmark.png" alt=""></span>
+                        <input type="text" class="form-style col-12" id="specialty" formControlName="specialty" placeholder="" required>
+                        <span class="placeholder-form-style">Specialty</span>
+                    </div>
+                    <div class="form-group mb-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/mail.png" alt=""></span>
+                        <input type="text" class="form-style col-12" id="email" formControlName="email" placeholder="" required>
+                        <span class="placeholder-form-style">Email</span>
+                    </div>
+                    <div class="form-group mb-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/recording.png" alt=""></span>
+                        <input type="number" class="form-style col-12" id="contact" formControlName="contact" placeholder="" required>
+                        <span class="placeholder-form-style">Contact</span>
+                    </div>
+                    <div class="form-group mb-1 col-10 offset-1">
+                        <span class="login-id"><img src="../assets/placeholder.png" alt=""></span>
+                        <input type="text" class="form-style col-12" id="address" formControlName="address" placeholder="" required>
+                        <span class="placeholder-form-style">Address</span>
+                    </div>
+    
+                    <div class="form-group row col-10 offset-1">
+                        <div class="col-sm-6">
+                            <button type="submit" [disabled]="doctorForm.invalid" class="btn btn-primary w-100">Add</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" (click)="doctorForm.reset()" class="btn btn-secondary w-100">Clear All</button>
+                        </div>
+                    </div>
+            </form>
+            <div class="col-6 root-typewriter" >
+                <!-- todo -->
+                <div class="typewriter">
+                    <span>{{ displayedText }}</span><span class="cursor"></span>
                 </div>
-            </div>
-        </form>
-        <div class="form-container-right-root col-7"></div>
-    </div>
-</div>
+                <div class="form-container-right-root col-12">
 
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Doctor added successfully!</h5>
+                </div>
+                       
             </div>
-            <div class="modal-body">
-                <p>First Name: {{ newDoctorDetails?.firstName }}</p>
-                <p>Last Name: {{ newDoctorDetails?.lastName }}</p>
-                <p>Specialty: {{ newDoctorDetails?.specialty }}</p>
-                <p>Email: {{ newDoctorDetails?.email }}</p>
-                <p>Contact: {{ newDoctorDetails?.contact }}</p>
-                <p>Address: {{ newDoctorDetails?.address }}</p>
-                <p>Date of Birth: {{ newDoctorDetails?.dateOfBirth }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-secondary" (click)="dismissModal()">Show List</button>
-            </div>
+
         </div>
     </div>
 </div>

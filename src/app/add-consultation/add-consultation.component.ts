@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ConsultationService } from '../services/consultation.service'; // Remplacer le service d'appointement par le service de consultation
+import { ConsultationService } from '../services/consultation.service';
 import { PatientService } from '../services/patient.service';
 import { DoctorService } from '../services/doctor.service';
 import { Doctor } from '../models/doctor.model';
@@ -17,19 +17,19 @@ declare global {
 }
 
 @Component({
-  selector: 'app-add-consultation', // Modifier le nom du composant
-  templateUrl: './add-consultation.component.html', // Modifier le chemin du template
-  styleUrls: ['./add-consultation.component.css'] // Modifier le chemin des styles
+  selector: 'app-add-consultation',
+  templateUrl: './add-consultation.component.html',
+  styleUrls: ['./add-consultation.component.css']
 })
-export class AddConsultationComponent implements OnInit { // Modifier le nom de la classe
+export class AddConsultationComponent implements OnInit {
 
-  @ViewChild('newconsultationElement') newconsultationElement: ElementRef | undefined; // Modifier la référence de l'élément
+  @ViewChild('newconsultationElement') newconsultationElement: ElementRef | undefined;
 
   patients: Patient[] = [];
   doctors: Doctor[] = [];
-  newConsultationDetails: any; // Modifier le nom de la variable
+  newConsultationDetails: any;
 
-  consultationForm = new FormGroup({ // Modifier le nom du formulaire et les champs
+  consultationForm = new FormGroup({
     patient: new FormControl(null, [Validators.required]),
     doctor: new FormControl(null, [Validators.required]),
     consultationDate: new FormControl(new Date(), [Validators.required]),
@@ -37,13 +37,13 @@ export class AddConsultationComponent implements OnInit { // Modifier le nom de 
     diagnosis: new FormControl('', [Validators.required]),
     prescribedTreatment: new FormControl('', [Validators.required]),
     testResults: new FormControl('', [Validators.required]),
-    consultationFee: new FormControl(null, [Validators.required]),
-    paymentStatus: new FormControl(false, [Validators.required]),
-    observations: new FormControl('', [Validators.required])
+    consultationFee: new FormControl('', [Validators.required]),
+    observations: new FormControl('', [Validators.required]),
+    paymentStatus: new FormControl('', [Validators.required])
   });
 
   constructor(
-    private consultationService: ConsultationService, // Modifier le service d'appointement par le service de consultation
+    private consultationService: ConsultationService,
     private patientService: PatientService,
     private doctorService: DoctorService,
     private router: Router,
@@ -53,6 +53,7 @@ export class AddConsultationComponent implements OnInit { // Modifier le nom de 
   ngOnInit(): void {
     this.loadPatients();
     this.loadDoctors();
+    this.type();
   }
 
   loadPatients() {
@@ -67,49 +68,43 @@ export class AddConsultationComponent implements OnInit { // Modifier le nom de 
     });
   }
 
-  setPaymentStatus(value: boolean) {
-    this.consultationForm.patchValue({ paymentStatus: value });
-}
-
-
   dismissModal() {
     $('#successModal').modal('hide');
-    this.router.navigate(['/list-consultation']); // Modifier le chemin de navigation
+    this.router.navigate(['/list-consultation']);
   }
 
-  addConsultation() { // Modifier le nom de la méthode
+  addConsultation() {
     const patientId = this.consultationForm.get('patient')?.value;
     const doctorId = this.consultationForm.get('doctor')?.value;
     const consultationDateValue = this.consultationForm.get('consultationDate')?.value;
-    const consultationReasonValue = this.consultationForm.get('consultationReason')?.value; // Modifier le nom de la variable
-    const diagnosisValue = this.consultationForm.get('diagnosis')?.value; // Modifier le nom de la variable
-    const prescribedTreatmentValue = this.consultationForm.get('prescribedTreatment')?.value; // Modifier le nom de la variable
-    const testResultsValue = this.consultationForm.get('testResults')?.value; // Modifier le nom de la variable
-    const consultationFeeValue = this.consultationForm.get('consultationFee')?.value; // Modifier le nom de la variable
-    const paymentStatusValue = this.consultationForm.get('paymentStatus')?.value; // Modifier le nom de la variable
-    const observationsValue = this.consultationForm.get('observations')?.value; // Modifier le nom de la variable
-  
-    if (patientId && doctorId && consultationDateValue && consultationReasonValue && diagnosisValue && prescribedTreatmentValue && testResultsValue && consultationFeeValue && paymentStatusValue && observationsValue) {
+    const consultationReasonValue = this.consultationForm.get('consultationReason')?.value;
+    const diagnosisValue = this.consultationForm.get('diagnosis')?.value;
+    const prescribedTreatmentValue = this.consultationForm.get('prescribedTreatment')?.value;
+    const testResultsValue = this.consultationForm.get('testResults')?.value;
+    const consultationFeeValue = this.consultationForm.get('consultationFee')?.value;
+    const observationsValue = this.consultationForm.get('observations')?.value;
+    const paymentStatusValue = this.consultationForm.get('paymentStatus')?.value;
+
+    if (patientId && doctorId && consultationDateValue && consultationReasonValue && diagnosisValue && prescribedTreatmentValue && testResultsValue && consultationFeeValue && observationsValue && paymentStatusValue) {
       this.patientService.getPatientById(patientId).pipe(
         switchMap((patient: Patient) => {
           if (patient) {
             return this.doctorService.getDoctorById(doctorId).pipe(
               switchMap((doctor: Doctor) => {
                 if (doctor) {
-                  const newConsultation = { // Modifier le nom de la variable
+                  const newConsultation = {
                     patient: patient,
                     doctor: doctor,
                     consultationDate: consultationDateValue,
-                    consultationReason: consultationReasonValue, // Modifier le nom de la variable
-                    diagnosis: diagnosisValue, // Modifier le nom de la variable
-                    prescribedTreatment: prescribedTreatmentValue, // Modifier le nom de la variable
-                    testResults: testResultsValue, // Modifier le nom de la variable
-                    consultationFee: consultationFeeValue, // Modifier le nom de la variable
-                    paymentStatus: paymentStatusValue, // Modifier le nom de la variable
-                    observations: observationsValue // Modifier le nom de la variable
+                    consultationReason: consultationReasonValue,
+                    diagnosis: diagnosisValue,
+                    prescribedTreatment: prescribedTreatmentValue,
+                    testResults: testResultsValue,
+                    consultationFee: parseFloat(consultationFeeValue),
+                    observations: observationsValue,
+                    paymentStatus: paymentStatusValue
                   };
-                  // Enregistrer la nouvelle consultation
-                  return this.consultationService.addConsultation(newConsultation); // Modifier la méthode d'enregistrement
+                  return this.consultationService.saveConsultation(newConsultation);
                 } else {
                   this.toastr.error('Doctor not found.');
                   return throwError(() => new Error('Doctor not found'));
@@ -131,9 +126,9 @@ export class AddConsultationComponent implements OnInit { // Modifier le nom de 
         })
       ).subscribe({
         next: (response: any) => {
-          this.newConsultationDetails = response; // Modifier le nom de la variable
+          this.newConsultationDetails = response;
           $('#successModal').modal('show');
-          this.toastr.success('Consultation successfully added.'); // Modifier le message de succès
+          this.toastr.success('Consultation successfully added.');
         },
         error: (error) => {
           this.toastr.error('An error occurred: ' + error.message);
@@ -141,6 +136,43 @@ export class AddConsultationComponent implements OnInit { // Modifier le nom de 
       });
     } else {
       this.toastr.error('Please fill all required fields.');
+    }
+  }
+
+  phrases: string[] = [
+    "Welcome to patient registration!",
+    "All patients",
+    "must come here",
+    " before ",
+    "visiting the doctor's office."
+  ];
+  displayedText: string = '';
+  currentPhraseIndex: number = 0;
+  currentCharIndex: number = 0;
+  isDeleting: boolean = false;
+  typingSpeed: number = 100;
+  deletingSpeed: number = 50;
+  pauseBeforeDelete: number = 2000;
+  pauseBetweenPhrases: number = 1000;
+
+  type() {
+    const currentPhrase = this.phrases[this.currentPhraseIndex];
+
+    if (!this.isDeleting && this.currentCharIndex < currentPhrase.length) {
+      this.displayedText = currentPhrase.substring(0, this.currentCharIndex + 1);
+      this.currentCharIndex++;
+      setTimeout(() => this.type(), this.typingSpeed);
+    } else if (this.isDeleting && this.currentCharIndex > 0) {
+      this.displayedText = currentPhrase.substring(0, this.currentCharIndex - 1);
+      this.currentCharIndex--;
+      setTimeout(() => this.type(), this.deletingSpeed);
+    } else if (!this.isDeleting && this.currentCharIndex === currentPhrase.length) {
+      this.isDeleting = true;
+      setTimeout(() => this.type(), this.pauseBeforeDelete);
+    } else if (this.isDeleting && this.currentCharIndex === 0) {
+      this.isDeleting = false;
+      this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
+      setTimeout(() => this.type(), this.pauseBetweenPhrases);
     }
   }
 }

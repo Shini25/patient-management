@@ -1,67 +1,149 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 root-content">
+
             <div class="row">
-                <div class="col-12 search pt-3">
-                    
+
+                <div class="col-12 search p-1">
                     <div class="row">
-                        <div class="col-8">
-                            <h2 class="list-doctor-title">
-                                list of doctor
-                            </h2>
+                        <div class="col-9">
+                            <h2 class="list-doctor-title">List of Doctors</h2>
                         </div>
-                        <div class="col-4">
-                            <h1>
-                                Find a doctor by name
-                            </h1>
-                        </div>
-                    </div>
 
-                    <form class="form-inline justify-content-end">
-                        <div class="row">
-
-                            <div class="col-4 offset-8 mt-1">
-                            <input class="col-12" type="search" placeholder="Search for a doctor..." aria-label="Recherche">
-                            <span class="search-icon" type="submit"><img src="../assets/magnifying-glass_7987910.png" alt=""></span>
+                        <form class="form-inline col-3 pt-4" >
+                            <div class="row">
+                                <div class="col-12">
+                                    <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
+                                    <span class="search-icon" type="submit">
+                                        <img src="../assets/magnifying-glass_7987910.png" alt="">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                    </div>
                 </div>
 
                 <!-- doctor list -->
-                <div class="row" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="col-12 mt-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="medecins-container">
-                                    <div class="Medecin-info" *ngFor="let doctor of doctors">
-                                        <div class="row mt-5">
-                                            <div class="col-6">
-                                                <span><img src="../assets/doctor_4131330.png" alt=""></span>
+                <div class="col-12 mt-2" >
+                    <div class="row">
+                        <div class="col-12 doctor-container">
+                                    <div class="Doctor-info" *ngFor="let doctor of doctors">
+                                        <div class="row  Doctor-info-content" [ngClass]="{'blur': blurredDoctorId === doctor.id}" (mouseenter)="addBlur(doctor.id)">
+
+                                            <div class="col-10 offset-1 mb-5 header-info">
+                                                <div class="row">
+
+                                            <div class="col-2 info-pic">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                <span><img src="../assets/user (2).png" alt=""></span>
+                                                </div>
+                                                </div>
                                             </div>
-                                            <div class="col-6">
-                                                <h1>{{ doctor.firstName }}</h1>
-                                                <h1>{{ doctor.lastName }}</h1>
+
+                                            <div class="info-name col-10">
+                                                <h1 class="firstName ">{{  doctor.firstName }}</h1>
+                                                <h1 class="lastName">{{ doctor.lastName }}</h1>
                                             </div>
+
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <ng-container *ngIf="calculateAge(doctor.dateOfBirth).isLessThanOneMonth; else showMonthsOrYears">
+                                                            {{ calculateAge(doctor.dateOfBirth).age }} day(s) old
+                                                        </ng-container>
+                                                        <ng-template #showMonthsOrYears>
+                                                            <ng-container *ngIf="calculateAge(doctor.dateOfBirth).isLessThanOneYear; else showYears">
+                                                                {{ calculateAge(doctor.dateOfBirth).age }} month(s) old
+                                                            </ng-container>
+                                                            <ng-template #showYears>
+                                                                {{ calculateAge(doctor.dateOfBirth).age }} year(s) old
+                                                            </ng-template>
+                                                        </ng-template>
+                                                    </div>
+                                                    <div class="col-4 idDoctor">
+                                                        <span><img src="../assets/id-card.png" alt="id"></span>{{ doctor.id }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+
+                                        <hr class="col-6 offset-3">
+
+                                        <div class="col-12 more-info"> 
+                                            <ul>
+                                                <li>
+                                                    <li>
+                                                        <div class="row mb-2">
+                                                            <div class="col-6 ">
+                                                                <span><img src="../assets/date-of-birth.png" class="more-info-pic" alt="date of birth"></span>
+                                                            </div>
+                                                            <div class="col-6 second-option">
+                                                                {{ doctor.specialty }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="row mb-2">
+                                                            <div class="col-6">
+                                                                <span><img src="../assets/phone.png" class="more-info-pic" alt="contact"></span>
+                                                            </div>
+                                                            <div class="col-6 second-option">
+                                                                {{ doctor.contact }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="row mb-2">
+                                                            <div class="col-6">
+                                                                <span><img src="../assets/phone.png" class="more-info-pic" alt="date of birth"></span>
+                                                            </div>
+                                                            <div class="col-6 second-option">
+                                                                {{ doctor.dateOfBirth }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="row mb-2">
+                                                            <div class="col-6">
+                                                                <span><img src="../assets/home.png" class="more-info-pic" alt="address"></span>
+                                                            </div>
+                                                            <div class="col-6 second-option">
+                                                                {{ doctor.address }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="row mb-2">
+                                                            <div class="col-6">
+                                                                <span><img src="../assets/home.png" class="more-info-pic" alt="address"></span>
+                                                            </div>
+                                                            <div class="col-6 second-option">
+                                                                {{ doctor.email }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+      
+                                            </ul>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12 mt-5">
-                                                <ul>
-                                                    <li>Specialty: {{ doctor.specialty }}</li>
-                                                    <li>Contact: {{ doctor.contact }}</li>
-                                                    <li>Date of birth: {{doctor.dateOfBirth }}</li>
-                                                    <li>Address: {{ doctor.address }}</li>
-                                                    <li>Emai: {{ doctor.email }}l</li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                    </div>
+                
+                                <div class="row "   (mouseenter)="addBlur(doctor.id)">
+                                    <div class="col-8 offset-2 option">
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+

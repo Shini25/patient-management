@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ declare global {
   templateUrl: './add-doctor.component.html',
   styleUrl: './add-doctor.component.css'
 })
-export class AddDoctorComponent {
+export class AddDoctorComponent  implements OnInit {
   
 
   @ViewChild('newDoctorElement') newDoctorElement: ElementRef | undefined;
@@ -95,5 +95,43 @@ addDoctor() {
 }
 
 
+phrases: string[] = [
+  "Welcome to doctor registration!",
+  
+];
+displayedText: string = '';
+currentPhraseIndex: number = 0;
+currentCharIndex: number = 0;
+isDeleting: boolean = false;
+typingSpeed: number = 100;
+deletingSpeed: number = 50;
+pauseBeforeDelete: number = 2000;
+pauseBetweenPhrases: number = 1000;
+
+
+ngOnInit(): void {
+  this.type();
+}
+
+type() {
+  const currentPhrase = this.phrases[this.currentPhraseIndex];
+
+  if (!this.isDeleting && this.currentCharIndex < currentPhrase.length) {
+    this.displayedText = currentPhrase.substring(0, this.currentCharIndex + 1);
+    this.currentCharIndex++;
+    setTimeout(() => this.type(), this.typingSpeed);
+  } else if (this.isDeleting && this.currentCharIndex > 0) {
+    this.displayedText = currentPhrase.substring(0, this.currentCharIndex - 1);
+    this.currentCharIndex--;
+    setTimeout(() => this.type(), this.deletingSpeed);
+  } else if (!this.isDeleting && this.currentCharIndex === currentPhrase.length) {
+    this.isDeleting = true;
+    setTimeout(() => this.type(), this.pauseBeforeDelete);
+  } else if (this.isDeleting && this.currentCharIndex === 0) {
+    this.isDeleting = false;
+    this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
+    setTimeout(() => this.type(), this.pauseBetweenPhrases);
+  }
+}
 }
 

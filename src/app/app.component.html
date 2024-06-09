@@ -78,11 +78,11 @@
                   </button>
                   <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
                     <a routerLink="/add-patient" class="btn-add" (click)="closePatientOptions()">
-                      <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="/list-patient" class="btn-list" (click)="closePatientOptions()">
-                      <img src="../assets/list.png" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -101,11 +101,11 @@
                   </button>
                   <div id="doctorCollapse" class="options row" *ngIf="showDoctorOptions">
                     <a routerLink="/add-doctor" class="btn-add" (click)="closeDoctorOptions()">
-                      <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="/list-doctor" class="btn-list" (click)="closeDoctorOptions()">
-                      <img src="../assets/list.png" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -124,11 +124,11 @@
                 </button>
                 <div id="consultationCollapse" class="options row" *ngIf="showConsultationOptions">
                   <a routerLink="/add-consultation" class="btn-add" (click)="closeConsultationOptions()">
-                    <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon">
+                    <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
                     <span class="register-text">Register</span>
                   </a>
                   <a routerLink="/list-consultation" class="btn-list" (click)="closeConsultationOptions()">
-                    <img src="../assets/list.png" alt="List Icon" class="btn-list-icon">
+                    <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
                     <span class="list-text">List</span>
                   </a>
                 </div>
@@ -147,11 +147,11 @@
 
                   <div id="appointmentCollapse" class="options row" *ngIf="showAppointmentOptions">
                     <a routerLink="/add-appointment" class="btn-add" (click)="closeAppointmentOptions()">
-                      <img src="../assets/add_13110954.png" alt="Add Icon" class="btn-add-icon ">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon ">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="/list-appointment" class="btn-list" (click)="closeAppointmentOptions()">
-                      <img src="../assets/list.png" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -169,6 +169,13 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="!isFirstSectionVisible" class="fixed-button">
+  <a (click)="scrollToElement('first')">
+    <img src="../assets/system-regular-11-arrow-up.gif" alt="Back to Top">
+  </a>
+</div>
+
 
   <!-- Container: login-form -->
 <div class="container-fluid second scroll-section" id="login-form" #scrollSection>

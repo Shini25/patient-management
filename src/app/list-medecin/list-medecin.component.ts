@@ -13,6 +13,7 @@ export class ListDoctorComponent implements OnInit {
   selectedDoctor: Doctor | null = null;
 
   constructor(private doctorService: DoctorService, private toastr: ToastrService) {}
+  blurredDoctorId: number | null = null;
 
 
   ngOnInit() {
@@ -26,6 +27,35 @@ export class ListDoctorComponent implements OnInit {
     }
   );
 }
+
+calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean} {
+  const birthDate = new Date(dateOfBirth);
+  const today = new Date();
+  let ageInYears = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth() + (12 * (today.getFullYear() - birthDate.getFullYear()));
+  const dayDifference = today.getDate() - birthDate.getDate();
+
+  if (dayDifference < 0) {
+    months--;
+  }
+
+  if (months < 0) {
+    months += 12;
+    ageInYears--;
+  }
+
+  let days = 0;
+  if (months === 0 && ageInYears === 0) {
+    days = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 3600 * 24));
+  }
+
+  return {
+    age: ageInYears < 1 ? (months < 1 ? days : months) : ageInYears,
+    isLessThanOneYear: ageInYears < 1,
+    isLessThanOneMonth: months === 0 && ageInYears === 0
+  };
+}
+
 
 
   loadDoctors() {
@@ -60,6 +90,18 @@ export class ListDoctorComponent implements OnInit {
       console.error('Selected doctor or  doctor ID is undefined.');
       // Handle error here, display message to user, etc.
     }
+  }
+
+
+
+  addBlur(doctorId: number | undefined) {
+    if (doctorId !== undefined) {
+      this.blurredDoctorId = doctorId;
+    }
+  }
+  
+  removeBlur() {
+    this.blurredDoctorId = null;
   }
 
 

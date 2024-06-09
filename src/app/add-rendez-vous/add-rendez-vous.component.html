@@ -1,45 +1,47 @@
- <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
-        <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()" class="form-container col-6 border p-4">
-            <h1 class="title mt-4 mb-4">
+        <div class="col-10 offset-1 root-container">
+            <div class="row">
+            <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()"  class="form-container col-6">
+            <h1 class="title mt-3 text-center">
                 Register an appointment
             </h1>
-            <div class="root-form col-9 offset-1">
 
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+
+                <div class="form-group col-10 offset-1">
+                    <span class="login-id"><img src="../assets/patient.gif" alt="">
                     </span>
                     <select formControlName="patient" class="form-style col-12">
                         <ng-container *ngFor="let patient of patients">
                             <option [ngValue]="patient.id">{{ patient.id ? patient.id : 'Not assigned' }}</option>
                         </ng-container>
                     </select>
-                    <span class="placeholder-form-style-first">Sélect a patient
+                    <span class="placeholder-form-style-first">
                     </span>
                 </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                <div class="form-group col-10 offset-1">
+                    <span class="login-id"><img src="../assets/doctors-office.gif" alt="">
                     </span>
                     <select formControlName="doctor" class="form-style col-12">
                         <ng-container *ngFor="let doctor of doctors">
                             <option [ngValue]="doctor.id">{{ doctor.firstName ? doctor.firstName : 'Not assigned' }}</option>
                         </ng-container>
                     </select>
-                    <span class="placeholder-form-style-first">Sélect a doctor
+                    <span class="placeholder-form-style-first">
                     </span>
                 </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
+                <div class="form-group col-10 offset-1">
+                    <span class="login-id"><img src="../assets/settings.png" alt="">
                     </span>
                     <input type="text" class="form-style col-12 " id="reason" formControlName="reason" placeholder="" required>
                     <span class="placeholder-form-style">Reason
                     </span>
                 </div>
 
-                <div class="form-group mb-2 mt-5">
+                <div class="form-group col-10 offset-1">
                     <span class="login-id"><img src="../assets/id-card_3824425.png" alt="">
                     </span>
                     <input type="date" class="form-style col-12 " id="appointmentDate" formControlName="appointmentDate" placeholder="" required>
@@ -48,17 +50,31 @@
                 </div>
 
 
-                <div class="form-group row">
-                    <div class="col-sm-12">
-                        <button type="submit" [disabled]="appointmentForm.invalid"
-                            class="btn btn-primary col-sm-6 offset-sm-3">Add</button>
+                <div class="form-group row col-10 offset-1">
+                    <div class="col-sm-6">
+                        <button type="submit" [disabled]="appointmentForm.invalid" class="btn btn-primary w-100">Add</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" (click)="appointmentForm.reset()" class="btn btn-secondary w-100">Clear All</button>
                     </div>
                 </div>
+            
+            </form>
+        <div class="col-6 root-typewriter" >
+            <!-- todo -->
+            <div class="typewriter">
+                <span>{{ displayedText }}</span><span class="cursor"></span>
             </div>
-        </form>
-        <div class="form-container-right col-6" >
+            <div class="form-container-right-root col-12">
+
+            </div>
+                   
         </div>
+        
     </div>
+</div>
+</div>
+</div>  
 
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
         aria-hidden="true">
@@ -82,7 +98,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
 

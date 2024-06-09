@@ -19,7 +19,7 @@ export class ConsultationService {
     return this.http.get<Consultation>(`${this.apiUrl}/${id}`);
   }
 
-  addConsultation(consultation: Consultation): Observable<Consultation> {
+  saveConsultation(consultation: Consultation): Observable<Consultation> {
     return this.http.post<Consultation>(`${this.apiUrl}/addConsultation`, consultation);
   }
 

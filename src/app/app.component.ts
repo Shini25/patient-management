@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, QueryList, ViewChildren, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
@@ -22,12 +22,6 @@ export class AppComponent {
   @ViewChildren('headerDivPic') headerDivPic!: QueryList<ElementRef>
   @ViewChildren('headerDivTitle') headerDivTitles!: QueryList<ElementRef>
 
-  /*
-  isPatientMenuOpen = false;  
-  isDoctorMenuOpen = false;  // Initialize to true to open Doctor menu by default
-  isConsultationMenuOpen = false;
-  isAppointmentMenuOpen = false;
-  */
   isPatientRoute = true;
   isDoctorRoute = false;
   isConsultationRoute = false;
@@ -37,6 +31,8 @@ export class AppComponent {
   showDoctorOptions = false;
   showConsultationOptions = false;
   showAppointmentOptions = false;
+
+  isFirstSectionVisible = true; // Added to control visibility of the back-to-top button
 
   closePatientOptions() {
     this.showPatientOptions = false;
@@ -106,6 +102,9 @@ export class AppComponent {
 
           // Update the URL fragment without scrolling
           this.location.replaceState(`#${entry.target.id}`);
+
+          // Update visibility of the back-to-top button
+          this.isFirstSectionVisible = entry.target.id === 'first';
         }
       });
     }, options);
@@ -144,7 +143,6 @@ export class AppComponent {
         }
       });
     });
-
 
     // Slide in left animation
     const slideInLeftObserver = new IntersectionObserver((entries, observer) => {
@@ -195,37 +193,6 @@ export class AppComponent {
     });
   }
 
-  /*
-  closeAllMenus(): void {
-    this.isPatientMenuOpen = false;
-    this.isDoctorMenuOpen = false;
-    this.isConsultationMenuOpen = false;
-    this.isAppointmentMenuOpen = false;
-  }
-
-  toggleMenu(menu: string): void {
-    if ((menu === 'patient' && this.isPatientMenuOpen) ||
-        (menu === 'doctor' && this.isDoctorMenuOpen) ||
-        (menu === 'consultation' && this.isConsultationMenuOpen) ||
-        (menu === 'appointment' && this.isAppointmentMenuOpen)) {
-      this.closeAllMenus();
-    } else {
-      this.closeAllMenus();
-      if (menu === 'patient') {
-        this.isPatientMenuOpen = true;
-      } else if (menu === 'doctor') {
-        this.isDoctorMenuOpen = true;
-      } else if (menu === 'consultation') {
-        this.isConsultationMenuOpen = true;
-      } else if (menu === 'appointment') {
-        this.isAppointmentMenuOpen = true;
-      }
-    }
-  }
-  */
-
-
-  // Add this method to handle scrolling
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);
     if (element) {
@@ -233,3 +200,4 @@ export class AppComponent {
     }
   }
 }
+
