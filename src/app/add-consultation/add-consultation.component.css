@@ -12,7 +12,7 @@
     margin: 0%;
 }
 .form-container {
-    height: 98vh;
+    height: 88vh;
     position: relative;
     background-color: #fffffff1;
     border-radius: 10px 0 0 10px;
@@ -239,4 +239,44 @@ input[type="number"]::-webkit-outer-spin-button {
     50% { opacity: 0; }
   }
 
+.Navigation-button-left, .Navigation-button-right {
+    background-color: transparent;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+}
 
+.Navigation-button-left img, .Navigation-button-right img {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: auto;
+}
+
+.Navigation-button-left button, .Navigation-button-right button {
+    height: 100px;
+    width: 100px;
+    background-color: transparent;
+    border: none;
+}
+.Navigation-button-left:hover {
+    transform: translateX(-20px);
+}
+.Navigation-button-right:hover {
+    transform: translateX(+20px);
+}
+
+.add-btn  {
+    /* Styles spécifiques au bouton */
+    background-color: transparent;
+    border: none;
+    margin-top: 10%;
+}
+
+.add-btn img {
+    /* Styles spécifiques à l'image */
+    max-width: 50px;
+    max-height: 50px;
+}

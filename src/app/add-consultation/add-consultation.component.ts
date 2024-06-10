@@ -42,6 +42,8 @@ export class AddConsultationComponent implements OnInit {
     paymentStatus: new FormControl('', [Validators.required])
   });
 
+  currentSection: number = 1;
+
   constructor(
     private consultationService: ConsultationService,
     private patientService: PatientService,
@@ -136,6 +138,19 @@ export class AddConsultationComponent implements OnInit {
       });
     } else {
       this.toastr.error('Please fill all required fields.');
+    }
+  }
+
+  nextSection() {
+    if (this.currentSection < 2) {
+      this.currentSection++;
+    }
+    
+  }
+
+  previousSection() {
+    if (this.currentSection > 1) {
+      this.currentSection--;
     }
   }
 

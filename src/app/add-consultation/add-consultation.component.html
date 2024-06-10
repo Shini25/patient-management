@@ -1,96 +1,118 @@
 <div class="container-fluid">
     <div class="row">
-        <form [formGroup]="consultationForm" (ngSubmit)="addConsultation()" class="form-container col-6 border p-4">
-            <h1 class="title mt-4 mb-4">
-                Register a consultation
-            </h1>
-            <div class="root-form col-9 offset-1">
+        <div class="col-10  root-container">
+            <div class="row">
+                <h1 class="title pt-3">Register a consultation</h1>
 
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/patient.gif" alt="">
-                    </span>
-                    <select formControlName="patient" class="form-style col-12">
-                        <ng-container *ngFor="let patient of patients">
-                            <option [ngValue]="patient.id">{{ patient.id ? patient.id : 'Not assigned' }}</option>
-                        </ng-container>
-                    </select>
-                    <span class="placeholder-form-style-first">
-                    </span>
-                </div>
+                <form [formGroup]="consultationForm" (ngSubmit)="addConsultation()" class="form-container col-10 offset-1 border p-4">
+                    <div class="row">
 
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/doctors-office.gif" alt="">
-                    </span>
-                    <select formControlName="doctor" class="form-style col-12">
-                        <ng-container *ngFor="let doctor of doctors">
-                            <option [ngValue]="doctor.id">{{ doctor.firstName ? doctor.firstName : 'Not assigned' }}</option>
-                        </ng-container>
-                    </select>
-                    <span class="placeholder-form-style-first">
-                    </span>
-                </div>
+                        <div class="col-2 Navigation-button-left" (click)="previousSection()">
+                            <button  [disabled]="currentSection === 1" class="btn btn-secondary ">
+                                <span class="back-arrow"><img src="../assets/left.png" alt=""></span>
+                            </button>
+                        </div>
+                        
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="date" class="form-style col-12" id="consultationDate" formControlName="consultationDate" placeholder="" required>
-                    <span class="placeholder-form-style">Consultation Date</span>
-                </div>
+                        <div class="col-8 pt-3">
+                        <!-- Section 1 -->
+                            <div *ngIf="currentSection === 1" >
+                                <div class=" col-10 offset-1 ">
+        
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/patient.gif" alt="">
+                                        </span>
+                                        <select formControlName="patient" class="form-style col-12">
+                                            <ng-container *ngFor="let patient of patients">
+                                                <option [ngValue]="patient.id">{{ patient.id ? patient.id : 'Not assigned' }}</option>
+                                            </ng-container>
+                                        </select>
+                                        <span class="placeholder-form-style-first">
+                                        </span>
+                                    </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="consultationReason" formControlName="consultationReason" placeholder="" required>
-                    <span class="placeholder-form-style">Consultation Reason</span>
-                </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/doctors-office.gif" alt="">
+                                        </span>
+                                        <select formControlName="doctor" class="form-style col-12">
+                                            <ng-container *ngFor="let doctor of doctors">
+                                                <option [ngValue]="doctor.id">{{ doctor.firstName ? doctor.firstName : 'Not assigned' }}</option>
+                                            </ng-container>
+                                        </select>
+                                        <span class="placeholder-form-style-first">
+                                        </span>
+                                    </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="diagnosis" formControlName="diagnosis" placeholder="" required>
-                    <span class="placeholder-form-style">Diagnosis</span>
-                </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                        <input type="date" class="form-style col-12" id="consultationDate" formControlName="consultationDate" placeholder="" required>
+                                        <span class="placeholder-form-style">Consultation Date</span>
+                                    </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="prescribedTreatment" formControlName="prescribedTreatment" placeholder="" required>
-                    <span class="placeholder-form-style">Prescribed Treatment</span>
-                </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                        <input type="text" class="form-style col-12" id="consultationReason" formControlName="consultationReason" placeholder="" required>
+                                        <span class="placeholder-form-style">Consultation Reason</span>
+                                    </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="testResults" formControlName="testResults" placeholder="" required>
-                    <span class="placeholder-form-style">Test Results</span>
-                </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                        <input type="text" class="form-style col-12" id="diagnosis" formControlName="diagnosis" placeholder="" required>
+                                        <span class="placeholder-form-style">Diagnosis</span>
+                                    </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="number" class="form-style col-12" id="consultationFee" formControlName="consultationFee" placeholder="" required>
-                    <span class="placeholder-form-style">Consultation Fee</span>
-                </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                        <input type="text" class="form-style col-12" id="prescribedTreatment" formControlName="prescribedTreatment" placeholder="" required>
+                                        <span class="placeholder-form-style">Prescribed Treatment</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                        <input type="text" class="form-style col-12" id="testResults" formControlName="testResults" placeholder="" required>
+                                        <span class="placeholder-form-style">Test Results</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <input type="text" class="form-style col-12" id="observations" formControlName="observations" placeholder="" required>
-                    <span class="placeholder-form-style">Observations</span>
-                </div>
+                            <!-- Section 2 -->
+                            <div *ngIf="currentSection === 2">
+                                <div class=" col-10 offset-1 ">
 
-                <div class="form-group mb-2 mt-5">
-                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
-                    <select formControlName="paymentStatus" class="form-style col-12">
-                        <option [ngValue]="true">True</option>
-                        <option [ngValue]="false">False</option>
-                    </select>
-                    <span class="placeholder-form-style">Payment Status</span>
-                </div>
-                
-                <div class="form-group row">
-                    <div class="col-sm-12">
-                        <button type="submit" [disabled]="consultationForm.invalid"
-                            class="btn btn-primary col-sm-6 offset-sm-3">Add
-                        </button>
-                    </div>
-                </div>
+                                <div class="form-group">
+                                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                    <input type="number" class="form-style col-12" id="consultationFee" formControlName="consultationFee" placeholder="" required>
+                                    <span class="placeholder-form-style">Consultation Fee</span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                    <input type="text" class="form-style col-12" id="observations" formControlName="observations" placeholder="" required>
+                                    <span class="placeholder-form-style">Observations</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <span class="login-id"><img src="../assets/id-card_3824425.png" alt=""></span>
+                                    <select formControlName="paymentStatus" class="form-style col-12">
+                                        <option [ngValue]="true">True</option>
+                                        <option [ngValue]="false">False</option>
+                                    </select>
+                                    <span class="placeholder-form-style">Payment Status</span>
+                                </div>
+                                
+                                    <button type="submit" [disabled]="consultationForm.invalid || currentSection !== 2" class="btn btn-primary add-btn col-sm-3 offset-sm-3"><span><img src="../assets/add.gif" alt="add"></span></button>
+
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-2 Navigation-button-right" (click)="nextSection()">
+                                <button [disabled]="currentSection === 2" class="btn btn-secondary">
+                                    <span><img src="../assets/right-arrow.png" alt="next"></span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                </form>
             </div>
-        </form>
-        <div class="form-container-right col-6"></div>
+        </div>
     </div>
 
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
