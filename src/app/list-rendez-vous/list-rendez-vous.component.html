@@ -1,58 +1,123 @@
- <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 root-content">
+
             <div class="row">
-                <div class="col-12 search pt-3">
+
+                <div class="col-12 search p-1">
                     <div class="row">
-                        <div class="col-3 offset-8">
-                            <h1>
-                                Find an appointment by name
-                            </h1>
+                        <div class="col-9">
+                            <h2 class="list-appointment-title">List of Appointments</h2>
                         </div>
-                    </div>
-                    <form class="form-inline justify-content-end">
-                        <div class="row">
-                            <div class="col-4 offset-8 mt-1">
-                            <input class="col-12" type="search" placeholder="Search for a patient..." aria-label="Search">
-                            <span class="search-icon" type="submit"><img src="../assets/magnifying-glass_7987910.png" alt=""></span>
+
+                        <form class="form-inline col-3 pt-4" >
+                            <div class="row">
+                                <div class="col-12">
+                                    <input class="col-12" type="search" placeholder="Search for a Appointment..." aria-label="Search">
+                                    <span class="search-icon" type="submit">
+                                        <img src="../assets/magnifying-glass_7987910.png" alt="">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                    </div>
                 </div>
 
-                <!-- patient list -->
-
-                <div class="col-12 mt-5" >
+                <!-- Appointment list -->
+                <div class="col-12 mt-2" >
                     <div class="row">
-                        <h2 class="list-appointment-title">
-                            list of patient
-                        </h2>
-                        <div class="col-10 offset-1 patient-container">
-                            <div class="Patient-info mb-3" *ngFor="let appointment of appointments">
-                                <div class="row mt-3 ">
-                                    <div class="col-6">
-                                        <span><img src="../assets/doctor_4131330.png" alt=""></span>
+                        <div class="col-12 appointment-container">
+
+                            <div class="Appointment-info" *ngFor="let appointment of appointments" (mouseleave)="removeBlur()">
+
+                                <div class="row  Appointment-info-content" [ngClass]="{'blur': blurredAppointmentId === appointment.id}" (mouseenter)="addBlur(appointment.id)">
+                                    <div class="col-10 offset-1 mb-5 header-info">
+                                        <div class="row">
+
+                                            <div class="col-2 info-pic">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <span>
+
+                                                           
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="info-name col-10">
+                                                <h1 class="firstName ">{{ formatFirstName(appointment.patient.firstName) }}</h1>
+                                                <h1 class="lastName">{{ formatLastName(appointment.patient.lastName) }}</h1>
+                                            </div>
+                                        </div>    
                                     </div>
-                                    <div class="col-6">
-                                        <h1>{{ appointment.doctor.firstName }}</h1>
-                                        <h1>{{ appointment.patient.lastName }}</h1>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 mt-3">
+
+                                    <hr class="col-6 offset-3">
+ 
+                                    <div class="col-12 more-info"> 
                                         <ul>
-                                            <li>Doctor name : {{ appointment.doctor.firstName }}</li>
-                                            <li>Patient name: {{ appointment.patient.firstName }}</li>
-                                            <li>Date of appointment: {{ appointment.appointmentDate }}</li>
-                                            <li>reason: {{ appointment.reason }}</li>
+                                            <li>
+                                                <div class="row mb-2">
+                                                    <div class="col-6 ">
+                                                        <span><img src="../assets/date-of-birth.png" class="more-info-pic" alt="date of birth"></span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ appointment.doctor.firstName }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <span><img src="../assets/sex.png" class="more-info-pic" alt="gender"></span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ appointment.patient.firstName }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <span><img src="../assets/address.png" class="more-info-pic" alt="address"></span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ appointment.appointmentDate }}
+                                                    </div>
+                                                </div> 
+                                                
+                                            </li>
+                                            <li>
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <span><img src="../assets/email (1).png" class="more-info-pic" alt="email"></span>
+                                                    </div>
+                                                    <div class="col-6 second-option">
+                                                        {{ appointment.reason }}
+                                                    </div>
+                                                </div>
+                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
+
+                                
+                
+                                <div class="row "   (mouseenter)="addBlur(appointment.id)">
+                                    <div class="col-8 offset-2 option">
+
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+

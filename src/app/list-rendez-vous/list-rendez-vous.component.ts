@@ -12,14 +12,34 @@ export class ListAppointmentComponent {
 
   appointments: Appointment[] = [];
   selectedAppointment: Appointment | null = null;
-  
+  loading: boolean = false; // État de chargement initial
+
+  blurredAppointmentId: number | null = null;
+
 
   constructor(private appointmentService: AppointmentService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.loadAppointments();
   }
+  addBlur(patientId: number | undefined) {
+    if (patientId !== undefined) {
+      this.blurredAppointmentId = patientId;
+    }
+  }
 
+  removeBlur() {
+    this.blurredAppointmentId = null;
+  }
+
+  formatFirstName(name: string): string {
+    return name.length > 17 ? name.slice(0, 17) + '...' : name;
+  }
+  formatLastName(name: string): string {
+    return name.length > 25 ? name.slice(0, 25) + '...' : name;
+  }
+
+  
   loadAppointments() {
     this.appointmentService.getAllAppointments().subscribe(
       appointment => {
@@ -55,7 +75,6 @@ export class ListAppointmentComponent {
   }
 
 
-loading: boolean = false; // État de chargement initial
 
 
   deleteAppointment(id: number | undefined) {

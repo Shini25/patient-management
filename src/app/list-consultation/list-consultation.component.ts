@@ -13,13 +13,23 @@ export class ListConsultationComponent implements OnInit {
   consultations: Consultation[] = [];
   selectedConsultation: Consultation | null = null;
   loading: boolean = false;
+  blurredPatientId: number | null = null;
 
   constructor(private consultationService: ConsultationService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.loadConsultations();
   }
+  addBlur(patientId: number | undefined) {
+    if (patientId !== undefined) {
+      this.blurredPatientId = patientId;
+    }
+  }
 
+
+  removeBlur() {
+    this.blurredPatientId = null;
+  }
   loadConsultations() {
     this.consultationService.getAllConsultations().subscribe(
       consultations => {
