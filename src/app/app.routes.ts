@@ -10,6 +10,10 @@ import { ListDoctorComponent } from './list-medecin/list-medecin.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 import { ListAppointmentComponent } from './list-rendez-vous/list-rendez-vous.component';
 import { ListConsultationComponent } from './list-consultation/list-consultation.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { AuthGuard } from './services/auth.guard';
+
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +26,6 @@ export const routes: Routes = [
   { path: 'list-doctor', component: ListDoctorComponent, title: 'List of Doctors' },
   { path: 'list-consultation', component: ListConsultationComponent, title: 'List of Consultations' },
   { path: 'list-appointment', component: ListAppointmentComponent, title: 'List of Appointments' },
-  { path: '**', component: HomeComponent, title: 'Home page' },
+  { path: 'create-account', component: CreateAccountComponent, title: 'Create Account' }
 ];
 

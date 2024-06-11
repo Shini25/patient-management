@@ -100,30 +100,30 @@
                                         <ul>
                                             <li>
                                                 <div class="row mb-2">
-                                                    <div class="col-6 ">
+                                                    <div class="col-3 ">
                                                         <span><img src="../assets/date-of-birth.png" class="more-info-pic" alt="date of birth"></span>
                                                     </div>
-                                                    <div class="col-6 second-option">
+                                                    <div class="col-9 second-option">
                                                         {{ patient.dateOfBirth }}
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="row mb-2">
-                                                    <div class="col-6">
+                                                    <div class="col-3">
                                                         <span><img src="../assets/sex.png" class="more-info-pic" alt="gender"></span>
                                                     </div>
-                                                    <div class="col-6 second-option">
+                                                    <div class="col-9 second-option">
                                                         {{ patient.gender }}
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="row mb-2">
-                                                    <div class="col-6">
+                                                    <div class="col-3">
                                                         <span><img src="../assets/address.png" class="more-info-pic" alt="address"></span>
                                                     </div>
-                                                    <div class="col-6 second-option">
+                                                    <div class="col-9 second-option">
                                                         {{ patient.address }}
                                                     </div>
                                                 </div> 
@@ -131,20 +131,21 @@
                                             </li>
                                             <li>
                                                 <div class="row mb-2">
-                                                    <div class="col-6">
+                                                    <div class="col-2">
                                                         <span><img src="../assets/email (1).png" class="more-info-pic" alt="email"></span>
                                                     </div>
-                                                    <div class="col-6 second-option">
-                                                        {{ patient.email }}
+                                                    <div class="col-10 second-option">
+                                                        {{ formatMail(patient.email) }}
                                                     </div>
                                                 </div>
                                             </li>
+
                                             <li>
                                                 <div class="row mb-2">
-                                                    <div class="col-6">
+                                                    <div class="col-3">
                                                         <span><img src="../assets/telephone.png" class="more-info-pic" alt="phone"></span>
                                                     </div>
-                                                    <div class="col-6  second-option">
+                                                    <div class="col-9  second-option">
                                                         {{ patient.phoneNumber }}
                                                     </div>
                                                 </div>
@@ -153,18 +154,15 @@
                                     </div>
                                 </div>
 
-                                
-                
                                 <div class="row "   (mouseenter)="addBlur(patient.id)">
                                     <div class="col-8 offset-2 option">
-
+                                        <button mat-button (click)="editPatient(patient)">Modifier</button>                                        
+                                        <button mat-button (click)="deletePatient(patient.id)">Supprimer</button>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

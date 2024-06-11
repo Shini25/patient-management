@@ -3,6 +3,9 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from './services/user.service';
+import { User_account } from './models/user.model';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +13,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
+
+  user: User_account = new User_account('', '', '', '', 'ONLINE', 'SIMPLE', 'ACTIVE');
+  accountStatuses = ['ONLINE', 'OFFLINE'];
+  accountTypes = ['ADMIN', 'SIMPLE', 'OTHER'];
+  accountStates = ['ACTIVE', 'INACTIVE'];
 
   @ViewChildren('scrollSection') scrollSections!: QueryList<ElementRef>;
   @ViewChildren('navLink') navLinks!: QueryList<ElementRef>;
@@ -33,6 +45,7 @@ export class AppComponent {
   showAppointmentOptions = false;
 
   isFirstSectionVisible = true; // Added to control visibility of the back-to-top button
+  showLoginForm = true;
 
   closePatientOptions() {
     this.showPatientOptions = false;
@@ -51,7 +64,7 @@ export class AppComponent {
   }
   
 
-  constructor(private router: Router, private toastr: ToastrService, private location: Location) {}
+  constructor(private router: Router,private userService: UserService, private authService: AuthService, private toastr: ToastrService, private location: Location) {}
 
   ngOnInit() {
     this.router.events.pipe(
@@ -198,6 +211,46 @@ export class AppComponent {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  toggleForm() {
+    this.showLoginForm = !this.showLoginForm;
+  }
+
+  onSubmit() {
+    this.userService.addUser(this.user).subscribe(
+      response => {
+        console.log('User created successfully', response);
+      },
+      error => {
+        this.toastr.error('Error creating user', error.message);
+      }
+    );
+  }
+
+  login() {
+    this.authService.login({ username: this.username, password: this.password }).subscribe(
+      data => {
+        this.authService.saveToken(data.jwt);
+        this.toastr.success('Login successful');
+        this.router.navigate(['/home']);
+      },
+      err => {
+        this.errorMessage = 'Invalid credentials';
+        this.toastr.error('Login error');
+
+      }
+    );
+  }
+
+  logout() {
+    this.authService.logout();
+    this.toastr.success('Logout successful');
+    this.router.navigate(['/login']);
+  }
+
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
   }
 }
 

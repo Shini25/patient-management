@@ -87,24 +87,27 @@
 .placeholder-form-style{
     position: relative;
     top: -40px;
-    left: 110px;
-    color: #00000062;
+    left: 150px;
+    color: #000000e1;
     font-size: large;
     transition: 0.5s;
     pointer-events: none;
-
-    
-    
 }
 
-
+.text-center-custom{
+    position: relative;;
+    left: 140px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000e1;
+}
 
 .form-style:focus  + .placeholder-form-style{
     transition: 0.5s;
     position: relative;
     top: -80px;
     left: 0px;
-    color: #0d02a9f8;
+    color: #010016f8;
     
 }
 
@@ -280,3 +283,10 @@ input[type="number"]::-webkit-outer-spin-button {
     max-width: 50px;
     max-height: 50px;
 }
+
+
+.text-center-add{
+position: relative;
+left: 60px;
+}
+

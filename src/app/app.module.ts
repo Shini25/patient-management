@@ -2,7 +2,7 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -26,6 +26,15 @@ import { ListAppointmentComponent } from './list-rendez-vous/list-rendez-vous.co
 import { ListConsultationComponent } from './list-consultation/list-consultation.component';
 import { SharedModule } from './shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CreateAccountComponent } from './create-account/create-account.component';
+
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthService } from './services/auth.service';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditPatientModalComponent } from './edit-patient-modal/edit-patient-modal.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +47,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ListDoctorComponent,
     ListPatientComponent,
     ListAppointmentComponent,
-    ListConsultationComponent
+    ListConsultationComponent,
+    CreateAccountComponent,
+    EditPatientModalComponent,
+    ConfirmationDialogComponent
+
   ],
   
   imports: [
@@ -53,9 +66,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FontAwesomeModule,
     BrowserAnimationsModule,
     SharedModule,
+    MatButtonModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut: 5000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-top-left',
       preventDuplicates: true,
       closeButton: true
     }),
@@ -64,7 +79,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   providers: [
     // Fournisseurs de services nécessaires à votre application, comme ToastrService
   
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

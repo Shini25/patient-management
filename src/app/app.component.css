@@ -706,3 +706,71 @@ h3 {
     border-radius: 50px;
 
   }
+
+  .service-unavailable {
+    text-align: center;
+    padding-top:15% ;
+    
+  }
+  
+  .service-unavailable img {
+    width: 150px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .btn-logout {
+    color: white;
+    background-color: #dc3545; /* Rouge Bootstrap */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-logout:hover {
+    background-color: #c82333; /* Rouge plus foncé pour le survol */
+  }
+
+
+  .service-available {
+    text-align: center;
+    padding-top: 15%;
+  }
+  
+  .service-available img {
+    width: 150px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .service-available h1 {
+    color: green;
+  }
+
+  li .acceder-service {
+    color: rgb(0, 30, 255);
+    height: 20px;
+    width: 100px;
+    border-radius: 5px;
+    border: #00000000;
+    background-color: #00000010;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    margin-top: 10px;
+    padding-bottom: 50px;
+
+  }
+  
+  .acceder-service:hover {
+    background-color: #0057b300; /* Bleu plus foncé pour le survol */
+  }
