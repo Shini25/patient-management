@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Appointment Updated Successfully</h2>
+<mat-dialog-content>
+  <p>The appointment has been updated successfully.</p>
+  <h3>Previous Values:</h3>
+  <ul>
+    <li><strong>Doctor's Name:</strong> {{ data.previous.doctor.firstName }} {{ data.previous.doctor.lastName }}</li>
+    <li><strong>Patient's Name:</strong> {{ data.previous.patient.firstName }} {{ data.previous.patient.lastName }}</li>
+    <li><strong>Appointment Date:</strong> {{ data.previous.appointmentDate }}</li>
+    <li><strong>Reason:</strong> {{ data.previous.reason }}</li>
+  </ul>
+  <h3>New Values:</h3>
+  <ul>
+    <li><strong>Doctor's Name:</strong> <span [ngClass]="{'highlight': data.previous.doctor.firstName !== data.updated.doctor.firstName || data.previous.doctor.lastName !== data.updated.doctor.lastName}">{{ data.updated.doctor.firstName }} {{ data.updated.doctor.lastName }}</span></li>
+    <li><strong>Patient's Name:</strong> <span [ngClass]="{'highlight': data.previous.patient.firstName !== data.updated.patient.firstName || data.previous.patient.lastName !== data.updated.patient.lastName}">{{ data.updated.patient.firstName }} {{ data.updated.patient.lastName }}</span></li>
+    <li><strong>Appointment Date:</strong> <span [ngClass]="{'highlight': data.previous.appointmentDate !== data.updated.appointmentDate}">{{ data.updated.appointmentDate }}</span></li>
+    <li><strong>Reason:</strong> <span [ngClass]="{'highlight': data.previous.reason !== data.updated.reason}">{{ data.updated.reason }}</span></li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

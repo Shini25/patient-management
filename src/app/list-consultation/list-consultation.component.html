@@ -124,7 +124,8 @@
                 
                                 <div class="row "   (mouseenter)="addBlur(consultation.id)">
                                     <div class="col-8 offset-2 option">
-
+                                        <button mat-button (click)="editConsultation(consultation)">Modifier</button>
+                                        <button mat-button color="warn" (click)="deleteConsultation(consultation.id, consultation)">Supprimer</button>
                                     </div>
                                 </div>
                             </div>

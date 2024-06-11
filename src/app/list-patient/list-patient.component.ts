@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { EditPatientModalComponent } from '../edit-patient-modal/edit-patient-modal.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-patient',
@@ -81,6 +83,7 @@ export class ListPatientComponent implements OnInit {
   formatLastName(name: string): string {
     return name.length > 25 ? name.slice(0, 25) + '...' : name;
   }
+
   formatMail(mail: string): string {
     return mail.length > 25 ? mail.slice(0, 25) + '...' : mail;
   }
@@ -124,23 +127,47 @@ export class ListPatientComponent implements OnInit {
     }
   }
 
-  deletePatient(id: number | undefined) {
-    // Afficher l'animation de chargement
-    this.loading = true;
-
-    if (id !== undefined) {
-      this.patientService.deletePatient(id).subscribe(() => {
-        // Rafraîchir la liste des patients après la suppression
-        this.loadPatients();
-        this.toastr.success('Suppression du patient effectuée avec succès !');
-      });
-    } else {
-      console.error('ID du patient non défini.');
+  deletePatient(id: number | undefined, patient: Patient | undefined): void {
+    if (!patient) {
+      console.error('Patient is undefined.');
+      return;
     }
 
-    // Cacher l'animation de chargement une fois terminée (après 1 seconde)
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '400px',
+      data: { firstName: patient.firstName, lastName: patient.lastName }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Afficher l'animation de chargement
+        this.loading = true;
+
+        if (id !== undefined) {
+          this.patientService.deletePatient(id).subscribe(
+            () => {
+              // Rafraîchir la liste des patients après la suppression
+              this.loadPatients();
+              this.toastr.success('Suppression du patient effectuée avec succès !');
+            },
+            (error: HttpErrorResponse) => {
+              console.error('Error deleting patient:', error);
+              if (error.status === 500) {
+                this.toastr.error('Le patient a des rendez-vous ou des consultations associés. Veuillez les supprimer avant de supprimer le patient.');
+              } else {
+                this.toastr.error('Une erreur est survenue lors de la suppression du patient.');
+              }
+            }
+          );
+        } else {
+          console.error('ID du patient non défini.');
+        }
+
+        // Cacher l'animation de chargement une fois terminée (après 1 seconde)
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
+      }
+    });
   }
 }

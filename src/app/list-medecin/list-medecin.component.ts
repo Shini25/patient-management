@@ -1,7 +1,12 @@
- import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../models/doctor.model';
 import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ConfirmationDoctorDialogComponent } from '../confirmation-doctor-dialog/confirmation-doctor-dialog.component';
+import { DeleteDoctorConfirmationDialogComponent } from '../delete-doctor-confirmation-dialog/delete-doctor-confirmation-dialog.component';
+import { EditDoctorModalComponent } from '../edit-doctor-modal/edit-doctor-modal.component';
 
 @Component({
   selector: 'app-list-medecin',
@@ -11,52 +16,14 @@ import { ToastrService } from 'ngx-toastr';
 export class ListDoctorComponent implements OnInit {
   doctors: Doctor[] = [];
   selectedDoctor: Doctor | null = null;
-
-  constructor(private doctorService: DoctorService, private toastr: ToastrService) {}
   blurredDoctorId: number | null = null;
+  loading: boolean = false;
 
+  constructor(private doctorService: DoctorService, private toastr: ToastrService, public dialog: MatDialog) {}
 
   ngOnInit() {
-  this.doctorService.getAllDoctors().subscribe(
-    doctors => {
-      this.doctors = doctors; 
-    },
-    error => {
-      console.error('Error fetching patients:', error);
-      // Gérez l'erreur ici, affichez un message à l'utilisateur, etc.
-    }
-  );
-}
-
-calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean} {
-  const birthDate = new Date(dateOfBirth);
-  const today = new Date();
-  let ageInYears = today.getFullYear() - birthDate.getFullYear();
-  let months = today.getMonth() - birthDate.getMonth() + (12 * (today.getFullYear() - birthDate.getFullYear()));
-  const dayDifference = today.getDate() - birthDate.getDate();
-
-  if (dayDifference < 0) {
-    months--;
+    this.loadDoctors();
   }
-
-  if (months < 0) {
-    months += 12;
-    ageInYears--;
-  }
-
-  let days = 0;
-  if (months === 0 && ageInYears === 0) {
-    days = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 3600 * 24));
-  }
-
-  return {
-    age: ageInYears < 1 ? (months < 1 ? days : months) : ageInYears,
-    isLessThanOneYear: ageInYears < 1,
-    isLessThanOneMonth: months === 0 && ageInYears === 0
-  };
-}
-
-
 
   loadDoctors() {
     this.doctorService.getAllDoctors().subscribe(
@@ -65,21 +32,64 @@ calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLe
       },
       error => {
         console.error('Error fetching doctors:', error);
-        // Handle error here, display message to user, etc.
       }
     );
   }
 
-  editMedecin(doctor: Doctor) {
-    this.selectedDoctor = doctor;
+  calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean} {
+    const birthDate = new Date(dateOfBirth);
+    const today = new Date();
+    let ageInYears = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth() + (12 * (today.getFullYear() - birthDate.getFullYear()));
+    const dayDifference = today.getDate() - birthDate.getDate();
+  
+    if (dayDifference < 0) {
+      months--;
+    }
+  
+    if (months < 0) {
+      months += 12;
+      ageInYears--;
+    }
+  
+    let days = 0;
+    if (months === 0 && ageInYears === 0) {
+      days = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 3600 * 24));
+    }
+  
+    return {
+      age: ageInYears < 1 ? (months < 1 ? days : months) : ageInYears,
+      isLessThanOneYear: ageInYears < 1,
+      isLessThanOneMonth: months === 0 && ageInYears === 0
+    };
+  }
+  
+
+  editDoctor(doctor: Doctor): void {
+    const dialogRef = this.dialog.open(EditDoctorModalComponent, {
+      width: '400px',
+      data: { ...doctor }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateDoctor(result, doctor);
+      }
+    });
   }
 
-  updateMedecin() {
-    if (this.selectedDoctor && this.selectedDoctor.id !== undefined) {
-      this.doctorService.updateDoctor(this.selectedDoctor.id, this.selectedDoctor).subscribe(
-        updatedDoctor => {
-          this.toastr.success('Medecin updated successfully!');
+  updateDoctor(updatedDoctor: Doctor, previousDoctor: Doctor): void {
+    if (updatedDoctor && updatedDoctor.id !== undefined) {
+      this.doctorService.updateDoctor(updatedDoctor.id, updatedDoctor).subscribe(
+        () => {
           this.loadDoctors();
+          this.dialog.open(ConfirmationDoctorDialogComponent, {
+            width: '400px',
+            data: {
+              previous: previousDoctor,
+              updated: updatedDoctor
+            }
+          });
         },
         error => {
           console.error('Error updating doctor:', error);
@@ -87,50 +97,58 @@ calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLe
         }
       );
     } else {
-      console.error('Selected doctor or  doctor ID is undefined.');
-      // Handle error here, display message to user, etc.
+      console.error('Selected doctor or doctor ID is undefined.');
     }
   }
 
+  deleteDoctor(id: number | undefined, doctor: Doctor | undefined): void {
+    if (!doctor) {
+      console.error('Doctor is undefined.');
+      return;
+    }
 
+    const dialogRef = this.dialog.open(DeleteDoctorConfirmationDialogComponent, {
+      width: '400px',
+      data: { firstName: doctor.firstName, lastName: doctor.lastName }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loading = true;
+
+        if (id !== undefined) {
+          this.doctorService.deleteDoctor(id).subscribe(
+            () => {
+              this.loadDoctors();
+              this.toastr.success('Suppression du médecin effectuée avec succès !');
+            },
+            (error: HttpErrorResponse) => {
+              console.error('Error deleting doctor:', error);
+              if (error.status === 500) {
+                this.toastr.error('Le médecin a des rendez-vous ou des consultations associés. Veuillez les supprimer avant de supprimer le médecin.');
+              } else {
+                this.toastr.error('Une erreur est survenue lors de la suppression du médecin.');
+              }
+            }
+          );
+        } else {
+          console.error('ID du médecin non défini.');
+        }
+
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
+      }
+    });
+  }
 
   addBlur(doctorId: number | undefined) {
     if (doctorId !== undefined) {
       this.blurredDoctorId = doctorId;
     }
   }
-  
+
   removeBlur() {
     this.blurredDoctorId = null;
   }
-
-
-
-loading: boolean = false; // État de chargement initial
-
-  deleteMedecin(id: number | undefined) {
-
-    this.loading = true;
-
-    if (id !== undefined) {
-        // Appeler le service pour supprimer le médecin
-        this.doctorService.deleteDoctor(id).subscribe(() => {
-            // Rafraîchir la liste des médecins après la suppression
-            this.loadDoctors();
-            this.toastr.success('Suppression du médecin effectuée avec succès !');
-        });
-    } else {
-        console.error('ID du médecin non défini.');
-        // Gérer l'erreur ici, afficher un message à l'utilisateur, etc.
-    }        
-        
-        // Cacher l'animation de chargement une fois terminée (après 4 secondes)
-        setTimeout(() => {
-            this.loading = false;
-        }, 1000); // 4 secondes
-    }
-
-  
 }
-
-

@@ -2,43 +2,54 @@ import { Component, OnInit } from '@angular/core';
 import { Appointment } from '../models/appointment.model';
 import { AppointmentService } from '../services/appointment.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationAppointmentDialogComponent } from '../confirmation-appointment-dialog/confirmation-appointment-dialog.component';
+import { DeleteAppointmentConfirmationDialogComponent } from '../delete-appointment-confirmation-dialog/delete-appointment-confirmation-dialog.component';
+import { EditAppointmentModalComponent } from '../edit-appointment-modal/edit-appointment-modal.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-rendez-vous',
   templateUrl: './list-rendez-vous.component.html',
   styleUrls: ['./list-rendez-vous.component.css']
 })
-export class ListAppointmentComponent {
-
+export class ListAppointmentComponent implements OnInit {
   appointments: Appointment[] = [];
   selectedAppointment: Appointment | null = null;
-  loading: boolean = false; // État de chargement initial
-
   blurredAppointmentId: number | null = null;
+  loading: boolean = false;
+  blurredPatientId: number | null = null;
 
 
-  constructor(private appointmentService: AppointmentService, private toastr: ToastrService) {}
+  constructor(private appointmentService: AppointmentService, private toastr: ToastrService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadAppointments();
   }
+
+
+
   addBlur(patientId: number | undefined) {
     if (patientId !== undefined) {
-      this.blurredAppointmentId = patientId;
+      this.blurredPatientId = patientId;
     }
   }
 
   removeBlur() {
-    this.blurredAppointmentId = null;
+    this.blurredPatientId = null;
   }
 
   formatFirstName(name: string): string {
     return name.length > 17 ? name.slice(0, 17) + '...' : name;
   }
+
   formatLastName(name: string): string {
     return name.length > 25 ? name.slice(0, 25) + '...' : name;
   }
 
+  formatMail(mail: string): string {
+    return mail.length > 25 ? mail.slice(0, 25) + '...' : mail;
+  }
   
   loadAppointments() {
     this.appointmentService.getAllAppointments().subscribe(
@@ -47,58 +58,84 @@ export class ListAppointmentComponent {
       },
       error => {
         console.error('Error fetching appointment:', error);
-        // Handle error here, display message to user, etc.
       }
     );
   }
 
-  editAppointment(appointementEdit: Appointment) {
-    this.selectedAppointment = appointementEdit;
+
+  editAppointment(appointment: Appointment): void {
+    const dialogRef = this.dialog.open(EditAppointmentModalComponent, {
+      width: '400px',
+      data: { ...appointment }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateAppointment(result, appointment);
+      }
+    });
   }
 
-  updateAppointment() {
-    if (this.selectedAppointment && this.selectedAppointment.id !== undefined ) {
-      this.appointmentService.updateAppointment(this.selectedAppointment.id, this.selectedAppointment).subscribe(
-        updatedAppointment => {
-          this.toastr.success('Appointment updated successfully!');
+  updateAppointment(updatedAppointment: Appointment, previousAppointment: Appointment): void {
+    if (updatedAppointment && updatedAppointment.id !== undefined) {
+      this.appointmentService.updateAppointment(updatedAppointment.id, updatedAppointment).subscribe(
+        () => {
           this.loadAppointments();
+          this.dialog.open(ConfirmationAppointmentDialogComponent, {
+            width: '400px',
+            data: {
+              previous: previousAppointment,
+              updated: updatedAppointment
+            }
+          });
         },
         error => {
           console.error('Error updating appointment:', error);
-          this.toastr.error('Failed to update appointment!');
         }
       );
     } else {
-      console.error('Selected appointment or rendez-vous ID is undefined.');
-      // Handle error here, display message to user, etc.
+      console.error('Selected appointment or appointment ID is undefined.');
     }
   }
 
+  deleteAppointment(id: number | undefined, appointment: Appointment | undefined): void {
+    if (!appointment) {
+      console.error('Appointment is undefined.');
+      return;
+    }
 
+    const dialogRef = this.dialog.open(DeleteAppointmentConfirmationDialogComponent, {
+      width: '400px',
+      data: { reason: appointment.reason, appointmentDate: appointment.appointmentDate }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loading = true;
 
-  deleteAppointment(id: number | undefined) {
+        if (id !== undefined) {
+          this.appointmentService.deleteAppointment(id).subscribe(
+            () => {
+              this.loadAppointments();
+              this.toastr.success('Suppression du rendez-vous effectuée avec succès !');
+            },
+            (error: HttpErrorResponse) => {
+              console.error('Error deleting appointment:', error);
+              if (error.status === 500) {
+                this.toastr.error('Le rendez-vous a des consultations associées. Veuillez les supprimer avant de supprimer le rendez-vous.');
+              } else {
+                this.toastr.error('Une erreur est survenue lors de la suppression du rendez-vous.');
+              }
+            }
+          );
+        } else {
+          console.error('ID du rendez-vous non défini.');
+        }
 
-    this.loading = true;
-
-    
-    if (id !== undefined) {
-        // Appeler le service pour supprimer le médecin
-    this.appointmentService.deleteAppointment(id).subscribe(() => {
-            // Rafraîchir la liste des médecins après la suppression
-        this.loadAppointments();
-            this.toastr.success('Suppression du médecin effectuée avec succès !');
-        });
-    } else {
-        console.error('ID du médecin non défini.');
-        // Gérer l'erreur ici, afficher un message à l'utilisateur, etc.
-    }   
-    
-        // Cacher l'animation de chasrgement une fois terminée (après 4 secondes)
         setTimeout(() => {
-            this.loading = false;
-        }, 1000); // 4 secondes
-    };
-
+          this.loading = false;
+        }, 1000);
+      }
+    });
+  }
 }
-

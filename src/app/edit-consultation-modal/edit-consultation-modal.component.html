@@ -1,0 +1,44 @@
+<p>edit-consultation-modal works!</p>
+<h2 mat-dialog-title>Edit Consultation</h2>
+<mat-dialog-content>
+  <div *ngIf="data">
+    <form (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label for="consultationId" class="form-label">Consultation ID</label>
+        <input type="text" [(ngModel)]="data.id" name="consultationId" class="form-control" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="patientFirstName" class="form-label">Patient First Name</label>
+        <input type="text" [(ngModel)]="data.patient.firstName" name="patientFirstName" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="consultationDate" class="form-label">Date of Consultation</label>
+        <input type="date" [(ngModel)]="data.consultationDate" name="consultationDate" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="consultationReason" class="form-label">Reason</label>
+        <input type="text" [(ngModel)]="data.consultationReason" name="consultationReason" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="diagnosis" class="form-label">Diagnosis</label>
+        <input type="text" [(ngModel)]="data.diagnosis" name="diagnosis" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="prescribedTreatment" class="form-label">Prescribed Treatment</label>
+        <input type="text" [(ngModel)]="data.prescribedTreatment" name="prescribedTreatment" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="testResults" class="form-label">Test Results</label>
+        <input type="text" [(ngModel)]="data.testResults" name="testResults" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="observations" class="form-label">Observations</label>
+        <input type="text" [(ngModel)]="data.observations" name="observations" class="form-control">
+      </div>
+      <button type="submit" mat-button>Save</button>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</mat-dialog-actions>

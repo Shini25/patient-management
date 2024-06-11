@@ -35,6 +35,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditPatientModalComponent } from './edit-patient-modal/edit-patient-modal.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ConfirmationDoctorDialogComponent } from './confirmation-doctor-dialog/confirmation-doctor-dialog.component';
+import { DeleteDoctorConfirmationDialogComponent } from './delete-doctor-confirmation-dialog/delete-doctor-confirmation-dialog.component';
+import { EditDoctorModalComponent } from './edit-doctor-modal/edit-doctor-modal.component';
+import { EditAppointmentModalComponent } from './edit-appointment-modal/edit-appointment-modal.component';
+import { ConfirmationAppointmentDialogComponent } from './confirmation-appointment-dialog/confirmation-appointment-dialog.component';
+import { DeleteAppointmentConfirmationDialogComponent } from './delete-appointment-confirmation-dialog/delete-appointment-confirmation-dialog.component';
+import { EditConsultationModalComponent } from './edit-consultation-modal/edit-consultation-modal.component';
+import { ConfirmationConsultationDialogComponent } from './confirmation-consultation-dialog/confirmation-consultation-dialog.component';
+import { DeleteConsultationConfirmationDialogComponent } from './delete-consultation-confirmation-dialog/delete-consultation-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +60,17 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     ListConsultationComponent,
     CreateAccountComponent,
     EditPatientModalComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DeleteConfirmationDialogComponent,
+    ConfirmationDoctorDialogComponent,
+    DeleteDoctorConfirmationDialogComponent,
+    EditDoctorModalComponent,
+    EditAppointmentModalComponent,
+    ConfirmationAppointmentDialogComponent,
+    DeleteAppointmentConfirmationDialogComponent,
+    EditConsultationModalComponent,
+    ConfirmationConsultationDialogComponent,
+    DeleteConsultationConfirmationDialogComponent
 
   ],
   

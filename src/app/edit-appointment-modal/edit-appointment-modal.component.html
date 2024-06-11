@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Edit Appointment</h2>
+<mat-dialog-content>
+  <div *ngIf="data">
+    <form (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label for="doctorName" class="form-label">Doctor's Name</label>
+        <input type="text" [(ngModel)]="data.doctorName" name="doctorName" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="patientName" class="form-label">Patient's Name</label>
+        <input type="text" [(ngModel)]="data.patientName" name="patientName" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="appointmentDate" class="form-label">Appointment Date</label>
+        <input type="date" [(ngModel)]="data.appointmentDate" name="appointmentDate" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="reason" class="form-label">Reason</label>
+        <input type="text" [(ngModel)]="data.reason" name="reason" class="form-control">
+      </div>
+      <button type="submit" mat-button>Save</button>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Close</button>
+</mat-dialog-actions>
