@@ -1,1 +1,258 @@
-<app-list-medecin></app-list-medecin>
+
+<body class="scroll-container">
+
+  <!-- Container: first -->
+  <div class="container-fluid first scroll-section" id="first" #scrollSection>
+
+    <div class="row">
+      <div class="nav col-12">
+        <div class="col-4">
+          <div class="logo">
+            <span><img src="../assets/circle_16666340.png" alt="medical Logo"></span>
+            <span class="logo-title">Patient management</span>
+          </div>
+        </div>
+        <div class="col-8">
+          <ul class="menu mt-2 menu-option">
+            <li><a class="btn btn-option no-border" (click)="scrollToElement('home')" #navLink >Home</a></li>
+            <li><a class="btn btn-option no-border" (click)="scrollToElement('Service')" #navLink >Services</a></li>
+            <li><a class="btn btn-option no-border" (click)="scrollToElement('About-us')" #navLink >About Us</a></li>
+            <li><a class="btn btn-option no-border" (click)="scrollToElement('contact-info')" #navLink >Contact</a></li>
+            <li *ngIf="!isAuthenticated()"  ><a class="btn log" (click)="scrollToElement('login-form')" #navLink >Log In</a></li>
+            <li *ngIf="!isAuthenticated()" ><a class="btn btn-primary no-border btn-signup" #navLink >Sign Up</a></li>
+            <li *ngIf="isAuthenticated()"><a class="btn btn-logout" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      
+      <div class="col-6 first-right-pic headerDivPic" #headerDivPic>
+      </div>
+
+      <div class="col-6 first-left-pic headerDivTitle" #headerDivTitle >
+        <!-- title for the system -->
+        <div class="row">
+          <div class="col-12 title mb-5">
+            <h1>Welcome to Patient Management.</h1>
+          </div>
+  
+          <div class="col-10 offset-1">
+            <p class="lead">
+              Efficiently manage appointments, medical records, and treatment plans.
+              <br>
+              Streamline prescriptions and billing.
+              <br>
+              Enhance patient communication and workflow optimization.
+              <br>
+              Empower healthcare professionals to deliver exceptional care.
+          </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div> 
+
+<!-- Container: third -->
+<div  class="container-fluid third scroll-section "  id="Service" #scrollSection>
+  <div class="row thirdSection" *ngIf="isAuthenticated()" #thirdSection>
+
+    <div class="col-2 stepper-container-root" >
+      <div class="stepper-container">
+        <div class="stepper">
+          <ul class="navbar-nav">
+          <div class="step row" [ngClass]="{'active-step': isPatientRoute}"  >
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showPatientOptions = false">
+                  <button class="nav-link btn d-flex align-items-center " [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
+                    Patients
+                  </button>
+                  <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
+                    <a routerLink="add-patient" class="btn-add" (click)="closePatientOptions()">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="list-patient" class="btn-list" (click)="closePatientOptions()">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+                </li>
+              </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="step row" [ngClass]="{'active-step': isDoctorRoute}">
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showDoctorOptions = false">
+                  <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isDoctorRoute}" (mouseenter)="showDoctorOptions = true">
+                    Doctor 
+                  </button>
+                  <div id="doctorCollapse" class="options row" *ngIf="showDoctorOptions">
+                    <a routerLink="add-doctor" class="btn-add" (click)="closeDoctorOptions()">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="list-doctor" class="btn-list" (click)="closeDoctorOptions()">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+                </li>
+              </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="step row" [ngClass]="{'active-step': isConsultationRoute}">
+              <div class="col-6 kit" >
+
+              <li class="nav-item" (mouseleave)="showConsultationOptions = false">
+                <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isConsultationRoute}" (mouseenter)="showConsultationOptions = true">
+                  Consultation
+                </button>
+                <div id="consultationCollapse" class="options row" *ngIf="showConsultationOptions">
+                  <a routerLink="add-consultation" class="btn-add" (click)="closeConsultationOptions()">
+                    <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                    <span class="register-text">Register</span>
+                  </a>
+                  <a routerLink="list-consultation" class="btn-list" (click)="closeConsultationOptions()">
+                    <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                    <span class="list-text">List</span>
+                  </a>
+                </div>
+              </li>
+              </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="step row" [ngClass]="{'active-step': isAppointmentRoute}">
+              <div class="col-6 kit" >
+                <li class="nav-item" (mouseleave)="showAppointmentOptions = false">
+                  <button class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isAppointmentRoute}" (mouseenter)="showAppointmentOptions = true">
+                    Appointment
+                  </button>
+
+                  <div id="appointmentCollapse" class="options row" *ngIf="showAppointmentOptions">
+                    <a routerLink="add-appointment" class="btn-add" (click)="closeAppointmentOptions()">
+                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon ">
+                      <span class="register-text">Register</span>
+                    </a>
+                    <a routerLink="list-appointment" class="btn-list" (click)="closeAppointmentOptions()">
+                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <span class="list-text">List</span>
+                    </a>
+                  </div>
+
+                </li>
+              </div>
+          </div>
+        </ul>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-10 right-content">
+        <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="!isFirstSectionVisible" class="fixed-button">
+  <a (click)="scrollToElement('first')">
+    <img src="../assets/system-regular-11-arrow-up.gif" alt="Back to Top">
+  </a>
+</div>
+
+  
+  <!-- container-f: fourth -->
+  <div class="container-fluid fourth scroll-section" id="About-us" #scrollSection>
+    <div class="row">
+  
+      <div class="col-8 offset-3 pt-5 mb-5 AboutUsContent" #AboutUsContent>
+        <!-- title for the system -->
+        <div class="col-12 second-title">
+          <h1 class="about-us-title">About Us</h1>
+        </div>
+      
+        <div class="col-9 offset-3">
+          <p class="about-us">
+          Medical Office provides quality healthcare that is patient-centered and accessible to all. With a dedicated team, we
+          offer a comprehensive range of medical services. We value active listening, respect, and empathy towards our patients.
+          Our commitment is to promote well-being and health through personalized care.
+          </p>
+        </div>
+      
+        <div class="col-5">
+          <button class="btn col-12 Learn-more">Learn More</button>
+        </div>
+      
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- container-f: last -->
+  <div class="container-fluid last scroll-section" #scrollSection>
+    <div class="row footer mb-5">
+      <div class="col-3 offset-1  contact-info" id="contact-info">
+        <h2>Find Us</h2>
+        <ul>
+        <li><a href="tel:0346154719">0346154719</a> / <a href="tel:0338013886">0338013886</a></li>
+        <li><a href="mailto:isbacksuzuki@gmail.com">isbacksuzuki&#64;gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/julio-cesar-léopard-567730306" >Leopard Julio Cesar</a></li>
+
+        </ul>
+      </div>
+      <div class="col-3 offset-1 contact-info">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="#">Consultation</a></li>
+          <li><a href="#">Appointment</a></li>
+          <li><a href="#">Search for a Patient</a></li>
+          <li><a href="#">Search for a Doctor</a></li>
+        </ul>
+      </div>
+      <div class="col-2 offset-2 contact-info">
+        <h2>More Info</h2>
+        <ul>
+          <li><a href="#">Doctor Contact</a></li>
+          <li><a href="#">Doctor Info</a></li>
+          <li><a href="#">Feedback</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+
+        <hr class="trait mt-4">
+
+      <div class="row mt-5" >
+          <div class="col-1 offset-4  icon-logo">
+            <span><img src="../assets/facebook_5968764.png" alt="Facebook Logo"></span>
+          </div>
+          
+          <div class="col-1 icon-logo">
+            <span><img src="../assets/telephone_12483484.png" alt="Mobile Logo"></span>
+          </div>
+          
+          <div class="col-1 icon-logo">
+            <span><img src="../assets/gmail_732200.png" alt="Gmail Logo"></span>
+          </div>
+          
+          <div class="col-1 icon-logo">
+            <span><img src="../assets/linkedin_145807.png" alt="LinkedIn Logo"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

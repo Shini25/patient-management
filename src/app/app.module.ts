@@ -46,6 +46,15 @@ import { EditConsultationModalComponent } from './edit-consultation-modal/edit-c
 import { ConfirmationConsultationDialogComponent } from './confirmation-consultation-dialog/confirmation-consultation-dialog.component';
 import { DeleteConsultationConfirmationDialogComponent } from './delete-consultation-confirmation-dialog/delete-consultation-confirmation-dialog.component';
 
+import { LoginComponent } from './login/login.component';
+
+
+
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +79,8 @@ import { DeleteConsultationConfirmationDialogComponent } from './delete-consulta
     DeleteAppointmentConfirmationDialogComponent,
     EditConsultationModalComponent,
     ConfirmationConsultationDialogComponent,
-    DeleteConsultationConfirmationDialogComponent
+    DeleteConsultationConfirmationDialogComponent,
+    LoginComponent
 
   ],
   
@@ -88,6 +98,10 @@ import { DeleteConsultationConfirmationDialogComponent } from './delete-consulta
     SharedModule,
     MatButtonModule,
     MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',
