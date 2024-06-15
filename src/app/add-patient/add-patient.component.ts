@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { PatientService } from '../services/patient.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router'; 
+
 import 'jquery';
 
 declare global {
@@ -26,17 +27,20 @@ export class AddPatientComponent implements OnInit {
     dateOfBirth: new FormControl('', [Validators.required]), // Removed default date formatting
     gender: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required])
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), this.phonePrefixValidator]),
+    email: new FormControl('', [Validators.required, Validators.email])
   });
 
   newPatientDetails: any;
+  maxDate: Date;
 
   constructor(
     private patientService: PatientService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.maxDate = new Date();
+  }
 
   dismissModal() {
     $('#successModal').modal('hide');
@@ -88,7 +92,13 @@ export class AddPatientComponent implements OnInit {
     }
   }
 
-
+  phonePrefixValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (value && !value.startsWith('+261')) {
+      return { phonePrefix: true };
+    }
+    return null;
+  }
 
   phrases: string[] = [
     "Welcome to patient registration!",
@@ -133,4 +143,3 @@ export class AddPatientComponent implements OnInit {
     }
   }
 }
-

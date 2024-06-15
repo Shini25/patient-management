@@ -1,73 +1,105 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 offset-1 root-container">
-            <div class="row">
-                <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6">
-                        <h1 class="title mt-3 text-center">
-                            Register a patient
-                        </h1>
-                        <div class="form-group  mt-1 col-10 offset-1">
-                            <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
-                            <input type="text" class="form-style col-12 " id="firstName" formControlName="firstName" placeholder="" required>
-                            <span class="placeholder-form-style">Name</span>
+        <div class="col-10 offset-1  root-container">
+            <div class="row mt-3">
+                <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6 offset-3">
+                    <h1 class="title mt-1 text-center mb-4">
+                        Register a patient
+                    </h1>
+                    <div class=" col-10 offset-1 mt-5">
+                        <mat-form-field class="col-12">
+                            <mat-label>Name</mat-label>
+                            <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                            <input matInput id="firstName" formControlName="firstName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Lastname</mat-label>
+                            <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                            <input matInput id="lastName" formControlName="lastName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Date of Birth</mat-label>
+                            <img matPrefix src="../assets/calendar-birhtday-cake.png" alt="" class="input-icon">
+                            <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth" [max]="maxDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-1 col-10 offset-1">
+                        <span class=""><img src="../assets/gender_12345.png" alt=""></span>
+                        <div class="gender-type col-10 offset-1 mb-4">
+                            <mat-radio-group formControlName="gender" class="d-flex justify-content-around">
+                                <label class="gender-button col-3">
+                                    <mat-radio-button value="MALE">Male</mat-radio-button>
+                                </label>
+                                <label class="gender-button col-3">
+                                    <mat-radio-button value="FEMALE">Female</mat-radio-button>
+                                </label>
+                                <label class="gender-button col-3">
+                                    <mat-radio-button value="OTHER">Other</mat-radio-button>
+                                </label>
+                            </mat-radio-group>
                         </div>
-                        <div class="form-group col-10 offset-1">
-                            <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
-                            <input type="text" class="form-style col-12 " id="lastName" formControlName="lastName" placeholder="" required>
-                            <span class="placeholder-form-style">Lastname</span>
+                    </div>
+                    <div class="mt-2 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Address</mat-label>
+                            <img matPrefix src="../assets/map-marker-home.png" alt="" class="input-icon">
+                            <input matInput id="address" formControlName="address" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Phone number</mat-label>
+                            <img matPrefix src="../assets/phone-flip.png" alt="" class="input-icon">
+                            <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
+                            <span matPrefix class="phone-prefix">+261</span >
+                            <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
+             
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-4 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Email</mat-label>
+                            <img matPrefix src="../assets/at.png" alt="" class="input-icon">
+                            <input matInput type="email" id="email" formControlName="email" required>
+                            <mat-error *ngIf="patientForm.get('email').hasError('email') && !patientForm.get('email').hasError('required')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="patientForm.get('email').hasError('required')">
+                                Email is required
+                            </mat-error>                        </mat-form-field>
+                    </div>
+                    <div class="form-group row col-10 offset-1">
+                        <div class="col-sm-6">
+                            <button type="submit" [disabled]="patientForm.invalid" class="btn btn-primary w-100">Add</button>
                         </div>
-                        <div class="form-group dateofbirth col-10 offset-1">
-                            <span class="login-id"><img src="../assets/pudding.png" alt=""></span>
-                            <input type="date" class="form-style col-12 " id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
+                        <div class="col-sm-6">
+                            <button type="button" (click)="patientForm.reset()" class="btn btn-secondary w-100">Clear All</button>
                         </div>
-                        <div class="form-group col-10 offset-1">
-                            <span class=""><img src="../assets/gender_12345.png" alt=""></span>
-                            <div class="gender-type col-10 offset-1">
-                                <label class="gender-button col-3"><input type="radio" name="gender" value="MALE" formControlName="gender"> Male</label>
-                                <label class="gender-button col-3"><input type="radio" name="gender" value="FEMALE" formControlName="gender"> Female</label>
-                                <label class="gender-button col-3"><input type="radio" name="gender" value="OTHER" formControlName="gender"> Other</label>
-                            </div>
-                        </div>
-                        <div class="form-group  mt-2 col-10 offset-1">
-                            <span class="login-id"><img src="../assets/placeholder.png" alt=""></span>
-                            <input type="text" class="form-style col-12 " id="address" formControlName="address" placeholder="" required>
-                            <span class="placeholder-form-style">Address</span>
-                        </div>
-                        <div class="form-group col-10 offset-1">
-                            <span class="login-id"><img src="../assets/recording.png" alt=""></span>
-                            <input type="number" class="form-style col-12 " id="phoneNumber" formControlName="phoneNumber" placeholder="" required>
-                            <span class="placeholder-form-style">Phone number</span>
-                        </div>
-                        <div class="form-group mb-4 col-10 offset-1">
-                            <span class="login-id"><img src="../assets/mail.png" alt=""></span>
-                            <input type="text" class="form-style col-12 " id="email" formControlName="email" placeholder="" required>
-                            <span class="placeholder-form-style">Email</span>
-                        </div>
-                
-                        <div class="form-group row col-10 offset-1">
-                            <div class="col-sm-6">
-                                <button type="submit" [disabled]="patientForm.invalid" class="btn btn-primary w-100">Add</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <button type="button" (click)="patientForm.reset()" class="btn btn-secondary w-100">Clear All</button>
-                            </div>
-                        </div>
+                    </div>
                 </form>
-        
-                <div class="col-6 root-typewriter" >
-                    <!-- todo -->
+                <!-- 
+
+                <div class="col-6 root-typewriter">
+                    todo 
                     <div class="typewriter">
                         <span>{{ displayedText }}</span><span class="cursor"></span>
                     </div>
-                    <div class="form-container-right-root col-12">
 
-                    </div>
-                           
+                    
+
                 </div>
+                 -->
+
             </div>
         </div>
-     </div>
-</div>  
+    </div>
+</div>
 
 <!-- Success Message Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">

@@ -1,9 +1,10 @@
 .root-container {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 13, 255, 0.91); /* Added blue blur shadow */
     margin-top: 5px;
     padding-right: 10px;
     height: 98vh;
+    background-color: #00000010;
+    box-shadow: 0 4px 4px rgba(255, 0, 93, 0.273);
 
 }
 
@@ -12,11 +13,11 @@
     margin: 0%;
 }
 .form-container {
-    height: 98vh;
+    height: 94vh;
     position: relative;
     background-color: #fffffff1;
-    border-radius: 10px 0 0 10px;
     padding-top: 6px;
+    border: 1px solid #0000001c;
 }
 .info-container {
     position: relative;
@@ -86,9 +87,9 @@
 
 .placeholder-form-style{
     position: relative;
-    top: -40px;
+    top: -60px;
     left: 110px;
-    color: #00000062;
+    color: #000000b1;
     font-size: large;
     transition: 0.5s;
     pointer-events: none;
@@ -113,67 +114,21 @@
 }
 
 .form-style:not(:placeholder-shown)+.placeholder-form-style {
-    opacity: 0;
+    opacity: 0.8;
+    font-size: 15px;
 }
 
-#dateOfBirth {
-    padding-left: 80px;
-    color: #32323277;
-    font-size: 20px !important;
 
-}
 
-.dateofbirth {
-    margin-bottom: 20px !important;
-}
 .title {
     text-align: center;
-    color: #2032ffee;
+    color: #00282eee;
     font-size: 40px;
     font-weight: 30px;
     z-index: 1000 !important;
 }
 
 
-.gender-button {
-    margin-left: 20px;
-    background-color: #535353;
-    color: #f2f2f2;
-    border: 1px solid #d1d1d1;
-    border-radius: 5px;
-    cursor: pointer;
-    align-items: center;
-}
-.gender-button input[type="radio"] {
-    margin-right: 10px;
-}
-
-.gender-button:hover {
-    background-color: #ffffff30;
-    color: rgba(228, 228, 228, 0.959);
-}
-
-input[type="date"] {
-    position: relative;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    left: 0; /* Déplace l'icône à gauche */
-    padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
-    pointer-events: auto; /* Assure que l'icône est cliquable */
-    opacity: 0; /* Rend l'icône visible */
-}
-
-input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding-right: 0%; /* Ajoute de l'espace à gauche pour le texte, ajustez selon vos besoins */
-}
-
-input[type="date"]::-webkit-datetime-edit {
-    position: relative;
-    left: 10%; /* Ajustez cette    font-size: 5px !important;
-    valeur pour positionner le texte comme vous le souhaitez */
-}
 
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -239,4 +194,19 @@ input[type="number"]::-webkit-outer-spin-button {
     50% { opacity: 0; }
   }
 
+.input-icon {
+    margin-right: 8px; /* Adjust as needed */
+    width: 25px; /* Adjust as needed */
+    height: 25px; /* Adjust as needed */
+    background-color: #00000000;
+    
+}
 
+
+.phone-prefix {
+    position: relative;
+    bottom: 4px;
+    margin-right: 8px; /* Adjust as needed */
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+}

@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -51,10 +54,10 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { NotFoundComponent } from './not-found/not-found.component';
 
 
-import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AccountCreatedDialogComponent } from './create-account/account-created-dialog/account-created-dialog.component';
 
@@ -107,13 +110,16 @@ import { AccountCreatedDialogComponent } from './create-account/account-created-
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
+    MatRadioModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',
       preventDuplicates: true,
       closeButton: true
     }),
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled', scrollOffset: [0, 64] })
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled', scrollOffset: [0, 64] }),
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     // Fournisseurs de services nécessaires à votre application, comme ToastrService
