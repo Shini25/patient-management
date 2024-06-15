@@ -26,7 +26,6 @@ import { ListAppointmentComponent } from './list-rendez-vous/list-rendez-vous.co
 import { ListConsultationComponent } from './list-consultation/list-consultation.component';
 import { SharedModule } from './shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CreateAccountComponent } from './create-account/create-account.component';
 
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AuthService } from './services/auth.service';
@@ -47,13 +46,17 @@ import { ConfirmationConsultationDialogComponent } from './confirmation-consulta
 import { DeleteConsultationConfirmationDialogComponent } from './delete-consultation-confirmation-dialog/delete-consultation-confirmation-dialog.component';
 
 import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+
+import { AccountCreatedDialogComponent } from './create-account/account-created-dialog/account-created-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,9 @@ import { MatIconModule } from '@angular/material/icon';
     EditConsultationModalComponent,
     ConfirmationConsultationDialogComponent,
     DeleteConsultationConfirmationDialogComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent,
+    AccountCreatedDialogComponent
 
   ],
   

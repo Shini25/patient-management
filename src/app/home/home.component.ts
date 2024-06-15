@@ -35,8 +35,8 @@ export class HomeComponent{
   @ViewChildren('headerDivPic') headerDivPic!: QueryList<ElementRef>
   @ViewChildren('headerDivTitle') headerDivTitles!: QueryList<ElementRef>
 
-  isPatientRoute = true;
-  isDoctorRoute = false;
+  isPatientRoute = false;
+  isDoctorRoute = true;
   isConsultationRoute = false;
   isAppointmentRoute = false;
   

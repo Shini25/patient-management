@@ -2,38 +2,48 @@
   <div class="login-form-container">
       <h1 class="login-title">Create Account</h1>
 
-    
-      <form  (ngSubmit)="onSubmit()" class="login-form create-account-form">
+      <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()" class="login-form create-account-form">
         <mat-form-field appearance="fill">
           <mat-label for="username">Username</mat-label>
-          <input matInput type="text" id="username" [(ngModel)]="user.username" name="username" required>
+          <input matInput type="text" id="username" formControlName="username" required>
+          <mat-error *ngIf="createAccountForm.get('username')?.hasError('minlength')">
+            Username must be at least 8 characters long.
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label for="password">Password</mat-label>
-          <input matInput type="password" id="password" [(ngModel)]="user.password" name="password" required>
+          <input matInput type="password" id="password" formControlName="password" required>
+          <mat-error *ngIf="createAccountForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </mat-error>
+          <mat-error *ngIf="createAccountForm.get('password')?.hasError('pattern')">
+            Password must contain at least one uppercase letter, one number, and one special character.
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label for="email">Email</mat-label>
-          <input matInput type="email" id="email" [(ngModel)]="user.email" name="email" required>
+          <input matInput type="email" id="email" formControlName="email" required>
+          <mat-error *ngIf="createAccountForm.get('email')?.invalid && createAccountForm.get('email')?.touched">
+            Please enter a valid email to verify your account.
+          </mat-error>
         </mat-form-field>
-        <input type="hidden" [(ngModel)]="user.accountStatus" name="accountStatus" value="OFFLINE">
+        <input type="hidden" formControlName="accountStatus" value="OFFLINE">
         <mat-form-field appearance="fill">
           <mat-label for="accountType">Account Type</mat-label>
-          <mat-select id="accountType" [(ngModel)]="user.accountType" name="accountType">
+          <mat-select id="accountType" formControlName="accountType">
             <mat-option *ngFor="let type of accountTypes" [value]="type">{{type}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <input type="hidden" [(ngModel)]="user.accountState" name="accountState" value="INACTIVE">
-        <button mat-raised-button color="primary"  class="create-account-button" type="submit">Create Account</button>
+        <input type="hidden" formControlName="accountState" value="INACTIVE">
+        <button mat-raised-button color="primary" class="create-account-button" type="submit">Create Account</button>
 
         <span class="create-account-link">
           Already have an account?
-          <button mat-button routerLink="/login" class="toggle-form-button" >
+          <button mat-button routerLink="/login" class="toggle-form-button">
             Login
           </button>
-
         </span>
       </form>
-    
   </div>
 </div>
+

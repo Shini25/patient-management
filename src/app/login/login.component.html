@@ -1,32 +1,40 @@
 <div class="login-container">
     <div class="login-form-container">
-        <h1 class="login-title">{{ showLoginForm ? 'Sign In' : 'Create Account' }}</h1>
-        <form *ngIf="showLoginForm" (submit)="login()" class="login-form">
+        <h1 class="login-title">Sign In</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
           <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput type="text" [(ngModel)]="username" name="username" required>
+            <input matInput type="text" formControlName="username" required>
+            <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+              Username is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('username')?.hasError('minlength')">
+              Username must be at least 8 characters long
+            </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill" class="password">
+          <mat-form-field appearance="fill" class="password ">
             <mat-label>Password</mat-label>
-            <input matInput type="password" [(ngModel)]="password" name="password" required>            
+            <input matInput type="password" formControlName="password" required>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+              Password must be at least 8 characters long
+            </mat-error>
           </mat-form-field>
 
-          <div class="forgot-password-container">
+          <div class="forgot-password-container ">
             <a href="#">Forgot password?</a>
           </div>
 
-          <button mat-raised-button color="primary" class="login-button" type="submit">Login</button>
+          <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="loginForm.invalid">Login</button>
 
-          
           <span class="create-account-link">
             Don't have an account?
-            <button mat-button routerLink="/create-account" class="toggle-form-button" >
+            <button mat-button routerLink="/create-account" class="toggle-form-button">
                 Create Account
             </button>
-
           </span>
         </form>
-            
-      
     </div>
 </div>

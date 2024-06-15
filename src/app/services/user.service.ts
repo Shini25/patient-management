@@ -14,5 +14,11 @@ export class UserService {
   addUser(user_account: User_account): Observable<User_account> {
     return this.http.post<User_account>(`${this.apiUrl}/adduser`, user_account);
   }
+
+
+  checkUsernameExists(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/check-username?username=${username}`);
+  }
+  
 }
 

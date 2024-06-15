@@ -11,10 +11,11 @@ import { ListConsultationComponent } from './list-consultation/list-consultation
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Login' },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home/list-doctor', pathMatch: 'full' },
   { path: 'create-account', component: CreateAccountComponent, title: 'Create Account' },
   { 
     path: 'home', 
@@ -22,6 +23,7 @@ export const routes: Routes = [
     title: 'Home page',
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'list-doctor', pathMatch: 'full' },
       { path: 'add-patient', component: AddPatientComponent, title: 'Add Patient' },
       { path: 'add-doctor', component: AddDoctorComponent, title: 'Register a Doctor' },
       { path: 'add-consultation', component: AddConsultationComponent, title: 'Register a Consultation' },
@@ -31,5 +33,6 @@ export const routes: Routes = [
       { path: 'list-consultation', component: ListConsultationComponent, title: 'List of Consultations' },
       { path: 'list-appointment', component: ListAppointmentComponent, title: 'List of Appointments' },
     ]
-  }
+  },
+  { path: '**', component: NotFoundComponent, title: 'Not Found' }
 ];

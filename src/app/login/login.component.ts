@@ -6,13 +6,16 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { User_account } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup;
 
   username: string = '';
   password: string = '';
@@ -25,9 +28,14 @@ export class LoginComponent {
 
   showLoginForm = true;
 
+  constructor(private router: Router, private userService: UserService, private authService: AuthService, private toastr: ToastrService, private location: Location) {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
+  }
 
-  constructor(private router: Router,private userService: UserService, private authService: AuthService, private toastr: ToastrService, private location: Location) {}
-
+  ngOnInit(): void {}
 
   onSubmit() {
     this.userService.addUser(this.user).subscribe(
@@ -40,23 +48,42 @@ export class LoginComponent {
     );
   }
 
-
   toggleForm() {
     this.showLoginForm = !this.showLoginForm;
   }
 
-
   login() {
-    this.authService.login({ username: this.username, password: this.password }).subscribe(
+    if (this.loginForm.invalid) {
+      this.toastr.error('Please enter valid username and password');
+      return;
+    }
+
+    const { username, password } = this.loginForm.value;
+
+    this.authService.login({ username, password }).subscribe(
       data => {
         this.authService.saveToken(data.jwt);
         this.toastr.success('Login successful');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/list-doctor']);
       },
       err => {
-        this.errorMessage = 'Invalid credentials';
-        this.toastr.error('Login error');
-
+        console.error('Login error:', err); // Log the error details for debugging
+        if (err.status === 404) {
+          this.errorMessage = 'User not found';
+          this.toastr.error('User not found');
+        } else if (err.status === 401) {
+          this.errorMessage = 'Invalid credentials';
+          this.toastr.error('Invalid credentials');
+        } else if (err.status === 403) {
+          this.errorMessage = 'Access denied';
+          this.toastr.error('Access denied');
+        } else if (err.error && err.error.message) {
+          this.errorMessage = err.error.message;
+          this.toastr.error(err.error.message);
+        } else {
+          this.errorMessage = 'Login error';
+          this.toastr.error('Login error');
+        }
       }
     );
   }
@@ -70,6 +97,4 @@ export class LoginComponent {
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
-
-
 }
