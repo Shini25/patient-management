@@ -61,6 +61,10 @@ import { MatRadioModule } from '@angular/material/radio';
 
 import { AccountCreatedDialogComponent } from './create-account/account-created-dialog/account-created-dialog.component';
 
+
+// succes dialog
+import { SuccessDialogPatientComponent } from './add-patient/success-dialog-patient/success-dialog-patient.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +92,8 @@ import { AccountCreatedDialogComponent } from './create-account/account-created-
     DeleteConsultationConfirmationDialogComponent,
     LoginComponent,
     NotFoundComponent,
-    AccountCreatedDialogComponent
+    AccountCreatedDialogComponent,
+    SuccessDialogPatientComponent
 
   ],
   

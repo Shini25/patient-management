@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors }
 import { PatientService } from '../services/patient.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router'; 
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogPatientComponent } from './success-dialog-patient/success-dialog-patient.component';
 
 import 'jquery';
 
@@ -37,7 +39,8 @@ export class AddPatientComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) {
     this.maxDate = new Date();
   }
@@ -86,10 +89,23 @@ export class AddPatientComponent implements OnInit {
         this.patientService.savePatient(newPatient).subscribe((response: any) => {
           this.newPatientDetails = response;
 
-          this.toastr.success('Patient added successfully!');
+          // Afficher la notification de succès
+          this.toastr.success('Patient enregistré avec succès ! En attente de la disponibilité du bureau du docteur.');
+
+          // Ouvrir le dialogue de succès
+          const dialogRef = this.dialog.open(SuccessDialogPatientComponent);
+
+          // Réinitialiser le formulaire après la fermeture du dialogue
+          dialogRef.afterClosed().subscribe(() => {
+            this.resetForm();
+          });
         });
       }
     }
+  }
+
+  resetForm() {
+    this.patientForm.reset();
   }
 
   phonePrefixValidator(control: AbstractControl): ValidationErrors | null {

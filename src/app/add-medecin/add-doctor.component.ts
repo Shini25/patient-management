@@ -16,7 +16,7 @@ declare global {
   templateUrl: './add-doctor.component.html',
   styleUrl: './add-doctor.component.css'
 })
-export class AddDoctorComponent  implements OnInit {
+export class AddDoctorComponent implements OnInit {
   
 
   @ViewChild('newDoctorElement') newDoctorElement: ElementRef | undefined;
@@ -25,21 +25,25 @@ export class AddDoctorComponent  implements OnInit {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     specialty: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     contact: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl(new Date, [Validators.required])
+    dateOfBirth: new FormControl(new Date(), [Validators.required])
     
   });
 
   // Variable pour stocker les détails du médecin ajouté
   newDoctorDetails: any;
 
+  maxDate: Date;
+
   constructor(
     private doctorService: DoctorService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.maxDate = new Date();
+  }
 
   // Méthode pour fermer le modal
   dismissModal() {
@@ -134,4 +138,3 @@ type() {
   }
 }
 }
-

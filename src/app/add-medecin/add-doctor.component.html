@@ -6,42 +6,64 @@
                     <h1 class="title mt-3 text-center">
                         Register a doctor
                     </h1>
-                    <div class="form-group mb-1 mt-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
-                        <input type="text" class="form-style col-12" id="firstName" formControlName="firstName" placeholder="" required>
-                        <span class="placeholder-form-style">Firstname</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Firstname</mat-label>
+                            <img matPrefix src="../assets/user (2).png" alt="" class="input-icon">
+                            <input matInput id="firstName" formControlName="firstName" required>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group col-10 offset-1">
-                        <span class="login-id"><img src="../assets/user (2).png" alt=""></span>
-                        <input type="text" class="form-style col-12" id="lastName" formControlName="lastName" placeholder="" required>
-                        <span class="placeholder-form-style">Lastname</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Lastname</mat-label>
+                            <img matPrefix src="../assets/user (2).png" alt="" class="input-icon">
+                            <input matInput id="lastName" formControlName="lastName" required>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group mb-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/pudding.png" alt=""></span>
-                        <input type="date" class="form-style col-12" id="dateOfBirth" formControlName="dateOfBirth" placeholder="" required>
-                        <span class="placeholder-form-style">Date of Birth</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Date of Birth</mat-label>
+                            <img matPrefix src="../assets/pudding.png" alt="" class="input-icon">
+                            <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth" [max]="maxDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group mb-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/bookmark.png" alt=""></span>
-                        <input type="text" class="form-style col-12" id="specialty" formControlName="specialty" placeholder="" required>
-                        <span class="placeholder-form-style">Specialty</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Specialty</mat-label>
+                            <img matPrefix src="../assets/bookmark.png" alt="" class="input-icon">
+                            <input matInput id="specialty" formControlName="specialty" required>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group mb-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/mail.png" alt=""></span>
-                        <input type="text" class="form-style col-12" id="email" formControlName="email" placeholder="" required>
-                        <span class="placeholder-form-style">Email</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Email</mat-label>
+                            <img matPrefix src="../assets/mail.png" alt="" class="input-icon">
+                            <input matInput type="email" id="email" formControlName="email" required>
+                            <mat-error *ngIf="doctorForm.get('email')?.hasError('email') && !doctorForm.get('email')?.hasError('required')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="doctorForm.get('email')?.hasError('required')">
+                                Email is required
+                            </mat-error>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group mb-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/recording.png" alt=""></span>
-                        <input type="number" class="form-style col-12" id="contact" formControlName="contact" placeholder="" required>
-                        <span class="placeholder-form-style">Contact</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Contact</mat-label>
+                            <img matPrefix src="../assets/recording.png" alt="" class="input-icon">
+                            <span matPrefix class="phone-prefix">+261</span>
+                            <input matInput type="number" id="contact" formControlName="contact" required>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group mb-1 col-10 offset-1">
-                        <span class="login-id"><img src="../assets/placeholder.png" alt=""></span>
-                        <input type="text" class="form-style col-12" id="address" formControlName="address" placeholder="" required>
-                        <span class="placeholder-form-style">Address</span>
+                    <div class="mt-1 col-10 offset-1">
+                        <mat-form-field class="col-12">
+                            <mat-label>Address</mat-label>
+                            <img matPrefix src="../assets/placeholder.png" alt="" class="input-icon">
+                            <input matInput id="address" formControlName="address" required>
+                        </mat-form-field>
                     </div>
-    
                     <div class="form-group row col-10 offset-1">
                         <div class="col-sm-6">
                             <button type="submit" [disabled]="doctorForm.invalid" class="btn btn-primary w-100">Add</button>
@@ -50,18 +72,9 @@
                             <button type="button" (click)="doctorForm.reset()" class="btn btn-secondary w-100">Clear All</button>
                         </div>
                     </div>
-            </form>
-            <div class="col-6 root-typewriter" >
-                <!-- todo -->
-                <div class="typewriter">
-                    <span>{{ displayedText }}</span><span class="cursor"></span>
-                </div>
-                <div class="form-container-right-root col-12">
+                </form>
 
-                </div>
-                       
             </div>
-
         </div>
     </div>
 </div>

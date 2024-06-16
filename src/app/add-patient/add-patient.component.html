@@ -56,8 +56,7 @@
                         <mat-form-field class="col-12">
                             <mat-label>Phone number</mat-label>
                             <img matPrefix src="../assets/phone-flip.png" alt="" class="input-icon">
-                            <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
-                            <span matPrefix class="phone-prefix">+261</span >
+                            <span matPrefix class="phone-prefix">+261</span>
                             <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
              
                         </mat-form-field>
@@ -67,10 +66,10 @@
                             <mat-label>Email</mat-label>
                             <img matPrefix src="../assets/at.png" alt="" class="input-icon">
                             <input matInput type="email" id="email" formControlName="email" required>
-                            <mat-error *ngIf="patientForm.get('email').hasError('email') && !patientForm.get('email').hasError('required')">
+                            <mat-error *ngIf="patientForm.get('email')?.hasError('email') && !patientForm.get('email')?.hasError('required')">
                                 Please enter a valid email address
                             </mat-error>
-                            <mat-error *ngIf="patientForm.get('email').hasError('required')">
+                            <mat-error *ngIf="patientForm.get('email')?.hasError('required')">
                                 Email is required
                             </mat-error>                        </mat-form-field>
                     </div>

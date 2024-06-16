@@ -116,16 +116,6 @@
     opacity: 0;
 }
 
-#dateOfBirth {
-    padding-left: 80px;
-    color: #32323277;
-    font-size: 20px !important;
-
-}
-
-.dateofbirth {
-    margin-bottom: 20px !important;
-}
 .title {
     text-align: center;
     color: #20b1ffee;
@@ -153,27 +143,6 @@
     color: rgba(228, 228, 228, 0.959);
 }
 
-input[type="date"] {
-    position: relative;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    left: 0; /* Déplace l'icône à gauche */
-    padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
-    pointer-events: auto; /* Assure que l'icône est cliquable */
-    opacity: 0; /* Rend l'icône visible */
-}
-
-input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding-right: 0%; /* Ajoute de l'espace à gauche pour le texte, ajustez selon vos besoins */
-}
-
-input[type="date"]::-webkit-datetime-edit {
-    position: relative;
-    left: 10%; /* Ajustez cette    font-size: 5px !important;
-    valeur pour positionner le texte comme vous le souhaitez */
-}
 
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -239,4 +208,14 @@ input[type="number"]::-webkit-outer-spin-button {
     50% { opacity: 0; }
   }
 
+.input-icon {
+    margin-right: 8px; /* Adjust as needed */
+    width: 24px; /* Adjust as needed */
+    height: 24px; /* Adjust as needed */
+}
 
+.phone-prefix {
+    position: relative;
+    top: 8px;
+
+}
