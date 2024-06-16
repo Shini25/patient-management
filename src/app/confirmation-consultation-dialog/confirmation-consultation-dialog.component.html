@@ -3,27 +3,27 @@
 <mat-dialog-content>
   <p>The consultation has been updated successfully.</p>
   <h3>Previous Values:</h3>
-  <ul>
-    <li><strong>Patient First Name:</strong> {{ data.previous.patient.firstName }}</li>
-    <li><strong>Patient Last Name:</strong> {{ data.previous.patient.lastName }}</li>
-    <li><strong>Date of Consultation:</strong> {{ data.previous.consultationDate }}</li>
-    <li><strong>Reason:</strong> {{ data.previous.consultationReason }}</li>
-    <li><strong>Diagnosis:</strong> {{ data.previous.diagnosis }}</li>
-    <li><strong>Prescribed Treatment:</strong> {{ data.previous.prescribedTreatment }}</li>
-    <li><strong>Test Results:</strong> {{ data.previous.testResults }}</li>
-    <li><strong>Observations:</strong> {{ data.previous.observations }}</li>
-  </ul>
+  <mat-list>
+    <mat-list-item><strong>Patient First Name:</strong> {{ data.previous.patient.firstName }}</mat-list-item>
+    <mat-list-item><strong>Patient Last Name:</strong> {{ data.previous.patient.lastName }}</mat-list-item>
+    <mat-list-item><strong>Date of Consultation:</strong> {{ data.previous.consultationDate }}</mat-list-item>
+    <mat-list-item><strong>Reason:</strong> {{ data.previous.consultationReason }}</mat-list-item>
+    <mat-list-item><strong>Diagnosis:</strong> {{ data.previous.diagnosis }}</mat-list-item>
+    <mat-list-item><strong>Prescribed Treatment:</strong> {{ data.previous.prescribedTreatment }}</mat-list-item>
+    <mat-list-item><strong>Test Results:</strong> {{ data.previous.testResults }}</mat-list-item>
+    <mat-list-item><strong>Observations:</strong> {{ data.previous.observations }}</mat-list-item>
+  </mat-list>
   <h3>New Values:</h3>
-  <ul>
-    <li><strong>Patient First Name:</strong> <span [ngClass]="{'highlight': data.previous.patient.firstName !== data.updated.patient.firstName}">{{ data.updated.patient.firstName }}</span></li>
-    <li><strong>Patient Last Name:</strong> <span [ngClass]="{'highlight': data.previous.patient.lastName !== data.updated.patient.lastName}">{{ data.updated.patient.lastName }}</span></li>
-    <li><strong>Date of Consultation:</strong> <span [ngClass]="{'highlight': data.previous.consultationDate !== data.updated.consultationDate}">{{ data.updated.consultationDate }}</span></li>
-    <li><strong>Reason:</strong> <span [ngClass]="{'highlight': data.previous.consultationReason !== data.updated.consultationReason}">{{ data.updated.consultationReason }}</span></li>
-    <li><strong>Diagnosis:</strong> <span [ngClass]="{'highlight': data.previous.diagnosis !== data.updated.diagnosis}">{{ data.updated.diagnosis }}</span></li>
-    <li><strong>Prescribed Treatment:</strong> <span [ngClass]="{'highlight': data.previous.prescribedTreatment !== data.updated.prescribedTreatment}">{{ data.updated.prescribedTreatment }}</span></li>
-    <li><strong>Test Results:</strong> <span [ngClass]="{'highlight': data.previous.testResults !== data.updated.testResults}">{{ data.updated.testResults }}</span></li>
-    <li><strong>Observations:</strong> <span [ngClass]="{'highlight': data.previous.observations !== data.updated.observations}">{{ data.updated.observations }}</span></li>
-  </ul>
+  <mat-list>
+    <mat-list-item><strong>Patient First Name:</strong> <span [ngClass]="{'highlight': data.previous.patient.firstName !== data.updated.patient.firstName}">{{ data.updated.patient.firstName }}</span></mat-list-item>
+    <mat-list-item><strong>Patient Last Name:</strong> <span [ngClass]="{'highlight': data.previous.patient.lastName !== data.updated.patient.lastName}">{{ data.updated.patient.lastName }}</span></mat-list-item>
+    <mat-list-item><strong>Date of Consultation:</strong> <span [ngClass]="{'highlight': data.previous.consultationDate !== data.updated.consultationDate}">{{ data.updated.consultationDate }}</span></mat-list-item>
+    <mat-list-item><strong>Reason:</strong> <span [ngClass]="{'highlight': data.previous.consultationReason !== data.updated.consultationReason}">{{ data.updated.consultationReason }}</span></mat-list-item>
+    <mat-list-item><strong>Diagnosis:</strong> <span [ngClass]="{'highlight': data.previous.diagnosis !== data.updated.diagnosis}">{{ data.updated.diagnosis }}</span></mat-list-item>
+    <mat-list-item><strong>Prescribed Treatment:</strong> <span [ngClass]="{'highlight': data.previous.prescribedTreatment !== data.updated.prescribedTreatment}">{{ data.updated.prescribedTreatment }}</span></mat-list-item>
+    <mat-list-item><strong>Test Results:</strong> <span [ngClass]="{'highlight': data.previous.testResults !== data.updated.testResults}">{{ data.updated.testResults }}</span></mat-list-item>
+    <mat-list-item><strong>Observations:</strong> <span [ngClass]="{'highlight': data.previous.observations !== data.updated.observations}">{{ data.updated.observations }}</span></mat-list-item>
+  </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="closeDialog()">Close</button>

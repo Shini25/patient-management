@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router'; 
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogDoctorComponent } from './success-dialog-doctor/success-dialog-doctor.component';
 import 'jquery';
 
 declare global {
@@ -40,7 +42,8 @@ export class AddDoctorComponent implements OnInit {
   constructor(
     private doctorService: DoctorService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) {
     this.maxDate = new Date();
   }
@@ -93,10 +96,17 @@ addDoctor() {
         // Afficher la boîte de message de succès (modal)
         $('#successModal').modal('show');
         this.toastr.success('Ajout du médecin effectué avec succès !');
+        const dialogRef = this.dialog.open(SuccessDialogDoctorComponent);
+        dialogRef.afterClosed().subscribe(() => {
+          this.doctorForm.reset();
+        });
       });
     }
   }
 }
+  resetForm() {
+    throw new Error('Method not implemented.');
+  }
 
 
 phrases: string[] = [

@@ -99,28 +99,3 @@
         </div>
     </div>
 </div>
-
-<!-- Success Message Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Patient added successfully!</h5>
-            </div>
-            <div class="modal-body">
-                <!-- Display details of the added patient -->
-                <p>First Name: {{ newPatientDetails?.firstName }}</p>
-                <p>Last Name: {{ newPatientDetails?.lastName }}</p>
-                <p>Date of Birth: {{ newPatientDetails?.dateOfBirth }}</p>
-                <p>Gender: {{ newPatientDetails?.gender }}</p>
-                <p>Address: {{ newPatientDetails?.address }}</p>
-                <p>Phone Number: {{ newPatientDetails?.phoneNumber }}</p>
-                <p>Email: {{ newPatientDetails?.email }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-secondary" (click)="dismissModal()">Show List</button>
-            </div>
-        </div>
-    </div>
-</div>

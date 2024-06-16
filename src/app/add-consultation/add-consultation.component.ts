@@ -8,6 +8,8 @@ import { Patient } from '../models/patient.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { catchError, switchMap, throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogConsultationComponent } from './success-dialog-consultation/success-dialog-consultation.component';
 import 'jquery';
 
 declare global {
@@ -49,7 +51,8 @@ export class AddConsultationComponent implements OnInit {
     private patientService: PatientService,
     private doctorService: DoctorService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -129,7 +132,10 @@ export class AddConsultationComponent implements OnInit {
       ).subscribe({
         next: (response: any) => {
           this.newConsultationDetails = response;
-          $('#successModal').modal('show');
+          const dialogRef = this.dialog.open(SuccessDialogConsultationComponent);
+          dialogRef.afterClosed().subscribe(() => {
+            this.resetForm();
+          });
           this.toastr.success('Consultation successfully added.');
         },
         error: (error) => {
@@ -189,5 +195,10 @@ export class AddConsultationComponent implements OnInit {
       this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
       setTimeout(() => this.type(), this.pauseBetweenPhrases);
     }
+  }
+
+  resetForm() {
+    this.consultationForm.reset();
+    this.currentSection = 1;
   }
 }

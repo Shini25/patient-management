@@ -58,12 +58,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatListModule } from '@angular/material/list';
+
 
 import { AccountCreatedDialogComponent } from './create-account/account-created-dialog/account-created-dialog.component';
 
 
 // succes dialog
 import { SuccessDialogPatientComponent } from './add-patient/success-dialog-patient/success-dialog-patient.component';
+import { SuccessDialogDoctorComponent } from './add-medecin/success-dialog-doctor/success-dialog-doctor.component';
+import { SuccessDialogConsultationComponent } from './add-consultation/success-dialog-consultation/success-dialog-consultation.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +97,9 @@ import { SuccessDialogPatientComponent } from './add-patient/success-dialog-pati
     LoginComponent,
     NotFoundComponent,
     AccountCreatedDialogComponent,
-    SuccessDialogPatientComponent
+    SuccessDialogPatientComponent,
+    SuccessDialogDoctorComponent,
+    SuccessDialogConsultationComponent
 
   ],
   
@@ -116,6 +122,7 @@ import { SuccessDialogPatientComponent } from './add-patient/success-dialog-pati
     MatFormFieldModule,
     MatIconModule,
     MatRadioModule,
+    MatListModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',
