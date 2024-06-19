@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+
+/* Surcharge du background de l'overlay dans les mat-form-field */
+.mat-mdc-form-field-focus-overlay {
+    background-color: white !important; /* Définit le fond en blanc avec !important pour forcer la surcharge */
+}

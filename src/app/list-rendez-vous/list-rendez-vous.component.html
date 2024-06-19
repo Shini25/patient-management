@@ -106,10 +106,10 @@
 
                                 
                 
-                                <div class="row "   (mouseenter)="addBlur(appointment.id)">
+                                <div class="row" (mouseenter)="addBlur(appointment.id)">
                                     <div class="col-8 offset-2 option">
-                                        <button mat-button (click)="editAppointment(appointment)">Modifier</button>
-                                        <button mat-button color="warn" (click)="deleteAppointment(appointment.id, appointment)">Supprimer</button>
+                                        <button mat-raised-button (click)="editAppointment(appointment)">Modifier</button>
+                                        <button mat-raised-button color="warn" (click)="deleteAppointment(appointment.id, appointment)">Supprimer</button>
                                     </div>
                                 </div>
                             </div>

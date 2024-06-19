@@ -1,7 +1,9 @@
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
 
 }
 
@@ -41,7 +43,9 @@ body {
 }
 
 .stepper-container-root {
-  background-color: #ffffff;
+  background-color: #f7f7f70f;
+  width: 17vw;
+  color: #ffffffd3;
 }
 
 @keyframes zoomIn {
@@ -61,12 +65,12 @@ body {
 
 .fourth {
     height: 100vh;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     padding-top: 50px;
 }
 
 .last {
-    height: 70vh;
+    height: 100vh;
     background-color: rgba(19, 18, 18, 0.989);
 }
 
@@ -241,10 +245,10 @@ h1 {
     color: #e0e0e0;
     padding-left: 30px;
     font-size: 24px;
-    margin-bottom: 20px; /* Espacement entre les paragraphes */
+    margin-top: 6rem; /* Espacement entre les paragraphes */
     line-height: 1.6; /* Espacement entre les lignes */
-    text-align: left; /* Aligner le texte à gauche */
-
+    text-align: justify; /* Aligner le texte à gauche */
+    
 }
 
 .slideIn-right {
@@ -293,11 +297,11 @@ to {
 
 .about-us {
     font-size: 30px;
-    color: #ffffffb8;
+    color: #000000bd;
 }
 
 .about-us-title {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     margin-bottom: 40px;
     margin-left: 290px;
 
@@ -566,15 +570,17 @@ h3 {
 
 
 .nav-link {
-    color: #0000008c ;
+    color: #0707078c ;
     transition: 0.5s;
-    font-size: 20px;
+    font-size: 22px;
+    position: relative;
+    left: -30px;
+    bottom: 2px;
     
 
 }
 
 .nav-link:hover {
-    color: #001eff8c ;
     transition: 0.5s;
     transform: scale(1.1);
 }
@@ -604,9 +610,9 @@ h3 {
   }
 
   .step {
-    width: 20px;
-    height: 20px;
-    background-color: #dee1fef2;
+    width: 15px;
+    height: 15px;
+    background-color: #e6e6e6c4;
     border-radius: 50%;
     border: #00000004 solid 1px;
     margin: 20px;
@@ -618,9 +624,9 @@ h3 {
   }
 
   .active-step {
-    width: 20px;
-    height: 20px;
-    background-color:  #2084ffee;
+    width: 18px;
+    height: 18px;
+    background-color:   #0f0081;
     border-radius: 50%;
     border: #00000001 solid 1px;
     margin: 20px;
@@ -634,7 +640,7 @@ h3 {
 
   @keyframes colorShift {
     0% { background-color: rgba(212, 212, 255, 0.751); }
-    100% { background-color:  #20b8ffee; }
+    100% { background-color:   #1700c7; }
   }
 
 
@@ -650,7 +656,7 @@ h3 {
   .line {
     width: 2px;
     height: 60px;
-    background-color: #00000005;
+    background-color: #00000000;
   }
 
   .line::after {
@@ -660,8 +666,8 @@ h3 {
     height: 100%;
     background: repeating-linear-gradient(
       to bottom,
-      #5f5f5f,
-      #4d4d4d 2px,
+      #a4a4a4,
+      #a4a4a4 2px,
       transparent 2px,
       transparent 4px
     );
@@ -670,22 +676,19 @@ h3 {
     padding: 0;
     margin: 0;
     padding-right: 20px;
+    width: 82vw;
+    background-color: #ffffff;
   }
 
 
   .active-route {
-    color: #20b1ffee;
-    font-weight: bold;
-    font-size: 24px;
+    color: #1700c7;
+    font-weight: 500;
+    font-size: 22px;
     transition: 1.5s;
   }
   
   
-  .active-link {
-    text-decoration: underline;
-    color: red;
-  }
-
   .nav-item button {
     height: 10px;
     margin-top: 12px;
@@ -774,4 +777,14 @@ h3 {
   
   .acceder-service:hover {
     background-color: #0057b300; /* Bleu plus foncé pour le survol */
+  }
+                                     
+
+  .btn-list-icon {
+    height: 15px !important;
+  }
+
+  .btn-add-icon {
+    height: 15px !important;
+
   }

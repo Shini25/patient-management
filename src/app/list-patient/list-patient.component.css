@@ -1,9 +1,8 @@
 .root-content {
     position: relative;
-    background-color: rgb(255, 255, 255);
     height: 100vh;
-    padding: 10px;
     padding-top: 0%;
+    padding-left: 30px;
 }
 
 
@@ -12,7 +11,7 @@
     height: 10vh;
     background-color: rgb(16, 0, 6);   
     border-radius: 5px;
-    box-shadow: 0px 4px 4px -6px rgb(0, 7, 44); 
+    box-shadow: 0px 4px 4px -6px rgb(0, 0, 0); 
 }
 .search input{
     height: 40px;
@@ -54,11 +53,9 @@
   flex-wrap: wrap;
   max-height: 670px;
   overflow-y: scroll;
-  padding-left: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.268);
+  padding-left: 50px;
   border-radius: 10px;
-  box-shadow: 0 3px 3px  #0014f39c;
-  background-color: #ffffff;
+  background-color: #11000006;
   
 }
 
@@ -75,16 +72,16 @@
   border-left: 1px solid rgba(146, 146, 245, 0.274);
   border-right: 1px solid rgba(146, 146, 245, 0.274);
   border-radius: 5px 5px 15px 15px;
-  margin: 8px;
-  width: 287px;
+  margin: 4px;
+  width: 350px;
+  margin-left: px;
   margin-bottom: 10px;
   background: white;
+  overflow: hidden;
+  margin-right: 30px;
 
 }
 
-.Patient-info:hover {
-    background-color: #fff6faf8;
-}
 
 .Patient-info-content {
     transition: 1s;
@@ -93,6 +90,7 @@
 .Patient-info-content:hover {
     transform: scale(1.07);
     transition: 0.4s;
+    filter: blur(1px);
 }
 
 .blur {
@@ -141,7 +139,7 @@ ul li {
     border: 1px solid rgba(0, 0, 0, 0.268);
     border-radius: 10px;
     padding-top: 10px;
-    box-shadow: 0 3px 3px  #2c76ff;
+    box-shadow: 0 3px 3px  #003699;
     background-color: #ffffff;
 }
 
@@ -197,9 +195,6 @@ ul li {
 .option {
     opacity: 0;
     transition: 0.4s;
-    filter: blur(0px) !important;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 .option  img{
     height: 45px;
@@ -222,9 +217,8 @@ ul li {
 
 .second-option {
     text-align: right;
-}
-li span {
-    font-weight: bold;
+    font-size: 15px !important;
+    font-weight: 500;
 }
 
 .idPatient {
@@ -240,4 +234,57 @@ li span {
     padding-right: 5px;
 }
 
+@keyframes colorChange {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: rgba(255, 125, 125, 0.123);
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+.urgent-header {
+    animation: colorChange 2s infinite;
+}
+
+
+.text-center-first {
+    text-align: center;
+    font-size: 15px;
+    color: transparent; /* Vous pouvez changer la couleur selon vos besoins */
+}
+
+.appointment-status  img{
+    height: 30px;
+    width: 30px;
+}
+
+.uncheck-icon {
+    color: red;
+}
+
+.check-icon {
+    color: green;
+}
+
+.check-icon img {
+    height: 25px;
+    width: 25px;
+    position: relative;
+    bottom: 3px;
+    margin-left: 10px;
+
+}
+
+.uncheck-icon span img {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    position: relative;
+    bottom: 3px;
+
+}
 

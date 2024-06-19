@@ -38,32 +38,17 @@ export class ListPatientComponent implements OnInit {
     );
   }
 
-  calculateAge(dateOfBirth: Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean } {
-    const birthDate = new Date(dateOfBirth);
+  calculateAge(dateOfBirth: string | Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean } {
+    const birthDate = typeof dateOfBirth === 'string' ? new Date(dateOfBirth) : dateOfBirth;
     const today = new Date();
-    let ageInYears = today.getFullYear() - birthDate.getFullYear();
-    let months = today.getMonth() - birthDate.getMonth() + (12 * (today.getFullYear() - birthDate.getFullYear()));
-    const dayDifference = today.getDate() - birthDate.getDate();
+    const ageInMilliseconds = today.getTime() - birthDate.getTime();
+    const ageDate = new Date(ageInMilliseconds);
 
-    if (dayDifference < 0) {
-      months--;
-    }
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const isLessThanOneYear = age < 1;
+    const isLessThanOneMonth = ageDate.getUTCMonth() < 1 && isLessThanOneYear;
 
-    if (months < 0) {
-      months += 12;
-      ageInYears--;
-    }
-
-    let days = 0;
-    if (months === 0 && ageInYears === 0) {
-      days = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 3600 * 24));
-    }
-
-    return {
-      age: ageInYears < 1 ? (months < 1 ? days : months) : ageInYears,
-      isLessThanOneYear: ageInYears < 1,
-      isLessThanOneMonth: months === 0 && ageInYears === 0
-    };
+    return { age, isLessThanOneYear, isLessThanOneMonth };
   }
 
   addBlur(patientId: number | undefined) {
@@ -77,15 +62,15 @@ export class ListPatientComponent implements OnInit {
   }
 
   formatFirstName(name: string): string {
-    return name.length > 17 ? name.slice(0, 17) + '...' : name;
+    return name.length > 20 ? name.slice(0, 20) + '...' : name;
   }
 
   formatLastName(name: string): string {
-    return name.length > 25 ? name.slice(0, 25) + '...' : name;
+    return name.length > 32 ? name.slice(0, 32) + '...' : name;
   }
 
   formatMail(mail: string): string {
-    return mail.length > 25 ? mail.slice(0, 25) + '...' : mail;
+    return mail.length > 30 ? mail.slice(0, 30) + '...' : mail;
   }
 
   editPatient(patient: Patient): void {

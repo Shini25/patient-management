@@ -3,8 +3,8 @@
     margin-top: 5px;
     padding-right: 10px;
     height: 98vh;
-    background-color: #00000010;
-    box-shadow: 0 4px 4px rgba(255, 0, 93, 0.273);
+    background-color: #d4d4d423;
+    margin-left: 10px;
 
 }
 
@@ -14,10 +14,11 @@
 }
 .form-container {
     height: 94vh;
-    position: relative;
-    background-color: #fffffff1;
-    padding-top: 6px;
-    border: 1px solid #0000001c;
+    background-color: #ffffff;
+    box-shadow:0px 2px 6px #00000009;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin-top: 2vh;
 }
 .info-container {
     position: relative;
@@ -36,108 +37,11 @@
 
 }
 
-
-.form-container-right-root{
-    background-image: url("/assets/doctor-work (1).jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 98vh;
-    border-radius: 0 10px 10px 0;
-    padding: 0;
-    margin: 0 ;
-
-}
-
-.login-id img {
-    height: 28px;
-    position: relative;
-    left: 0px;
-    top: 20px;
-}
-
-.login-id {
-    position: relative;
-    left: 10px;
-
-
-}
-
-.form-style {
-    
-    border: #ffffff00;
-    height: 38px;
-    border-bottom: #7c7c7c77 double;
-    background-color: rgba(255, 255, 255, 0);
-    box-shadow: 0 4px 4px -6px rgb(0, 0, 0);
-    font-size: 20px;
-    padding-left: 110px;
-    color: #000000f1;
-    border-radius: 10px;
-    background-color: #3214f90f;
-
-    
-}
-/* Supprimer la bordure de focus */
-.form-style:focus{
-    outline: none;
-    padding-left: 110px;
-    font-size: 20px;
-
-}
-
-.placeholder-form-style{
-    position: relative;
-    top: -60px;
-    left: 110px;
-    color: #000000b1;
-    font-size: large;
-    transition: 0.5s;
-    pointer-events: none;
-
-    
-    
-}
-
-
-
-.form-style:focus  + .placeholder-form-style{
-    transition: 0.5s;
-    position: relative;
-    top: -80px;
-    left: 0px;
-    color: #0d02a9f8;
-    
-}
-
-.form-group{
-    height: 85px;
-}
-
-.form-style:not(:placeholder-shown)+.placeholder-form-style {
-    opacity: 0.8;
-    font-size: 15px;
-}
-
-
-
 .title {
     text-align: center;
     color: #00282eee;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 30px;
-    z-index: 1000 !important;
-}
-
-
-
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 
@@ -194,19 +98,38 @@ input[type="number"]::-webkit-outer-spin-button {
     50% { opacity: 0; }
   }
 
+
+
+
 .input-icon {
     margin-right: 8px; /* Adjust as needed */
-    width: 25px; /* Adjust as needed */
-    height: 25px; /* Adjust as needed */
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
     background-color: #00000000;
+    margin-left: 10px;
+    opacity: 0.5;
     
 }
 
+.gender-type {
+    display: flex;
+    justify-content: space-around;
+}
+
+.gender-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .phone-prefix {
-    position: relative;
-    top: 8px;
-    margin-right: 8px; /* Adjust as needed */
-    width: 30px; /* Adjust as needed */
-    height: 30px; /* Adjust as needed */
+    margin-right: 8px;
 }
+
+.spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }

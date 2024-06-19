@@ -78,4 +78,9 @@
   }
 
 
-  
+  .main-title {
+    font-size: 28px; /* Set the font size */
+    color: #2C3E50; /* Set the text color */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Add space below the title */
+}

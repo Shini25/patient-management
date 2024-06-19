@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -59,6 +60,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+
+import { MatFormFieldAppearance } from '@angular/material/form-field';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { AccountCreatedDialogComponent } from './create-account/account-created-dialog/account-created-dialog.component';
@@ -68,6 +74,7 @@ import { AccountCreatedDialogComponent } from './create-account/account-created-
 import { SuccessDialogPatientComponent } from './add-patient/success-dialog-patient/success-dialog-patient.component';
 import { SuccessDialogDoctorComponent } from './add-medecin/success-dialog-doctor/success-dialog-doctor.component';
 import { SuccessDialogConsultationComponent } from './add-consultation/success-dialog-consultation/success-dialog-consultation.component';
+import { SuccessDialogAppointmentComponent } from './add-rendez-vous/success-dialog-appointment/success-dialog-appointment.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +106,9 @@ import { SuccessDialogConsultationComponent } from './add-consultation/success-d
     AccountCreatedDialogComponent,
     SuccessDialogPatientComponent,
     SuccessDialogDoctorComponent,
-    SuccessDialogConsultationComponent
+    SuccessDialogConsultationComponent,
+    SuccessDialogAppointmentComponent,
+    
 
   ],
   
@@ -123,6 +132,9 @@ import { SuccessDialogConsultationComponent } from './add-consultation/success-d
     MatIconModule,
     MatRadioModule,
     MatListModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',

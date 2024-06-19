@@ -41,11 +41,11 @@
           <div class="col-10 offset-1">
             <p class="lead">
               Efficiently manage appointments, medical records, and treatment plans.
-              <br>
+              
               Streamline prescriptions and billing.
-              <br>
+              
               Enhance patient communication and workflow optimization.
-              <br>
+              
               Empower healthcare professionals to deliver exceptional care.
           </p>
           </div>
@@ -59,7 +59,7 @@
 
 <!-- Container: third -->
 <div  class="container-fluid third scroll-section "  id="Service" #scrollSection>
-  <div class="row thirdSection" *ngIf="isAuthenticated()" #thirdSection>
+  <div class="row thirdSection" *ngIf="isAuthenticated()" >
 
     <div class="col-2 stepper-container-root" >
       <div class="stepper-container">
@@ -73,11 +73,11 @@
                   </button>
                   <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
                     <a routerLink="add-patient" class="btn-add" (click)="closePatientOptions()">
-                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                      <img src="../assets/add.png" alt="Add Icon" class="btn-add-icon">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="list-patient" class="btn-list" (click)="closePatientOptions()">
-                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list (1).png" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -95,11 +95,11 @@
                   </button>
                   <div id="doctorCollapse" class="options row" *ngIf="showDoctorOptions">
                     <a routerLink="add-doctor" class="btn-add" (click)="closeDoctorOptions()">
-                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                      <img src="../assets/add.png" alt="Add Icon" class="btn-add-icon">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="list-doctor" class="btn-list" (click)="closeDoctorOptions()">
-                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list (1).png" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -118,11 +118,11 @@
                 </button>
                 <div id="consultationCollapse" class="options row" *ngIf="showConsultationOptions">
                   <a routerLink="add-consultation" class="btn-add" (click)="closeConsultationOptions()">
-                    <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon">
+                    <img src="../assets/add.png" alt="Add Icon" class="btn-add-icon">
                     <span class="register-text">Register</span>
                   </a>
                   <a routerLink="list-consultation" class="btn-list" (click)="closeConsultationOptions()">
-                    <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                    <img src="../assets/list (1).png" alt="List Icon" class="btn-list-icon">
                     <span class="list-text">List</span>
                   </a>
                 </div>
@@ -141,11 +141,11 @@
 
                   <div id="appointmentCollapse" class="options row" *ngIf="showAppointmentOptions">
                     <a routerLink="add-appointment" class="btn-add" (click)="closeAppointmentOptions()">
-                      <img src="../assets/add.gif" alt="Add Icon" class="btn-add-icon ">
+                      <img src="../assets/add.png" alt="Add Icon" class="btn-add-icon ">
                       <span class="register-text">Register</span>
                     </a>
                     <a routerLink="list-appointment" class="btn-list" (click)="closeAppointmentOptions()">
-                      <img src="../assets/list.gif" alt="List Icon" class="btn-list-icon">
+                      <img src="../assets/list (1).png" alt="List Icon" class="btn-list-icon">
                       <span class="list-text">List</span>
                     </a>
                   </div>
@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <div class="col-10 right-content">
+    <div class="right-content">
         <router-outlet></router-outlet>
     </div>
 

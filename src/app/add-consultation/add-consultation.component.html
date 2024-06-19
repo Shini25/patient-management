@@ -1,37 +1,29 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 offset-1 root-container">
-            <div class="row">
-                <h1 class="title pt-3">Register a consultation</h1>
+        <div class="col-12 root-container">
+            <div class="row form-root">
 
-                <form [formGroup]="consultationForm" (ngSubmit)="addConsultation()" class="form-container col-10 offset-1 border p-4">
+                <form [formGroup]="consultationForm" (ngSubmit)="addConsultation()" class="form-container col-4 offset-4">
                     <div class="row">
-
-                        <div class="col-2 Navigation-button-left" (click)="previousSection()">
-                            <button  [disabled]="currentSection === 1" class="btn btn-secondary ">
-                                <span class="back-arrow"><img src="../assets/left.png" alt=""></span>
-                            </button>
-                        </div>
+                        <h1 class="title pt-3">Register a consultation</h1>
                         
-
-                        <div class="col-8 pt-3">
                         <!-- Section 1 -->
-                            <div *ngIf="currentSection === 1" >
+                            <div *ngIf="!showAdditionalFields" >
                                 <div class="col-10 offset-1">
         
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Select Patient</mat-label>
                                             <mat-select formControlName="patient">
                                                 <mat-option *ngFor="let patient of patients" [value]="patient.id">
-                                                    {{ patient.id ? patient.id : 'Not assigned' }}
+                                                    {{ patient.id ? patient.firstName : 'Not assigned' }}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Select Doctor</mat-label>
                                             <mat-select formControlName="doctor">
                                                 <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
@@ -42,35 +34,36 @@
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
-                                            <mat-label>Consultation Date</mat-label>
-                                            <input matInput type="date" formControlName="consultationDate" required>
+                                        <mat-form-field appearance="outline" class="col-12">
+                                          <mat-label>Consultation Date</mat-label>
+                                          <input matInput type="text" formControlName="consultationDate" [attr.disabled]="true">
                                         </mat-form-field>
-                                    </div>
-                             
+                                      </div>
+                                      
+                                      
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Consultation Reason</mat-label>
                                             <input matInput type="text" formControlName="consultationReason" required>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Diagnosis</mat-label>
                                             <input matInput type="text" formControlName="diagnosis" required>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Prescribed Treatment</mat-label>
                                             <input matInput type="text" formControlName="prescribedTreatment" required>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Test Results</mat-label>
                                             <input matInput type="text" formControlName="testResults" required>
                                         </mat-form-field>
@@ -78,50 +71,45 @@
                                 </div>
                             </div>
 
+                                                <!-- Toggle button for showing/hiding additional fields -->
+                    <div class="col-10 offset-1 text-center mb-3">
+                        <button mat-icon-button (click)="toggleFields()">
+                            <mat-icon>{{ showAdditionalFields ? 'expand_less' : 'expand_more' }}</mat-icon>
+                        </button>
+                    </div>
+
                             <!-- Section 2 -->
-                            <div *ngIf="currentSection === 2">
+                            <div *ngIf="showAdditionalFields">
                                 <div class=" col-10 offset-1 ">
 
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Consultation Fee</mat-label>
                                             <input matInput type="number" formControlName="consultationFee" required>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
-                                        <mat-form-field class="col-12">
+                                        <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Observations</mat-label>
                                             <input matInput type="text" formControlName="observations" required>
                                         </mat-form-field>
                                     </div>
                              
-                                    <div class="form-group">
-                                        <mat-form-field class="col-12">
-                                            <mat-label>Payment Status</mat-label>
-                                            <mat-select formControlName="paymentStatus">
-                                                <mat-option [value]="true">True</mat-option>
-                                                <mat-option [value]="false">False</mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+
                                 
-                                    <div class="form-group row col-10 offset-1">
+                                    <div class="form-group row col-10 offset-1 mt-5">
                                         <div class="col-sm-6">
-                                            <button type="submit" [disabled]="consultationForm.invalid" class="btn btn-primary w-100">Add</button>
+                                            <button mat-raised-button color="primary" type="submit" [disabled]="consultationForm.invalid" class="w-100">Add</button>
                                         </div>
                                         <div class="col-sm-6">
-                                            <button type="button" (click)="consultationForm.reset()" class="btn btn-secondary w-100">Clear All</button>
+                                            <button mat-raised-button color="warn" (click)="resetForm()" class="w-100">Clear All</button>
                                         </div>
                                     </div>
                                 </div>
+                            
                             </div>
-                            </div>
-                            <div class="col-2 Navigation-button-right" (click)="nextSection()">
-                                <button [disabled]="currentSection === 2" class="btn btn-secondary">
-                                    <span><img src="../assets/right-arrow.png" alt="next"></span>
-                                </button>
-                            </div>
+
                         </div>
                     
                 </form>

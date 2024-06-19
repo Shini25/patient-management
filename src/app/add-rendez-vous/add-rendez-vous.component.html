@@ -1,104 +1,70 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 offset-1 root-container">
+        <div class="col-12 root-container">
             <div class="row">
-            <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()"  class="form-container col-6">
-            <h1 class="title mt-3 text-center">
-                Register an appointment
-            </h1>
 
+            <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()"  class="form-container col-4 offset-4">
 
-
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/medical.png" alt="">
-                    </span>
-                    <select formControlName="patient" class="form-style col-12">
-                        <ng-container *ngFor="let patient of patients">
-                            <option [ngValue]="patient.id">{{ patient.id ? patient.id : 'Not assigned' }}</option>
-                        </ng-container>
-                    </select>
-                    <span class="placeholder-form-style-first">
-                    </span>
+                <h1 class="title mt-3 mb-5 text-center">
+                    Register an appointment
+                </h1>
+                <div class="col-10 offset-1">
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>Patient</mat-label>
+                        <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                        <mat-select formControlName="patient">
+                            <mat-option *ngFor="let patient of patients" [value]="patient.id">
+                                {{ patient.id ? patient.firstName : 'Not assigned' }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
 
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/nurse.png" alt="">
-                    </span>
-                    <select formControlName="doctor" class="form-style col-12">
-                        <ng-container *ngFor="let doctor of doctors">
-                            <option [ngValue]="doctor.id">{{ doctor.firstName ? doctor.firstName : 'Not assigned' }}</option>
-                        </ng-container>
-                    </select>
-                    <span class="placeholder-form-style-first">
-                    </span>
+                <div class="col-10 offset-1">
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>Doctor</mat-label>
+                        <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                        <mat-select formControlName="doctor">
+                            <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                                {{ doctor.firstName ? doctor.firstName : 'Not assigned' }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
 
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/lightbulb-question_10470612.png" alt="">
-                    </span>
-                    <input type="text" class="form-style col-12 " id="reason" formControlName="reason" placeholder="" required>
-                    <span class="placeholder-form-style">Reason
-                    </span>
+                <div class="col-10 offset-1" >
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>Reason</mat-label>
+                        <img matPrefix src="../assets/lightbulb-question.png" alt="" class="input-icon">
+                        <input matInput type="text" id="reason" formControlName="reason" required>
+                    </mat-form-field>
                 </div>
 
-                <div class="form-group col-10 offset-1">
-                    <span class="login-id"><img src="../assets/calendar_2693507.png" alt="">
-                    </span>
-                    <input type="date" class="form-style col-12 " id="appointmentDate" formControlName="appointmentDate" placeholder="" required>
-                    <span class="placeholder-form-style">Date
-                    </span>
+                <div class="col-10 offset-1 mb-5">
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <img matPrefix src="../assets/calendar-birhtday-cake.png" alt="" class="input-icon">
+                        <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="appointmentDate" [min]="minDate" required readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
                 </div>
 
 
-                <div class="form-group row col-10 offset-1">
+                <div class="row col-10 offset-1">
                     <div class="col-sm-6">
-                        <button type="submit" [disabled]="appointmentForm.invalid" class="btn btn-primary w-100">Add</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid" class="w-100">Add</button>
                     </div>
                     <div class="col-sm-6">
-                        <button type="button" (click)="appointmentForm.reset()" class="btn btn-secondary w-100">Clear All</button>
+                        <button mat-raised-button color="warn" type="button" (click)="appointmentForm.reset()" class="w-100">Clear All</button>
                     </div>
                 </div>
-            
+
             </form>
-        <div class="col-6 root-typewriter" >
-            <!-- todo -->
-            <div class="typewriter">
-                <span>{{ displayedText }}</span><span class="cursor"></span>
+            <div class="col-6 right-container">
             </div>
-            <div class="form-container-right-root col-12">
-
-            </div>
-                   
-        </div>
         
     </div>
 </div>
 </div>
 </div>  
-    <!--
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Appointment successfully added !</h5>
-                </div>
-                <div class="modal-body">
-                     
-                    <p>Patient : {{ newAppointmentDetails?.patient.id }}</p>
-                    <p>Doctor : {{ newAppointmentDetails?.doctor.id }}</p>
-                    <p>Reason: {{ newAppointmentDetails?.reason }}</p>
-                    <p>Date: {{ newAppointmentDetails?.appointmentDate }}</p>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary" (click)="dismissModal()">Show</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
-
- 

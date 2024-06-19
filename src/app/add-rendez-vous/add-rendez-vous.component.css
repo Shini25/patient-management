@@ -1,9 +1,11 @@
 .root-container {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 13, 255, 0.91); /* Added blue blur shadow */
     margin-top: 5px;
     padding-right: 10px;
     height: 98vh;
+    background-color: #d4d4d423;
+    margin-left: 10px;
+   
 
 }
 
@@ -12,12 +14,15 @@
     margin: 0%;
 }
 .form-container {
-    height: 98vh;
-    position: relative;
-    background-color: #fffffff1;
-    border-radius: 10px 0 0 10px;
-    padding-top: 6px;
+    height: 94vh;
+    background-color: #ffffff;
+    box-shadow:0px 2px 6px #00000009;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin-top: 2vh;
 }
+
+
 .info-container {
     position: relative;
     text-align: center;
@@ -116,20 +121,10 @@
     opacity: 0;
 }
 
-#dateOfBirth {
-    padding-left: 80px;
-    color: #32323277;
-    font-size: 20px !important;
-
-}
-
-.dateofbirth {
-    margin-bottom: 20px !important;
-}
 .title {
     text-align: center;
-    color: #2032ffee;
-    font-size: 40px;
+    color: #000000cc;
+    font-size: 30px;
     font-weight: 30px;
     z-index: 1000 !important;
 }
@@ -153,27 +148,6 @@
     color: rgba(228, 228, 228, 0.959);
 }
 
-input[type="date"] {
-    position: relative;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    left: 0; /* Déplace l'icône à gauche */
-    padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
-    pointer-events: auto; /* Assure que l'icône est cliquable */
-    opacity: 0; /* Rend l'icône visible */
-}
-
-input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding-right: 0%; /* Ajoute de l'espace à gauche pour le texte, ajustez selon vos besoins */
-}
-
-input[type="date"]::-webkit-datetime-edit {
-    position: relative;
-    left: 10%; /* Ajustez cette    font-size: 5px !important;
-    valeur pour positionner le texte comme vous le souhaitez */
-}
 
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -240,3 +214,15 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
 
+
+  .input-icon {
+    margin-right: 8px; /* Adjust as needed */
+    width: 25px; /* Adjust as needed */
+    height: 25px; /* Adjust as needed */
+    background-color: #00000000;
+    margin-left: 10px;
+    opacity: 0.5;
+    
+}
+/*sfsfsfsfsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+*/

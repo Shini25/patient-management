@@ -27,21 +27,26 @@ export class AddConsultationComponent implements OnInit {
 
   @ViewChild('newconsultationElement') newconsultationElement: ElementRef | undefined;
 
+
+  showAdditionalFields = false;
+
   patients: Patient[] = [];
   doctors: Doctor[] = [];
   newConsultationDetails: any;
 
+  todayDate: string = new Date().toISOString().split('T')[0];
+
   consultationForm = new FormGroup({
     patient: new FormControl(null, [Validators.required]),
     doctor: new FormControl(null, [Validators.required]),
-    consultationDate: new FormControl(new Date(), [Validators.required]),
+    consultationDate: new FormControl({ value: this.todayDate, disabled: true }, [Validators.required]),
     consultationReason: new FormControl('', [Validators.required]),
     diagnosis: new FormControl('', [Validators.required]),
     prescribedTreatment: new FormControl('', [Validators.required]),
     testResults: new FormControl('', [Validators.required]),
     consultationFee: new FormControl('', [Validators.required]),
     observations: new FormControl('', [Validators.required]),
-    paymentStatus: new FormControl('', [Validators.required])
+    paymentStatus: new FormControl(true, [Validators.required])
   });
 
   currentSection: number = 1;
@@ -100,7 +105,7 @@ export class AddConsultationComponent implements OnInit {
                   const newConsultation = {
                     patient: patient,
                     doctor: doctor,
-                    consultationDate: consultationDateValue,
+                    consultationDate: new Date(consultationDateValue), // Convert string to Date
                     consultationReason: consultationReasonValue,
                     diagnosis: diagnosisValue,
                     prescribedTreatment: prescribedTreatmentValue,
@@ -109,7 +114,18 @@ export class AddConsultationComponent implements OnInit {
                     observations: observationsValue,
                     paymentStatus: paymentStatusValue
                   };
-                  return this.consultationService.saveConsultation(newConsultation);
+                  return this.consultationService.saveConsultation(newConsultation).pipe(
+                    switchMap(() => {
+                      if (patient.id !== undefined) {
+                        patient.consultationStatus = true;
+                        patient.patientCategory = 'FOLLOW_UP';
+                        return this.patientService.updatePatient(patient.id, patient);
+                      } else {
+                        this.toastr.error('Patient ID is undefined.');
+                        return throwError(() => new Error('Patient ID is undefined'));
+                      }
+                    })
+                  );
                 } else {
                   this.toastr.error('Doctor not found.');
                   return throwError(() => new Error('Doctor not found'));
@@ -198,7 +214,18 @@ export class AddConsultationComponent implements OnInit {
   }
 
   resetForm() {
+    const currentDate = this.todayDate;
     this.consultationForm.reset();
+    this.consultationForm.patchValue({
+      consultationDate: currentDate
+    });
+    this.consultationForm.get('consultationDate')?.disable();
     this.currentSection = 1;
   }
+
+
+  toggleFields(): void {
+    this.showAdditionalFields = !this.showAdditionalFields;
+  }
+  
 }

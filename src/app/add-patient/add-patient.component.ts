@@ -29,12 +29,17 @@ export class AddPatientComponent implements OnInit {
     dateOfBirth: new FormControl('', [Validators.required]), // Removed default date formatting
     gender: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), this.phonePrefixValidator]),
-    email: new FormControl('', [Validators.required, Validators.email])
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    patientCategory: new FormControl('', [Validators.required]),
+    consultationStatus: new FormControl(false, [Validators.required]),
+    appointmentStatus: new FormControl(false, [Validators.required])
   });
 
   newPatientDetails: any;
   maxDate: Date;
+  showAdditionalFields = false;
+  isLoading: boolean = false;
 
   constructor(
     private patientService: PatientService,
@@ -52,6 +57,7 @@ export class AddPatientComponent implements OnInit {
 
   addPatient() {
     if (this.patientForm.valid) {
+      this.isLoading = true;
       const firstNameValue = this.patientForm.get('firstName')?.value;
       const lastNameValue = this.patientForm.get('lastName')?.value;
       const dateOfBirthValue = this.patientForm.get('dateOfBirth')?.value;
@@ -59,6 +65,9 @@ export class AddPatientComponent implements OnInit {
       const addressValue = this.patientForm.get('address')?.value;
       const phoneNumberValue = this.patientForm.get('phoneNumber')?.value;
       const emailValue = this.patientForm.get('email')?.value;
+      const patientCategoryValue = this.patientForm.get('patientCategory')?.value;
+      const consultationStatusValue = this.patientForm.get('consultationStatus')?.value;
+      const appointmentStatusValue = this.patientForm.get('appointmentStatus')?.value;
 
       if (
         firstNameValue !== null &&
@@ -74,7 +83,13 @@ export class AddPatientComponent implements OnInit {
         phoneNumberValue !== null &&
         phoneNumberValue !== undefined &&
         emailValue != null &&
-        emailValue != undefined
+        emailValue != undefined &&
+        patientCategoryValue !== null &&
+        patientCategoryValue !== undefined &&
+        consultationStatusValue !== null &&
+        consultationStatusValue !== undefined &&
+        appointmentStatusValue !== null &&
+        appointmentStatusValue !== undefined
       ) {
         const newPatient = {
           firstName: firstNameValue,
@@ -83,24 +98,37 @@ export class AddPatientComponent implements OnInit {
           gender: genderValue,
           address: addressValue,
           phoneNumber: phoneNumberValue,
-          email: emailValue
+          email: emailValue,
+          patientCategory: patientCategoryValue,
+          consultationStatus: consultationStatusValue,
+          appointmentStatus: appointmentStatusValue
         };
 
-        this.patientService.savePatient(newPatient).subscribe((response: any) => {
-          this.newPatientDetails = response;
+        // Ajouter un délai avant de procéder à l'ajout des données
+        setTimeout(() => {
+          this.patientService.savePatient(newPatient).subscribe((response: any) => {
+            this.newPatientDetails = response;
 
-          // Afficher la notification de succès
-          this.toastr.success('Patient enregistré avec succès ! En attente de la disponibilité du bureau du docteur.');
+            // Afficher la notification de succès
+            this.toastr.success('Patient enregistré avec succès ! En attente de la disponibilité du bureau du docteur.');
 
-          // Ouvrir le dialogue de succès
-          const dialogRef = this.dialog.open(SuccessDialogPatientComponent);
+            // Ouvrir le dialogue de succès
+            const dialogRef = this.dialog.open(SuccessDialogPatientComponent);
 
-          // Réinitialiser le formulaire après la fermeture du dialogue
-          dialogRef.afterClosed().subscribe(() => {
-            this.resetForm();
+            // Réinitialiser le formulaire après la fermeture du dialogue
+            dialogRef.afterClosed().subscribe(() => {
+              this.resetForm();
+            });
+
+            this.isLoading = false;
+          }, (error) => {
+            this.toastr.error('Erreur lors de l\'enregistrement du patient.');
+            this.isLoading = false;
           });
-        });
+        }, 2000); // Délai de 1000 millisecondes (1 seconde)
       }
+    } else {
+      this.toastr.error('Veuillez remplir tous les champs requis.');
     }
   }
 
@@ -108,13 +136,6 @@ export class AddPatientComponent implements OnInit {
     this.patientForm.reset();
   }
 
-  phonePrefixValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-    if (value && !value.startsWith('+261')) {
-      return { phonePrefix: true };
-    }
-    return null;
-  }
 
   phrases: string[] = [
     "Welcome to patient registration!",
@@ -157,5 +178,9 @@ export class AddPatientComponent implements OnInit {
       this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
       setTimeout(() => this.type(), this.pauseBetweenPhrases);
     }
+  }
+
+  toggleFields(): void {
+    this.showAdditionalFields = !this.showAdditionalFields;
   }
 }

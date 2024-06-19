@@ -11,6 +11,6 @@ export interface Consultation {
   prescribedTreatment: string;
   testResults: string;
   consultationFee: number;
-  paymentStatus: string;
+  paymentStatus: boolean;
   observations: string;
 }

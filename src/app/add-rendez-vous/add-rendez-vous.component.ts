@@ -8,6 +8,10 @@ import { Patient } from '../models/patient.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router'; 
 import { catchError, switchMap, throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogAppointmentComponent } from './success-dialog-appointment/success-dialog-appointment.component';
+import { ThemePalette } from '@angular/material/core';
+
 import 'jquery';
 
 declare global {
@@ -25,6 +29,8 @@ export class AddAppointmentComponent implements OnInit {
 
   @ViewChild('newappointmentElement') newappointmentElement: ElementRef | undefined;
 
+  minDate: Date = new Date(); // Today's date
+
   patients: Patient[] = [];
   doctors: Doctor[] = [];
   newAppointmentDetails: any;
@@ -32,7 +38,7 @@ export class AddAppointmentComponent implements OnInit {
   appointmentForm = new FormGroup({
     patient: new FormControl(null, [Validators.required]),
     doctor: new FormControl(null, [Validators.required]),
-    appointmentDate: new FormControl(new Date(), [Validators.required]),
+    appointmentDate: new FormControl(this.minDate, [Validators.required]), // Use today's date as initial value
     reason: new FormControl('', [Validators.required])
   });
 
@@ -41,7 +47,8 @@ export class AddAppointmentComponent implements OnInit {
     private patientService: PatientService,
     private doctorService: DoctorService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -63,10 +70,6 @@ export class AddAppointmentComponent implements OnInit {
     });
   }
 
-  dismissModal() {
-    $('#successModal').modal('hide');
-    this.router.navigate(['/list-appointment']);
-  }
 
   addAppointment() {
     const patientId = this.appointmentForm.get('patient')?.value;
@@ -75,49 +78,64 @@ export class AddAppointmentComponent implements OnInit {
     const reasonValue = this.appointmentForm.get('reason')?.value;
   
     if (patientId && doctorId && appointmentDateValue && reasonValue) {
-      this.patientService.getPatientById(patientId).pipe(
-        switchMap((patient: Patient) => {
-          if (patient) {
-            return this.doctorService.getDoctorById(doctorId).pipe(
-              switchMap((doctor: Doctor) => {
-                if (doctor) {
-                  const newAppointment = {
-                    patient: patient,
-                    doctor: doctor,
-                    appointmentDate: appointmentDateValue,
-                    reason: reasonValue
-                  };
-                  // Enregistrer le nouvel rendez-vous
-                  return this.appointmentService.saveAppointment(newAppointment);
-                } else {
+      setTimeout(() => {
+        this.patientService.getPatientById(patientId).pipe(
+          switchMap((patient: Patient) => {
+            if (patient) {
+              return this.doctorService.getDoctorById(doctorId).pipe(
+                switchMap((doctor: Doctor) => {
+                  if (doctor) {
+                    const newAppointment = {
+                      patient: patient,
+                      doctor: doctor,
+                      appointmentDate: appointmentDateValue,
+                      reason: reasonValue
+                    };
+                    // Enregistrer le nouvel rendez-vous
+                    return this.appointmentService.saveAppointment(newAppointment).pipe(
+                      switchMap((appointmentResponse) => {
+                        patient.appointmentStatus = true; // Update appointmentStatus to true
+                        if (patient.id !== undefined) {
+                          return this.patientService.updatePatient(patient.id, patient);
+                        } else {
+                          this.toastr.error('Patient ID is undefined.');
+                          return throwError(() => new Error('Patient ID is undefined'));
+                        }
+                      })
+                    );
+                  } else {
+                    this.toastr.error('Doctor not found.');
+                    return throwError(() => new Error('Doctor not found'));
+                  }
+                }),
+                catchError((error) => {
                   this.toastr.error('Doctor not found.');
                   return throwError(() => new Error('Doctor not found'));
-                }
-              }),
-              catchError((error) => {
-                this.toastr.error('Doctor not found.');
-                return throwError(() => new Error('Doctor not found'));
-              })
-            );
-          } else {
-            this.toastr.error();
-            return throwError(() => new Error);
+                })
+              );
+            } else {
+              this.toastr.error('Patient not found.');
+              return throwError(() => new Error('Patient not found'));
+            }
+          }),
+          catchError((error) => {
+            this.toastr.error('Patient not found.');
+            return throwError(() => new Error('Patient not found'));
+          })
+        ).subscribe({
+          next: (response: any) => {
+            this.newAppointmentDetails = response;
+            const dialogRef = this.dialog.open(SuccessDialogAppointmentComponent);
+            dialogRef.afterClosed().subscribe(() => {
+              this.appointmentForm.reset();
+            });
+            this.toastr.success('Appointment successfully added.');
+          },
+          error: (error) => {
+            this.toastr.error('An error occurred: ' + error.message);
           }
-        }),
-        catchError((error) => {
-          this.toastr.error('Patient not found.');
-          return throwError(() => new Error('Patient not found'));
-        })
-      ).subscribe({
-        next: (response: any) => {
-          this.newAppointmentDetails = response;
-          $('#successModal').modal('show');
-          this.toastr.success('Appointment successfully added.');
-        },
-        error: (error) => {
-          this.toastr.error('An error occurred: ' + error.message);
-        }
-      });
+        });
+      }, 1000); // Delay of 1000 milliseconds (1 second)
     } else {
       this.toastr.error('Please fill all required fields.');
     }

@@ -29,10 +29,10 @@
                     <div class="row">
                         <div class="col-12 patient-container">
 
-                            <div class="Patient-info" *ngFor="let patient of patients" (mouseleave)="removeBlur()">
+                            <div class="Patient-info color-animation" *ngFor="let patient of patients" (mouseleave)="removeBlur()" [ngClass]="{'urgent-header': patient.patientCategory === 'URGENT'}">
 
                                 <div class="row  Patient-info-content" [ngClass]="{'blur': blurredPatientId === patient.id}" (mouseenter)="addBlur(patient.id)">
-                                    <div class="col-10 offset-1 mb-5 header-info">
+                                    <div class="col-10 offset-1 mb-5 header-info" >
                                         <div class="row">
 
                                             <div class="col-2 info-pic">
@@ -44,16 +44,18 @@
                                                                 <img *ngIf="patient.gender === 'MALE' " src="../assets/newborn_170687.png" alt="baby Boy ">
                                                                 <img *ngIf="patient.gender === 'FEMALE' " src="../assets/newborn_170687.png" alt="baby Girl">
                                                             </ng-container>
-                                                            <ng-container *ngIf="calculateAge(patient.dateOfBirth).age >= 1 && calculateAge(patient.dateOfBirth).age <= 12 && patient.gender === 'MALE' && !calculateAge(patient.dateOfBirth).isLessThanOneYear" >
-                                                                <img src="../assets/boy_145867.png" alt="Boy">
+
+                                                            <ng-container *ngIf="calculateAge(patient.dateOfBirth).age >= 1 && calculateAge(patient.dateOfBirth).age <= 12 && !calculateAge(patient.dateOfBirth).isLessThanOneYear"  >
+                                                                <img *ngIf="patient.gender === 'MALE' " src="../assets/boy_145867.png" alt="Boy">
+                                                                <img *ngIf="patient.gender === 'FEMALE' " src="../assets/girl_163844.png" alt="Girl">
                                                             </ng-container>
-                                                            <ng-container *ngIf="calculateAge(patient.dateOfBirth).age >= 1 && calculateAge(patient.dateOfBirth).age <= 12 && patient.gender === 'FEMALE' && !calculateAge(patient.dateOfBirth).isLessThanOneYear">
-                                                                <img src="../assets/girl_163844.png" alt="Girl">
-                                                            </ng-container>
+
+
                                                             <ng-container *ngIf="calculateAge(patient.dateOfBirth).age > 12 && calculateAge(patient.dateOfBirth).age <= 17">
                                                                 <img *ngIf="patient.gender === 'MALE'" src="../assets/boy_163837.png" alt="Teen Boy">
                                                                 <img *ngIf="patient.gender === 'FEMALE'" src="../assets/girl_145854.png" alt="Teen Girl">
                                                             </ng-container>
+
                                                             <ng-container *ngIf="calculateAge(patient.dateOfBirth).age > 17 && calculateAge(patient.dateOfBirth).age <= 50">
                                                                 <img *ngIf="patient.gender === 'MALE'" src="../assets/boss_265674.png" alt="Adult Man">
                                                                 <img *ngIf="patient.gender === 'FEMALE' && !calculateAge(patient.dateOfBirth).isLessThanOneMonth" src="../assets/avatar_168915.png"  alt="Adult Woman">
@@ -94,9 +96,19 @@
                                         </div>    
                                     </div>
 
+
+                                    <div class="col-10 offset-1 mb-3 text-center uncheck-icon" *ngIf="!patient.consultationStatus">
+                                        Not consulted<span class="uncheck-icon " ><img src="../assets/close.png" alt="check"></span>
+                                    </div>
+
+                                    <div class="col-10 offset-1 mb-3 text-center check-icon" *ngIf="patient.consultationStatus">
+                                        Consulted<span class=" " ><img src="../assets/check (1).png" alt="check"></span>
+                                    </div>
+
                                     <hr class="col-6 offset-3">
+
  
-                                    <div class="col-12 more-info"> 
+                                    <div class="col-12 more-info mt-3"> 
                                         <ul>
                                             <li>
                                                 <div class="row mb-2">
@@ -129,16 +141,7 @@
                                                 </div> 
                                                 
                                             </li>
-                                            <li>
-                                                <div class="row mb-2">
-                                                    <div class="col-2">
-                                                        <span><img src="../assets/email (1).png" class="more-info-pic" alt="email"></span>
-                                                    </div>
-                                                    <div class="col-10 second-option">
-                                                        {{ formatMail(patient.email) }}
-                                                    </div>
-                                                </div>
-                                            </li>
+
 
                                             <li>
                                                 <div class="row mb-2">
@@ -150,14 +153,32 @@
                                                     </div>
                                                 </div>
                                             </li>
+
+                                            <li>
+                                                <div class="row mb-2">
+                                                    <div class="col-2">
+                                                        <span><img src="../assets/email (1).png" class="more-info-pic" alt="email"></span>
+                                                    </div>
+                                                    <div class="col-10 second-option">
+                                                        {{ formatMail(patient.email) }}
+                                                    </div>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
 
+                                <div class="col-10 offset-1 mb-5 text-center" *ngIf="patient.appointmentStatus" class="appointment-status">
+                                    <img src="../assets/clock.png" alt="Appointment Clock">
+                                </div>
+
+
+                                <!-- Section pour afficher l'image d'horloge si le patient a un rendez-vous -->
+
                                 <div class="row "   (mouseenter)="addBlur(patient.id)">
                                     <div class="col-8 offset-2 option">
-                                        <button mat-button (click)="editPatient(patient)">Modifier</button>
-                                        <button mat-button color="warn" (click)="deletePatient(patient.id, patient)">Supprimer</button>                                    </div>
+                                        <button mat-raised-button (click)="editPatient(patient)">update</button>
+                                        <button mat-raised-button color="warn" (click)="deletePatient(patient.id, patient)">delete</button>                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,100 +1,121 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 offset-1  root-container">
+        <div class="col-12 root-container">
             <div class="row mt-3">
-                <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-6 offset-3">
+                <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="form-container col-4 offset-4">
                     <h1 class="title mt-1 text-center mb-4">
                         Register a patient
                     </h1>
-                    <div class=" col-10 offset-1 mt-5">
-                        <mat-form-field class="col-12">
-                            <mat-label>Name</mat-label>
-                            <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
-                            <input matInput id="firstName" formControlName="firstName" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="mt-1 col-10 offset-1">
-                        <mat-form-field class="col-12">
-                            <mat-label>Lastname</mat-label>
-                            <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
-                            <input matInput id="lastName" formControlName="lastName" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="mt-1 col-10 offset-1">
-                        <mat-form-field class="col-12">
-                            <mat-label>Date of Birth</mat-label>
-                            <img matPrefix src="../assets/calendar-birhtday-cake.png" alt="" class="input-icon">
-                            <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth" [max]="maxDate" required>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                    <div class="mt-1 col-10 offset-1">
-                        <span class=""><img src="../assets/gender_12345.png" alt=""></span>
-                        <div class="gender-type col-10 offset-1 mb-4">
-                            <mat-radio-group formControlName="gender" class="d-flex justify-content-around">
-                                <label class="gender-button col-3">
-                                    <mat-radio-button value="MALE">Male</mat-radio-button>
-                                </label>
-                                <label class="gender-button col-3">
-                                    <mat-radio-button value="FEMALE">Female</mat-radio-button>
-                                </label>
-                                <label class="gender-button col-3">
-                                    <mat-radio-button value="OTHER">Other</mat-radio-button>
-                                </label>
-                            </mat-radio-group>
-                        </div>
-                    </div>
-                    <div class="mt-2 col-10 offset-1">
-                        <mat-form-field class="col-12">
-                            <mat-label>Address</mat-label>
-                            <img matPrefix src="../assets/map-marker-home.png" alt="" class="input-icon">
-                            <input matInput id="address" formControlName="address" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="mt-1 col-10 offset-1">
-                        <mat-form-field class="col-12">
-                            <mat-label>Phone number</mat-label>
-                            <img matPrefix src="../assets/phone-flip.png" alt="" class="input-icon">
-                            <span matPrefix class="phone-prefix">+261</span>
-                            <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
-             
-                        </mat-form-field>
-                    </div>
-                    <div class="mb-4 col-10 offset-1">
-                        <mat-form-field class="col-12">
-                            <mat-label>Email</mat-label>
-                            <img matPrefix src="../assets/at.png" alt="" class="input-icon">
-                            <input matInput type="email" id="email" formControlName="email" required>
-                            <mat-error *ngIf="patientForm.get('email')?.hasError('email') && !patientForm.get('email')?.hasError('required')">
-                                Please enter a valid email address
-                            </mat-error>
-                            <mat-error *ngIf="patientForm.get('email')?.hasError('required')">
-                                Email is required
-                            </mat-error>                        </mat-form-field>
-                    </div>
-                    <div class="form-group row col-10 offset-1">
-                        <div class="col-sm-6">
-                            <button type="submit" [disabled]="patientForm.invalid" class="btn btn-primary w-100">Add</button>
-                        </div>
-                        <div class="col-sm-6">
-                            <button type="button" (click)="patientForm.reset()" class="btn btn-secondary w-100">Clear All</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- 
 
-                <div class="col-6 root-typewriter">
-                    todo 
-                    <div class="typewriter">
-                        <span>{{ displayedText }}</span><span class="cursor"></span>
+                    <!-- Fields to be hidden when additional fields are shown -->
+                    <div *ngIf="!showAdditionalFields">
+                        <div class="col-10 offset-1 mt-5 ">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Firstname</mat-label>
+                                <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                                <input matInput id="firstName" formControlName="firstName" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-1 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Lastname</mat-label>
+                                <img matPrefix src="../assets/circle-user.png" alt="" class="input-icon">
+                                <input matInput id="lastName" formControlName="lastName" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-1 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Date of Birth</mat-label>
+                                <img matPrefix src="../assets/calendar-birhtday-cake.png" alt="" class="input-icon">
+                                <input matInput [matDatepicker]="picker" id="dateOfBirth" formControlName="dateOfBirth" [max]="maxDate" required readonly>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-1 col-10 offset-1">
+                            <span class=""><img src="../assets/gender_12345.png" alt=""></span>
+                            <div class="gender-type col-10 offset-1 mb-4">
+                                <mat-radio-group formControlName="gender" class="d-flex justify-content-around">
+                                    <label class="gender-button col-3">
+                                        <mat-radio-button value="MALE">Male</mat-radio-button>
+                                    </label>
+                                    <label class="gender-button col-3">
+                                        <mat-radio-button value="FEMALE">Female</mat-radio-button>
+                                    </label>
+                                    <label class="gender-button col-3">
+                                        <mat-radio-button value="OTHER">Other</mat-radio-button>
+                                    </label>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="mt-2 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Address</mat-label>
+                                <img matPrefix src="../assets/map-marker-home.png" alt="" class="input-icon">
+                                <input matInput id="address" formControlName="address" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-1 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Phone number</mat-label>
+                                <img matPrefix src="../assets/phone-flip.png" alt="" class="input-icon">
+                                <input matInput type="number" id="phoneNumber" formControlName="phoneNumber" required>
+                            </mat-form-field>
+                        </div>
+
                     </div>
+
+
 
                     
 
-                </div>
-                 -->
+                    <!-- Toggle button for showing/hiding additional fields -->
+                    <div class="col-10 offset-1 text-center mb-3">
+                        <button mat-icon-button (click)="toggleFields()">
+                            <mat-icon>{{ showAdditionalFields ? 'expand_less' : 'expand_more' }}</mat-icon>
+                        </button>
+                    </div>
 
+                    <!-- Additional fields -->
+                    <div *ngIf="showAdditionalFields">
+                        <div class="mb-4 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Email</mat-label>
+                                <img matPrefix src="../assets/at.png" alt="" class="input-icon">
+                                <input matInput type="email" id="email" formControlName="email" required>
+                                <mat-error *ngIf="patientForm.get('email')?.hasError('email') && !patientForm.get('email')?.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="patientForm.get('email')?.hasError('required')">
+                                    Email is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="mt-1 col-10 offset-1">
+                            <mat-form-field appearance="outline" class="col-12 custom-mat-form-field">
+                                <mat-label>Patient Category</mat-label>
+                                <mat-select id="patientCategory" formControlName="patientCategory" required>
+                                    <mat-option value="URGENT">Urgent</mat-option>
+                                    <mat-option value="ROUTINE">Routine</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="isLoading" class="spinner-container">
+                        <mat-spinner></mat-spinner>
+                    </div>
+
+                    <div class="form-group row col-10 offset-1">
+                        <div class="col-sm-6">
+                            <button mat-raised-button color="primary" type="submit" [disabled]="patientForm.invalid" class="w-100">Add</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button mat-raised-button color="warn" type="button" (click)="patientForm.reset()" class="w-100">Clear All</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
