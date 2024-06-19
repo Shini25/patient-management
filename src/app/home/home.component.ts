@@ -6,14 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { User_account } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
-
+import { PatientService } from '../services/patient.service'; // Make sure to import PatientService
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit, AfterViewInit {
 
   username: string = '';
   password: string = '';
@@ -48,6 +48,8 @@ export class HomeComponent{
   isFirstSectionVisible = true; // Added to control visibility of the back-to-top button
   showLoginForm = true;
 
+  urgentPatientCount: number = 0;
+
   closePatientOptions() {
     this.showPatientOptions = false;
   }
@@ -65,9 +67,10 @@ export class HomeComponent{
   }
   
 
-  constructor(private router: Router,private userService: UserService, private authService: AuthService, private toastr: ToastrService, private location: Location) {}
+  constructor(private router: Router,private userService: UserService, private authService: AuthService, private toastr: ToastrService, private location: Location, private patientService: PatientService) {}
 
   ngOnInit() {
+    this.getUrgentPatientsCount();
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
@@ -207,6 +210,12 @@ export class HomeComponent{
     });
   }
 
+  getUrgentPatientsCount(): void {
+    this.patientService.getAllPatients().subscribe(patients => {
+      this.urgentPatientCount = patients.filter(patient => patient.patientCategory === 'URGENT').length;
+    });
+  }
+
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);
     if (element) {
@@ -254,5 +263,3 @@ export class HomeComponent{
     return this.authService.isAuthenticated();
   }
 }
-
-

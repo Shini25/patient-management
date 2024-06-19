@@ -61,6 +61,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
@@ -135,6 +137,7 @@ import { SuccessDialogAppointmentComponent } from './add-rendez-vous/success-dia
     MatCardModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatBadgeModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',

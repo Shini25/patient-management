@@ -1,4 +1,3 @@
-
 <body class="scroll-container">
 
   <!-- Container: first -->
@@ -68,8 +67,8 @@
           <div class="step row" [ngClass]="{'active-step': isPatientRoute}"  >
               <div class="col-6 kit" >
                 <li class="nav-item" (mouseleave)="showPatientOptions = false">
-                  <button class="nav-link btn d-flex align-items-center " [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
-                    Patients
+                  <button  [matBadge]="urgentPatientCount" matBadgeColor="warn" class="nav-link btn d-flex align-items-center" [ngClass]="{'active-route': isPatientRoute}" (mouseenter)="showPatientOptions = true">
+                    Patients <span class="invisible">..</span>
                   </button>
                   <div id="patientCollapse" class="options row" *ngIf="showPatientOptions">
                     <a routerLink="add-patient" class="btn-add" (click)="closePatientOptions()">
