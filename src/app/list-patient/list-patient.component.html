@@ -69,13 +69,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="info-name col-10">
+                                            <div class="info-name col-8">
                                                 <h1 class="firstName ">{{ formatFirstName(patient.firstName) }}</h1>
                                                 <h1 class="lastName">{{ formatLastName(patient.lastName) }}</h1>
                                             </div>
+                                            <div class="col-2 consulted-state" [ngClass]="{'checked': patient.consultationStatus, 'unchecked': !patient.consultationStatus}">
+                                            </div>
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-8">
+                                                    <div class="col-7">
                                                         <ng-container *ngIf="calculateAge(patient.dateOfBirth).isLessThanOneMonth; else showMonthsOrYears">
                                                             {{ calculateAge(patient.dateOfBirth).age }} day(s) old
                                                         </ng-container>
@@ -88,7 +90,7 @@
                                                             </ng-template>
                                                         </ng-template>
                                                     </div>
-                                                    <div class="col-4 idPatient">
+                                                    <div class="col-5 idPatient">
                                                         <span><img src="../assets/id-card.png" alt="id"></span>{{ patient.id }}
                                                     </div>
                                                 </div>
@@ -96,14 +98,6 @@
                                         </div>    
                                     </div>
 
-
-                                    <div class="col-10 offset-1 mb-3 text-center uncheck-icon" *ngIf="!patient.consultationStatus">
-                                        Not consulted<span class="uncheck-icon " ><img src="../assets/close.png" alt="check"></span>
-                                    </div>
-
-                                    <div class="col-10 offset-1 mb-3 text-center check-icon" *ngIf="patient.consultationStatus">
-                                        Consulted<span class=" " ><img src="../assets/check (1).png" alt="check"></span>
-                                    </div>
 
                                     <hr class="col-6 offset-3">
 

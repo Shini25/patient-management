@@ -11,6 +11,7 @@ import { catchError, switchMap, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogConsultationComponent } from './success-dialog-consultation/success-dialog-consultation.component';
 import 'jquery';
+import jsPDF from 'jspdf';
 
 declare global {
   interface JQuery {
@@ -50,6 +51,19 @@ export class AddConsultationComponent implements OnInit {
   });
 
   currentSection: number = 1;
+
+  consultationReasons: string[] = ['Routine Checkup', 'Follow-up Visit', 'Symptom Evaluation', 'dizziness','fever and cough', 'Emergency Visit', 'Referral', 'Hypertension Symptoms', 'Urgent Care'];
+  testResultsOptions: string[] = ['Normal', 'Abnormal', 'Critical', 'ECG', 'Blood Pressure Control'];
+  diagnoses: string[] = ['Hypertension', 'Diabetes', 'Chronic Kidney Disease', 'Heart Disease', 'Asthma', 'COVID-19', 'Parkinsons', 'Cancer', 'Blood Pressure', 'Tobacco', 'Alcohol', 'Drug', 'Pregnancy', 'Epilepsy', 'Parkinsons', 'Cancer', 'Blood Pressure', 'Tobacco', 'Alcohol', 'Drug', 'Pregnancy', 'Epilepsy'];
+  prescribedTreatments: string[] = ['Anti-hypertensive medication', 'Anti-diabetic medication', 'Anti-chronic kidney disease medication', 'Anti-heart disease medication', 'Anti-asthma medication', 'Anti-COVID-19 medication', 'Anti-parkinsons medication', 'Anti-cancer medication', 'Anti-blood pressure medication', 'Anti-tobacco medication', 'Anti-alcohol medication', 'Anti-drug medication', 'Anti-pregnancy medication', 'Anti-epilepsy medication', 'Anti-parkinsons medication', 'Anti-cancer medication', 'Anti-blood pressure medication', 'Anti-tobacco medication', 'Anti-alcohol medication', 'Anti-drug medication', 'Anti-pregnancy medication', 'Anti-epilepsy medication'];
+  consultationFees: number[] = [5000, 10000, 20000];  // Les frais de consultation
+  observationOptions: string[] = [
+    '*Patient stable with notable improvement.',
+    '*No significant change in symptoms.',
+    '*Condition deteriorated; immediate attention required.',
+    '*Positive reaction to prescribed treatment.',
+    '*Symptoms of recurrence observed.'
+  ];
 
   constructor(
     private consultationService: ConsultationService,
@@ -97,57 +111,27 @@ export class AddConsultationComponent implements OnInit {
 
     if (patientId && doctorId && consultationDateValue && consultationReasonValue && diagnosisValue && prescribedTreatmentValue && testResultsValue && consultationFeeValue && observationsValue && paymentStatusValue) {
       this.patientService.getPatientById(patientId).pipe(
-        switchMap((patient: Patient) => {
-          if (patient) {
-            return this.doctorService.getDoctorById(doctorId).pipe(
-              switchMap((doctor: Doctor) => {
-                if (doctor) {
-                  const newConsultation = {
-                    patient: patient,
-                    doctor: doctor,
-                    consultationDate: new Date(consultationDateValue), // Convert string to Date
-                    consultationReason: consultationReasonValue,
-                    diagnosis: diagnosisValue,
-                    prescribedTreatment: prescribedTreatmentValue,
-                    testResults: testResultsValue,
-                    consultationFee: parseFloat(consultationFeeValue),
-                    observations: observationsValue,
-                    paymentStatus: paymentStatusValue
-                  };
-                  return this.consultationService.saveConsultation(newConsultation).pipe(
-                    switchMap(() => {
-                      if (patient.id !== undefined) {
-                        patient.consultationStatus = true;
-                        patient.patientCategory = 'FOLLOW_UP';
-                        return this.patientService.updatePatient(patient.id, patient);
-                      } else {
-                        this.toastr.error('Patient ID is undefined.');
-                        return throwError(() => new Error('Patient ID is undefined'));
-                      }
-                    })
-                  );
-                } else {
-                  this.toastr.error('Doctor not found.');
-                  return throwError(() => new Error('Doctor not found'));
-                }
-              }),
-              catchError((error) => {
-                this.toastr.error('Doctor not found.');
-                return throwError(() => new Error('Doctor not found'));
-              })
-            );
-          } else {
-            this.toastr.error('Patient not found.');
-            return throwError(() => new Error('Patient not found'));
-          }
-        }),
-        catchError((error) => {
-          this.toastr.error('Patient not found.');
-          return throwError(() => new Error('Patient not found'));
-        })
+        switchMap((patient: Patient) => this.doctorService.getDoctorById(doctorId).pipe(
+          switchMap((doctor: Doctor) => {
+            const newConsultation = {
+              patient: patient,
+              doctor: doctor,
+              consultationDate: new Date(consultationDateValue), // Convert string to Date
+              consultationReason: consultationReasonValue,
+              diagnosis: diagnosisValue,
+              prescribedTreatment: prescribedTreatmentValue,
+              testResults: testResultsValue,
+              consultationFee: parseFloat(consultationFeeValue),
+              observations: observationsValue,
+              paymentStatus: paymentStatusValue
+            };
+            return this.consultationService.saveConsultation(newConsultation);
+          })
+        ))
       ).subscribe({
         next: (response: any) => {
           this.newConsultationDetails = response;
+          this.generatePDF(this.newConsultationDetails);
           const dialogRef = this.dialog.open(SuccessDialogConsultationComponent);
           dialogRef.afterClosed().subscribe(() => {
             this.resetForm();
@@ -163,12 +147,55 @@ export class AddConsultationComponent implements OnInit {
     }
   }
 
+  generatePDF(consultationDetails: any) {
+    const doc = new jsPDF();
+
+    // Définir une police
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+
+    // Ajouter un titre
+    doc.text('Détails de la Consultation', 1, 10);
+
+    // Changer la police pour le contenu
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+
+    // Vérifiez si les objets patient et doctor sont définis
+    if (!consultationDetails.patient || !consultationDetails.doctor) {
+      console.error('Patient or Doctor details are undefined.');
+      this.toastr.error('Failed to generate PDF: Missing patient or doctor details.');
+      return;
+    }
+
+    // Utilisez firstName et lastName au lieu de name
+    const patientName = `${consultationDetails.patient.firstName} ${consultationDetails.patient.lastName}`;
+    const doctorName = `${consultationDetails.doctor.firstName} ${consultationDetails.doctor.lastName}`;
+
+    // Définir la couleur du texte
+    doc.setTextColor(100); // Gris
+    doc.text(`Patient: ${patientName}`, 10, 20);
+
+    // Utiliser une autre couleur pour une autre section
+    doc.setTextColor(150);
+    doc.text(`Docteur: ${doctorName}`, 10, 30);
+    doc.text(`Date: ${consultationDetails.consultationDate}`, 10, 40); // Aligner le texte
+    doc.text(`Raison: ${consultationDetails.consultationReason}`, 10, 50);
+    doc.text(`Diagnostic: ${consultationDetails.diagnosis}`, 10, 60);
+    doc.text(`Traitement: ${consultationDetails.prescribedTreatment}`, 10, 70);
+    doc.text(`Résultats des tests: ${consultationDetails.testResults}`, 10, 80);
+    doc.text(`Observations: ${consultationDetails.observations}`, 10, 90);
+
+    doc.save('consultation-details.pdf');
+  }
+
   nextSection() {
     if (this.currentSection < 2) {
       this.currentSection++;
     }
     
   }
+  
 
   previousSection() {
     if (this.currentSection > 1) {
@@ -229,3 +256,4 @@ export class AddConsultationComponent implements OnInit {
   }
   
 }
+

@@ -30,7 +30,8 @@ export class AddDoctorComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     contact: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    dateOfBirth: new FormControl(new Date(), [Validators.required])
+    dateOfBirth: new FormControl(new Date(), [Validators.required]),
+    appointmentState: new FormControl(false, [Validators.required])
     
   });
 
@@ -38,6 +39,8 @@ export class AddDoctorComponent implements OnInit {
   newDoctorDetails: any;
 
   maxDate: Date;
+
+  specialties: string[] = ['Cardiology', 'Dermatology', 'Neurology', 'Pediatrics', 'Oncology'];
 
   constructor(
     private doctorService: DoctorService,
@@ -65,6 +68,7 @@ addDoctor() {
     const contactValue = this.doctorForm.get('contact')?.value;
     const addressValue = this.doctorForm.get('address')?.value;
     const dateOfBirthValue = this.doctorForm.get('dateOfBirth')?.value;
+    const appointmentStateValue = this.doctorForm.get('appointmentState')?.value;
 
 
 
@@ -76,7 +80,8 @@ addDoctor() {
       emailValue !== null && emailValue !== undefined &&
       contactValue !== null && contactValue !== undefined &&
       addressValue !== null && addressValue !== undefined && 
-      dateOfBirthValue !== null && dateOfBirthValue !== undefined
+      dateOfBirthValue !== null && dateOfBirthValue !== undefined &&
+      appointmentStateValue !== null && appointmentStateValue !== undefined
 
     ) {
       const newDoctor = {
@@ -86,7 +91,8 @@ addDoctor() {
         email: emailValue,
         contact: contactValue,
         address: addressValue,
-        dateOfBirth: dateOfBirthValue
+        dateOfBirth: dateOfBirthValue,
+        appointmentState: appointmentStateValue
       };
 
       this.doctorService.saveDoctor(newDoctor).subscribe((response: any) => {

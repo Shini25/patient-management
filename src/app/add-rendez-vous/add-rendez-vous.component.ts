@@ -76,68 +76,72 @@ export class AddAppointmentComponent implements OnInit {
     const doctorId = this.appointmentForm.get('doctor')?.value;
     const appointmentDateValue = this.appointmentForm.get('appointmentDate')?.value;
     const reasonValue = this.appointmentForm.get('reason')?.value;
-  
+
     if (patientId && doctorId && appointmentDateValue && reasonValue) {
-      setTimeout(() => {
-        this.patientService.getPatientById(patientId).pipe(
-          switchMap((patient: Patient) => {
-            if (patient) {
-              return this.doctorService.getDoctorById(doctorId).pipe(
-                switchMap((doctor: Doctor) => {
-                  if (doctor) {
-                    const newAppointment = {
-                      patient: patient,
-                      doctor: doctor,
-                      appointmentDate: appointmentDateValue,
-                      reason: reasonValue
-                    };
-                    // Enregistrer le nouvel rendez-vous
-                    return this.appointmentService.saveAppointment(newAppointment).pipe(
-                      switchMap((appointmentResponse) => {
-                        patient.appointmentStatus = true; // Update appointmentStatus to true
-                        if (patient.id !== undefined) {
-                          return this.patientService.updatePatient(patient.id, patient);
-                        } else {
-                          this.toastr.error('Patient ID is undefined.');
-                          return throwError(() => new Error('Patient ID is undefined'));
-                        }
-                      })
-                    );
-                  } else {
-                    this.toastr.error('Doctor not found.');
-                    return throwError(() => new Error('Doctor not found'));
-                  }
+        setTimeout(() => {
+            this.patientService.getPatientById(patientId).pipe(
+                switchMap((patient: Patient) => {
+                    if (patient) {
+                        return this.doctorService.getDoctorById(doctorId).pipe(
+                            switchMap((doctor: Doctor) => {
+                                if (doctor) {
+                                    const newAppointment = {
+                                        patient: patient,
+                                        doctor: doctor,
+                                        appointmentDate: appointmentDateValue,
+                                        reason: reasonValue
+                                    };
+                                    return this.appointmentService.saveAppointment(newAppointment).pipe(
+                                        switchMap((appointmentResponse) => {
+                                            patient.appointmentStatus = true; // Update appointmentStatus to true
+                                            doctor.appointmentState = true; // Update doctor's appointmentState to true
+                                            return this.doctorService.updateDoctor(doctorId, doctor).pipe(
+                                                switchMap(() => {
+                                                    if (patient.id !== undefined) {
+                                                        return this.patientService.updatePatient(patient.id, patient);
+                                                    } else {
+                                                        this.toastr.error('Patient ID is undefined.');
+                                                        return throwError(() => new Error('Patient ID is undefined'));
+                                                    }
+                                                })
+                                            );
+                                        })
+                                    );
+                                } else {
+                                    this.toastr.error('Doctor not found.');
+                                    return throwError(() => new Error('Doctor not found'));
+                                }
+                            }),
+                            catchError((error) => {
+                                this.toastr.error('Doctor not found.');
+                                return throwError(() => new Error('Doctor not found'));
+                            })
+                        );
+                    } else {
+                        this.toastr.error('Patient not found.');
+                        return throwError(() => new Error('Patient not found'));
+                    }
                 }),
                 catchError((error) => {
-                  this.toastr.error('Doctor not found.');
-                  return throwError(() => new Error('Doctor not found'));
+                    this.toastr.error('Patient not found.');
+                    return throwError(() => new Error('Patient not found'));
                 })
-              );
-            } else {
-              this.toastr.error('Patient not found.');
-              return throwError(() => new Error('Patient not found'));
-            }
-          }),
-          catchError((error) => {
-            this.toastr.error('Patient not found.');
-            return throwError(() => new Error('Patient not found'));
-          })
-        ).subscribe({
-          next: (response: any) => {
-            this.newAppointmentDetails = response;
-            const dialogRef = this.dialog.open(SuccessDialogAppointmentComponent);
-            dialogRef.afterClosed().subscribe(() => {
-              this.appointmentForm.reset();
+            ).subscribe({
+                next: (response: any) => {
+                    this.newAppointmentDetails = response;
+                    const dialogRef = this.dialog.open(SuccessDialogAppointmentComponent);
+                    dialogRef.afterClosed().subscribe(() => {
+                        this.appointmentForm.reset();
+                    });
+                    this.toastr.success('Appointment successfully added.');
+                },
+                error: (error) => {
+                    this.toastr.error('An error occurred: ' + error.message);
+                }
             });
-            this.toastr.success('Appointment successfully added.');
-          },
-          error: (error) => {
-            this.toastr.error('An error occurred: ' + error.message);
-          }
-        });
-      }, 1000); // Delay of 1000 milliseconds (1 second)
+        }, 1000); // Delay of 1000 milliseconds (1 second)
     } else {
-      this.toastr.error('Please fill all required fields.');
+        this.toastr.error('Please fill all required fields.');
     }
   }
   phrases: string[] = [
@@ -180,4 +184,3 @@ export class AddAppointmentComponent implements OnInit {
     }
   }
 }
-

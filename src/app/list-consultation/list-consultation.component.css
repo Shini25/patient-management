@@ -10,7 +10,7 @@
 .search {
     margin-top: 2px;
     height: 10vh;
-    background-color: rgb(16, 0, 6);   
+    background-color: #aab4ff58;
     border-radius: 5px;
     box-shadow: 0px 4px 4px -6px rgb(0, 7, 44); 
 }
@@ -73,7 +73,7 @@
 .Patient-info {
     padding: 15px;
     color: rgb(0, 0, 0);
-    border-bottom: 6px solid   rgba(233, 11, 140, 0.971);
+    border-bottom: 6px solid   rgba(0, 3, 188, 0.436);
     border-top: 1px solid  rgba(146, 146, 245, 0.274);
     border-left: 1px solid rgba(146, 146, 245, 0.274);
     border-right: 1px solid rgba(146, 146, 245, 0.274);
@@ -130,7 +130,7 @@ em {
 }
 
 .list-patient-title {
-    color: #ffffff;
+    color: #1f1f1fdf;
     font-weight: 200;
     font-size: 25px;
     text-align: left;
@@ -147,7 +147,7 @@ ul li {
     border: 1px solid rgba(0, 0, 0, 0.268);
     border-radius: 10px;
     padding-top: 10px;
-    box-shadow: 0 3px 3px  #003699;
+    box-shadow: 0 3px 3px  #00369941;
     background-color: #ffffff;
 }
 

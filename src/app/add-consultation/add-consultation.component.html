@@ -44,39 +44,64 @@
                                     <div class="form-group">
                                         <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Consultation Reason</mat-label>
-                                            <input matInput type="text" formControlName="consultationReason" required>
+                                            <input matInput type="text" formControlName="consultationReason" [matAutocomplete]="reasonsAuto" required>
+                                            <mat-autocomplete #reasonsAuto="matAutocomplete">
+                                                <mat-option *ngFor="let reason of consultationReasons" [value]="reason">
+                                                    {{ reason }}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <mat-form-field appearance="outline" class="col-12">
+                                            <mat-label>Test Results</mat-label>
+                                            <input matInput type="text" formControlName="testResults" required [matAutocomplete]="testResultsAuto">
+                                            <mat-autocomplete #testResultsAuto="matAutocomplete">
+                                                <mat-option *ngFor="let result of testResultsOptions" [value]="result">
+                                                    {{ result }}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
                                         <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Diagnosis</mat-label>
-                                            <input matInput type="text" formControlName="diagnosis" required>
+                                            <input matInput type="text" formControlName="diagnosis" [matAutocomplete]="diagnosisAuto" required>
+                                            <mat-autocomplete #diagnosisAuto="matAutocomplete">
+                                                <mat-option *ngFor="let diagnosis of diagnoses" [value]="diagnosis">
+                                                    {{ diagnosis }}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
                                         <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Prescribed Treatment</mat-label>
-                                            <input matInput type="text" formControlName="prescribedTreatment" required>
+                                            <input matInput type="text" formControlName="prescribedTreatment" [matAutocomplete]="treatmentAuto" required>
+                                            <mat-autocomplete #treatmentAuto="matAutocomplete">
+                                                <mat-option *ngFor="let treatment of prescribedTreatments" [value]="treatment">
+                                                    {{ treatment }}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                         </mat-form-field>
                                     </div>
                              
-                                    <div class="form-group">
-                                        <mat-form-field appearance="outline" class="col-12">
-                                            <mat-label>Test Results</mat-label>
-                                            <input matInput type="text" formControlName="testResults" required>
-                                        </mat-form-field>
-                                    </div>
+
                                 </div>
                             </div>
 
                                                 <!-- Toggle button for showing/hiding additional fields -->
                     <div class="col-10 offset-1 text-center mb-3">
-                        <button mat-icon-button (click)="toggleFields()">
+                        <button mat-icon-button (click)="toggleFields(); $event.stopPropagation(); $event.preventDefault();">
                             <mat-icon>{{ showAdditionalFields ? 'expand_less' : 'expand_more' }}</mat-icon>
                         </button>
                     </div>
+
+                                        
 
                             <!-- Section 2 -->
                             <div *ngIf="showAdditionalFields">
@@ -85,14 +110,24 @@
                                     <div class="form-group">
                                         <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Consultation Fee</mat-label>
-                                            <input matInput type="number" formControlName="consultationFee" required>
+                                            <input matInput type="number" formControlName="consultationFee" required [matAutocomplete]="feeAuto">
+                                            <mat-autocomplete #feeAuto="matAutocomplete">
+                                                <mat-option *ngFor="let fee of consultationFees" [value]="fee">
+                                                    {{ fee }}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                         </mat-form-field>
                                     </div>
                              
                                     <div class="form-group">
                                         <mat-form-field appearance="outline" class="col-12">
                                             <mat-label>Observations</mat-label>
-                                            <input matInput type="text" formControlName="observations" required>
+                                            <input matInput type="text" formControlName="observations" required [matAutocomplete]="observationsAuto">
+                                            <mat-autocomplete #observationsAuto="matAutocomplete">
+                                                <mat-option *ngFor="let observation of observationOptions" [value]="observation">
+                                                    {{ observation }}
+                                                </mat-option>
+                                            </mat-autocomplete>
                                         </mat-form-field>
                                     </div>
                              

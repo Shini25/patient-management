@@ -65,16 +65,13 @@
 
                     </div>
 
-
-
-                    
-
                     <!-- Toggle button for showing/hiding additional fields -->
                     <div class="col-10 offset-1 text-center mb-3">
-                        <button mat-icon-button (click)="toggleFields()">
+                        <button mat-icon-button (click)="toggleFields(); $event.stopPropagation(); $event.preventDefault();">
                             <mat-icon>{{ showAdditionalFields ? 'expand_less' : 'expand_more' }}</mat-icon>
                         </button>
                     </div>
+                    
 
                     <!-- Additional fields -->
                     <div *ngIf="showAdditionalFields">
@@ -104,7 +101,7 @@
                     </div>
 
                     <div *ngIf="isLoading" class="spinner-container">
-                        <mat-spinner></mat-spinner>
+                        <mat-spinner [diameter]="90"></mat-spinner>
                     </div>
 
                     <div class="form-group row col-10 offset-1">

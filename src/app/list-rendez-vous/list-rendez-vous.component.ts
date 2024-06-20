@@ -28,6 +28,21 @@ export class ListAppointmentComponent implements OnInit {
   }
 
 
+  calculateAge(dateOfBirth: string | Date): { age: number, isLessThanOneYear: boolean, isLessThanOneMonth: boolean } {
+    const birthDate = typeof dateOfBirth === 'string' ? new Date(dateOfBirth) : dateOfBirth;
+    const today = new Date();
+    const ageInMilliseconds = today.getTime() - birthDate.getTime();
+    const ageDate = new Date(ageInMilliseconds);
+
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const isLessThanOneYear = age < 1;
+    const isLessThanOneMonth = ageDate.getUTCMonth() < 1 && isLessThanOneYear;
+
+    return { age, isLessThanOneYear, isLessThanOneMonth };
+  }
+
+
+
 
   addBlur(patientId: number | undefined) {
     if (patientId !== undefined) {

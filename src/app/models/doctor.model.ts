@@ -7,5 +7,6 @@ email: string;
 contact: string;
 address: string;
 dateOfBirth: Date;
+appointmentState: boolean;
 
 }

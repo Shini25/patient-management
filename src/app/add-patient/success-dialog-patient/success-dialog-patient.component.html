@@ -3,5 +3,6 @@
   <p>The patient has been successfully registered! Awaiting doctor's office availability.</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">OK</button>
+  <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  <button mat-raised-button color="secondary" routerLink="home/list-patient" (click)="closeDialog()">Show list</button>
 </div>

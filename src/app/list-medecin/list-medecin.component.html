@@ -42,9 +42,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="info-name col-10">
+                                            <div class="info-name col-8">
                                                 <h1 class="firstName ">{{  doctor.firstName }}</h1>
                                                 <h1 class="lastName">{{ doctor.lastName }}</h1>
+                                            </div>
+
+
+                                            <div class="col-2 appointment-state" [ngClass]="{'active': doctor.appointmentState}">
                                             </div>
 
                                             <div class="col-12">
@@ -133,10 +137,11 @@
                 
                                 <div class="row" (mouseenter)="addBlur(doctor.id)">
                                     <div class="col-8 offset-2 option">
-                                        <button mat-raised-button (click)="editDoctor(doctor)">Modifier</button>
-                                        <button mat-raised-button color="warn" (click)="deleteDoctor(doctor.id, doctor)">Supprimer</button>
+                                        <button mat-raised-button (click)="editDoctor(doctor)">Update</button>
+                                        <button mat-raised-button color="warn" (click)="deleteDoctor(doctor.id, doctor)">Delete</button>
                                     </div>
                                 </div>
+                                
                             </div>
 
                         </div>

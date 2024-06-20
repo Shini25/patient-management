@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'; // Added MatAutocompleteModule import
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -62,6 +63,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatRippleModule } from '@angular/material/core';
 
 
 import { MatFormFieldAppearance } from '@angular/material/form-field';
@@ -138,6 +140,7 @@ import { SuccessDialogAppointmentComponent } from './add-rendez-vous/success-dia
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatBadgeModule,
+    MatRippleModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-left',
@@ -146,7 +149,8 @@ import { SuccessDialogAppointmentComponent } from './add-rendez-vous/success-dia
     }),
     RouterModule.forRoot(routes, { scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled', scrollOffset: [0, 64] }),
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule // Added MatAutocompleteModule import
   ],
   providers: [
     // Fournisseurs de services nécessaires à votre application, comme ToastrService

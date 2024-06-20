@@ -40,7 +40,31 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <span>
-                                                            <span><img src="../assets/medical.png" class="more-info-pic" alt="gender"></span>
+
+                                                                    <ng-container *ngIf="calculateAge(consultation.patient.dateOfBirth).isLessThanOneYear ">
+                                                                        <img *ngIf="consultation.patient.gender === 'MALE' " src="../assets/newborn_170687.png" alt="baby Boy ">
+                                                                        <img *ngIf="consultation.patient.gender === 'FEMALE' " src="../assets/newborn_170687.png" alt="baby Girl">
+                                                                    </ng-container>
+        
+                                                                    <ng-container *ngIf="calculateAge(consultation.patient.dateOfBirth).age >= 1 && calculateAge(consultation.patient.dateOfBirth).age <= 12 && !calculateAge(consultation.patient.dateOfBirth).isLessThanOneYear"  >
+                                                                        <img *ngIf="consultation.patient.gender === 'MALE' " src="../assets/boy_145867.png" alt="Boy">
+                                                                        <img *ngIf="consultation.patient.gender === 'FEMALE' " src="../assets/girl_163844.png" alt="Girl">
+                                                                    </ng-container>
+        
+        
+                                                                    <ng-container *ngIf="calculateAge(consultation.patient.dateOfBirth).age > 12 && calculateAge(consultation.patient.dateOfBirth).age <= 17">
+                                                                        <img *ngIf="consultation.patient.gender === 'MALE'" src="../assets/boy_163837.png" alt="Teen Boy">
+                                                                        <img *ngIf="consultation.patient.gender === 'FEMALE'" src="../assets/girl_145854.png" alt="Teen Girl">
+                                                                    </ng-container>
+        
+                                                                    <ng-container *ngIf="calculateAge(consultation.patient.dateOfBirth).age > 17 && calculateAge(consultation.patient.dateOfBirth).age <= 50">
+                                                                        <img *ngIf="consultation.patient.gender === 'MALE'" src="../assets/boss_265674.png" alt="Adult Man">
+                                                                        <img *ngIf="consultation.patient.gender === 'FEMALE' && !calculateAge(consultation.patient.dateOfBirth).isLessThanOneMonth" src="../assets/avatar_168915.png"  alt="Adult Woman">
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="calculateAge(consultation.patient.dateOfBirth).age > 64">
+                                                                        <img *ngIf="consultation.patient.gender === 'MALE'" src="../assets/grandfather_170687.png" alt="Senior Man">
+                                                                        <img *ngIf="consultation.patient.gender === 'FEMALE'" src="../assets/grandmother_4489184.png" alt="Senior Woman">
+                                                                    </ng-container>
 
                                                         </span>
                                                     </div>
@@ -124,8 +148,8 @@
                 
                                 <div class="row" (mouseenter)="addBlur(consultation.id)">
                                     <div class="col-8 offset-2 option">
-                                        <button mat-raised-button color="primary" (click)="editConsultation(consultation)">Modifier</button>
-                                        <button mat-raised-button color="warn" (click)="deleteConsultation(consultation.id, consultation)">Supprimer</button>
+                                        <button mat-raised-button  (click)="editConsultation(consultation)">Update</button>
+                                        <button mat-raised-button color="warn" (click)="deleteConsultation(consultation.id, consultation)">Delete</button>
                                     </div>
                                 </div>
                             </div>
